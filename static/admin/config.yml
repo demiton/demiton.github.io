@@ -1,7 +1,6 @@
 backend:
   name: github
   repo: demiton/demiton.github.io
-  branch: main
  
 
 media_folder: static/img
