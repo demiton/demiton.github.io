@@ -1,6 +1,5 @@
 name: Publish Gatsby website
 
-
 on:
   push:
     branches: [master]
