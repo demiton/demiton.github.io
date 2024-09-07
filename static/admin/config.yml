@@ -2,7 +2,7 @@ backend:
   name: github
   repo: demiton/demiton.github.io
   branch: main
-  base_url: https://demiton-oauth-provider.vercel.app
+  base_url: https://o-auth-provider-for-decapcms.vercel.app
  
 
 media_folder: static/img
