@@ -1,0 +1,27 @@
+backend:
+  name: github
+  repo: demiton/demiton.github.io
+  branch: main
+  base_url: https://o-auth-provider-for-decapcms.vercel.app/api/auth
+  
+ 
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: 'blog'
+    label: 'Blog'
+    folder: 'content/blog'
+    create: true
+    slug: 'index'
+    media_folder: ''
+    public_folder: ''
+    path: '{{title}}/index'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
