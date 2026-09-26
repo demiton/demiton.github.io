@@ -1,0 +1,1401 @@
+{
+  "version": "2.19",
+  "children": [
+    {
+      "type": "frame",
+      "id": "tZEWp",
+      "x": 0,
+      "y": 0,
+      "name": "Accueil",
+      "clip": true,
+      "width": 1440,
+      "fill": "$bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "DwZAm",
+          "name": "Hero",
+          "clip": true,
+          "width": "fill_container",
+          "height": 800,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../generated.png",
+            "mode": "fill"
+          },
+          "layout": "vertical",
+          "gap": 28,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "NjZzK",
+              "layoutPosition": "absolute",
+              "x": 0,
+              "y": 0,
+              "name": "Overlay",
+              "fill": "#FFFFFFD9",
+              "width": 1440,
+              "height": 800
+            },
+            {
+              "type": "frame",
+              "id": "ZgVlb",
+              "layoutPosition": "absolute",
+              "x": 0,
+              "y": 0,
+              "name": "Header",
+              "width": 1440,
+              "padding": [
+                28,
+                48
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "lrlll",
+                  "name": "Brand",
+                  "fill": "$ink",
+                  "content": "Demiton",
+                  "fontFamily": "$font-display",
+                  "fontSize": 24,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "frame",
+                  "id": "XbTKP",
+                  "name": "Nav",
+                  "gap": 32,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "d9cn8a",
+                      "name": "Nav Guides",
+                      "fill": "$ink",
+                      "content": "Guides",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VDcFw",
+                      "name": "Nav Notes",
+                      "fill": "$ink",
+                      "content": "Notes",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "B6rw32",
+                      "name": "Nav À propos",
+                      "fill": "$ink",
+                      "content": "À propos",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Y8E2vv",
+                      "name": "Nav Contact",
+                      "fill": "$ink",
+                      "content": "Contact",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "RLrn0",
+              "name": "Title",
+              "fill": "$ink",
+              "content": "Demiton Docs",
+              "fontFamily": "$font-display",
+              "fontSize": 72,
+              "fontWeight": "bold"
+            },
+            {
+              "type": "text",
+              "id": "cnGNk",
+              "name": "Subtitle",
+              "fill": "$ink",
+              "content": "Guides & notes de développement",
+              "fontFamily": "$font-body",
+              "fontSize": 30,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "r0JUD",
+              "name": "CTA",
+              "cornerRadius": 999,
+              "stroke": "$accent",
+              "strokeWidth": 2,
+              "padding": [
+                14,
+                40
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "R1MMN",
+                  "name": "Label",
+                  "fill": "$ink",
+                  "content": "Explorer les guides",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "vce9P",
+          "name": "Features",
+          "width": "fill_container",
+          "fill": "$bg",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            100,
+            48,
+            80,
+            48
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "ssbRx",
+              "name": "Section title",
+              "fill": "$ink",
+              "content": "Tout pour bien documenter",
+              "fontFamily": "$font-display",
+              "fontSize": 36,
+              "fontWeight": "bold"
+            },
+            {
+              "type": "text",
+              "id": "x1nuHB",
+              "name": "Section subtitle",
+              "fill": "$ink-2",
+              "content": "Une base de connaissances simple, claire et agréable à parcourir.",
+              "fontFamily": "$font-body",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "i9k4sE",
+              "name": "Feature row",
+              "width": "fill_container",
+              "gap": 24,
+              "padding": [
+                48,
+                0,
+                0,
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "AZo5w",
+                  "name": "Feature Guides",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": [
+                    32,
+                    24
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "M8KRrb",
+                      "name": "Icon circle",
+                      "width": 90,
+                      "height": 90,
+                      "fill": "$yellow",
+                      "cornerRadius": 999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "PbO8G",
+                          "name": "Icon",
+                          "width": 36,
+                          "height": 36,
+                          "icon": "book-open",
+                          "library": "lucide",
+                          "fill": "#FFFFFF"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "AflVW",
+                      "name": "Title",
+                      "fill": "$ink",
+                      "content": "Guides",
+                      "fontFamily": "$font-display",
+                      "fontSize": 20,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "g8bMW",
+                      "name": "Desc",
+                      "fill": "$ink-2",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Des tutoriels pas à pas, du setup initial au déploiement en production.",
+                      "lineHeight": 1.6,
+                      "textAlign": "center",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ELDi8",
+                  "name": "Feature Notes",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": [
+                    32,
+                    24
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "nEUyC",
+                      "name": "Icon circle",
+                      "width": 90,
+                      "height": 90,
+                      "fill": "$cyan",
+                      "cornerRadius": 999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "vkAQN",
+                          "name": "Icon",
+                          "width": 36,
+                          "height": 36,
+                          "icon": "pencil",
+                          "library": "lucide",
+                          "fill": "#FFFFFF"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "ttiNR",
+                      "name": "Title",
+                      "fill": "$ink",
+                      "content": "Notes",
+                      "fontFamily": "$font-display",
+                      "fontSize": 20,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "sdWtA",
+                      "name": "Desc",
+                      "fill": "$ink-2",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Des mémos et cheatsheets concis, prêts à copier-coller au quotidien.",
+                      "lineHeight": 1.6,
+                      "textAlign": "center",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "fi25v",
+                  "name": "Feature Recherche",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": [
+                    32,
+                    24
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "cBhWD",
+                      "name": "Icon circle",
+                      "width": 90,
+                      "height": 90,
+                      "fill": "$accent",
+                      "cornerRadius": 999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "KUtzj",
+                          "name": "Icon",
+                          "width": 36,
+                          "height": 36,
+                          "icon": "zap",
+                          "library": "lucide",
+                          "fill": "#FFFFFF"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "Y9EdL",
+                      "name": "Title",
+                      "fill": "$ink",
+                      "content": "Recherche",
+                      "fontFamily": "$font-display",
+                      "fontSize": 20,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "UTpiX",
+                      "name": "Desc",
+                      "fill": "$ink-2",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Ctrl K et tout le contenu devient accessible en quelques frappes.",
+                      "lineHeight": 1.6,
+                      "textAlign": "center",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Nzs1d",
+          "name": "Guides & Notes",
+          "width": "fill_container",
+          "fill": "$bg",
+          "gap": 24,
+          "padding": [
+            40,
+            48,
+            100,
+            48
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "UL6g7",
+              "name": "Panel Guides",
+              "width": "fill_container",
+              "fill": "$surface",
+              "cornerRadius": 8,
+              "stroke": "$hairline",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 40,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "m7Uql",
+                  "name": "Icon chip",
+                  "width": 48,
+                  "height": 48,
+                  "fill": "$accent",
+                  "cornerRadius": 999,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "nfCzx",
+                      "name": "Icon",
+                      "width": 22,
+                      "height": 22,
+                      "icon": "book-open",
+                      "library": "lucide",
+                      "fill": "#FFFFFF"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "Rq7PT",
+                  "name": "Title",
+                  "fill": "$ink",
+                  "content": "Guides",
+                  "fontFamily": "$font-display",
+                  "fontSize": 24,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "beniq",
+                  "name": "Desc",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Apprends un sujet de bout en bout : installation, configuration, bonnes pratiques et pièges à éviter.",
+                  "lineHeight": 1.6,
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "PSz3J",
+                  "name": "Link",
+                  "fill": "$accent",
+                  "content": "Voir les guides →",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "x7FjG",
+              "name": "Panel Notes",
+              "width": "fill_container",
+              "fill": "$surface",
+              "cornerRadius": 8,
+              "stroke": "$hairline",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 40,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "dOLtP",
+                  "name": "Icon chip",
+                  "width": 48,
+                  "height": 48,
+                  "fill": "$cyan",
+                  "cornerRadius": 999,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "OnYqK",
+                      "name": "Icon",
+                      "width": 22,
+                      "height": 22,
+                      "icon": "pencil",
+                      "library": "lucide",
+                      "fill": "#FFFFFF"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "VhpqN",
+                  "name": "Title",
+                  "fill": "$ink",
+                  "content": "Notes",
+                  "fontFamily": "$font-display",
+                  "fontSize": 24,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "X18qp",
+                  "name": "Desc",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Retrouve en quelques secondes la commande ou le snippet exact dont tu as besoin.",
+                  "lineHeight": 1.6,
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "bJuL9",
+                  "name": "Link",
+                  "fill": "$accent",
+                  "content": "Voir les notes →",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tFzEz",
+          "name": "Footer",
+          "width": "fill_container",
+          "fill": "$ink",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            64,
+            48,
+            32,
+            48
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "Q5jYM",
+              "name": "Footer top",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Mo2Z0",
+                  "name": "Footer brand",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ImkbN",
+                      "name": "Brand",
+                      "fill": "#FFFFFF",
+                      "content": "Demiton",
+                      "fontFamily": "$font-display",
+                      "fontSize": 22,
+                      "fontWeight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "id": "i3rELT",
+                      "name": "Tagline",
+                      "fill": "#999999",
+                      "content": "Docs & notes de développement",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "pKH04",
+                  "name": "Footer nav",
+                  "gap": 28,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "uxTSO",
+                      "name": "Nav Guides",
+                      "fill": "#CCCCCC",
+                      "content": "Guides",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "KVq2R",
+                      "name": "Nav Notes",
+                      "fill": "#CCCCCC",
+                      "content": "Notes",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "zGQ71",
+                      "name": "Nav GitHub",
+                      "fill": "#CCCCCC",
+                      "content": "GitHub",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ckTbY",
+                      "name": "Nav Contact",
+                      "fill": "#CCCCCC",
+                      "content": "Contact",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "V4BmC",
+              "name": "Divider",
+              "fill": "#3A3A3A",
+              "width": "fill_container",
+              "height": 1
+            },
+            {
+              "type": "text",
+              "id": "ZFMpJ",
+              "name": "Copyright",
+              "fill": "#777777",
+              "content": "© 2026 Demiton — Propulsé par Astro + Starlight",
+              "fontFamily": "$font-body",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "UZHpq",
+      "x": 0,
+      "y": 2124,
+      "name": "Page de documentation",
+      "clip": true,
+      "width": 1440,
+      "fill": "$surface",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "MUTQR",
+          "name": "Header",
+          "width": "fill_container",
+          "fill": "$surface",
+          "stroke": "$hairline",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "padding": [
+            20,
+            48
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "PqgHS",
+              "name": "Brand",
+              "fill": "$ink",
+              "content": "Demiton",
+              "fontFamily": "$font-display",
+              "fontSize": 22,
+              "fontWeight": "bold"
+            },
+            {
+              "type": "frame",
+              "id": "IlEgF",
+              "name": "Nav",
+              "gap": 28,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Q1snQ",
+                  "name": "Nav Guides",
+                  "fill": "$ink-2",
+                  "content": "Guides",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "dSDSj",
+                  "name": "Nav Notes",
+                  "fill": "$ink-2",
+                  "content": "Notes",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "aRXbP",
+                  "name": "Nav À propos",
+                  "fill": "$ink-2",
+                  "content": "À propos",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "V3hBww",
+                  "name": "Search",
+                  "fill": "$bg",
+                  "cornerRadius": 999,
+                  "stroke": "$hairline",
+                  "strokeWidth": 1,
+                  "gap": 8,
+                  "padding": [
+                    8,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "w21Lw",
+                      "name": "Search icon",
+                      "width": 14,
+                      "height": 14,
+                      "icon": "search",
+                      "library": "lucide",
+                      "fill": "$ink-2"
+                    },
+                    {
+                      "type": "text",
+                      "id": "XYRMc",
+                      "name": "Search label",
+                      "fill": "$ink-2",
+                      "content": "Rechercher…  Ctrl K",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "v47eS",
+          "name": "Body",
+          "width": "fill_container",
+          "height": 880,
+          "children": [
+            {
+              "type": "frame",
+              "id": "g59Aq1",
+              "name": "Sidebar",
+              "width": 272,
+              "height": "fill_container",
+              "fill": "$bg",
+              "stroke": "$hairline",
+              "strokeWidth": {
+                "right": 1
+              },
+              "layout": "vertical",
+              "gap": 28,
+              "padding": 28,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "HzeAO",
+                  "name": "Section Guides",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Dr3a7",
+                      "name": "Section label",
+                      "fill": "$ink-2",
+                      "content": "GUIDES",
+                      "fontFamily": "$font-display",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "letterSpacing": 1.5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "KavG5",
+                      "name": "Item Bien démarrer",
+                      "width": "fill_container",
+                      "cornerRadius": 999,
+                      "gap": 10,
+                      "padding": [
+                        8,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "YymFv",
+                          "name": "Label",
+                          "fill": "$ink-2",
+                          "content": "Bien démarrer",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "qNYOY",
+                      "name": "Item Installer Astro",
+                      "width": "fill_container",
+                      "cornerRadius": 999,
+                      "gap": 10,
+                      "padding": [
+                        8,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "DTMM7",
+                          "name": "Label",
+                          "fill": "$ink-2",
+                          "content": "Installer Astro",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ApaAd",
+                      "name": "Item Déployer sur GitHub Pages",
+                      "width": "fill_container",
+                      "cornerRadius": 999,
+                      "gap": 10,
+                      "padding": [
+                        8,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "XVaCh",
+                          "name": "Label",
+                          "fill": "$ink-2",
+                          "content": "Déployer sur GitHub Pages",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "mo4Cq",
+                  "name": "Section Notes",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "paKBw",
+                      "name": "Section label",
+                      "fill": "$ink-2",
+                      "content": "NOTES",
+                      "fontFamily": "$font-display",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "letterSpacing": 1.5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ezNm5",
+                      "name": "Item Mémo Git",
+                      "width": "fill_container",
+                      "fill": "$accent-soft",
+                      "cornerRadius": 999,
+                      "gap": 10,
+                      "padding": [
+                        8,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "k5KHsc",
+                          "name": "Active dot",
+                          "fill": "$accent",
+                          "width": 7,
+                          "height": 7
+                        },
+                        {
+                          "type": "text",
+                          "id": "hiXkw",
+                          "name": "Label",
+                          "fill": "$accent",
+                          "content": "Mémo Git",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "iKoaK",
+                      "name": "Item Mémo Bash",
+                      "width": "fill_container",
+                      "cornerRadius": 999,
+                      "gap": 10,
+                      "padding": [
+                        8,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "A1XUEl",
+                          "name": "Label",
+                          "fill": "$ink-2",
+                          "content": "Mémo Bash",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "s3wmxk",
+                      "name": "Item Raccourcis VS Code",
+                      "width": "fill_container",
+                      "cornerRadius": 999,
+                      "gap": 10,
+                      "padding": [
+                        8,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "FXsNK",
+                          "name": "Label",
+                          "fill": "$ink-2",
+                          "content": "Raccourcis VS Code",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HAndf",
+              "name": "Content",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$surface",
+              "layout": "vertical",
+              "gap": 20,
+              "padding": [
+                40,
+                56
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qMn25",
+                  "name": "Breadcrumb",
+                  "fill": "$ink-2",
+                  "content": "Notes  /  Mémo Git",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "JjMAm",
+                  "name": "Page title",
+                  "fill": "$ink",
+                  "content": "Mémo Git",
+                  "fontFamily": "$font-display",
+                  "fontSize": 40,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "c0A1Zn",
+                  "name": "Intro",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Les commandes Git du quotidien, prêtes à copier-coller. Chaque bloc est autonome : copie, colle, exécute.",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "zlcdX",
+                  "name": "Code block",
+                  "width": "fill_container",
+                  "fill": "$ink",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "qjbNg",
+                      "name": "Code header",
+                      "width": "fill_container",
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "hFGAS",
+                          "name": "Dots",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "ellipse",
+                              "id": "uKmBL",
+                              "name": "Dot",
+                              "fill": "$accent",
+                              "width": 10,
+                              "height": 10
+                            },
+                            {
+                              "type": "ellipse",
+                              "id": "RtSrX",
+                              "name": "Dot",
+                              "fill": "$yellow",
+                              "width": 10,
+                              "height": 10
+                            },
+                            {
+                              "type": "ellipse",
+                              "id": "uPhTk",
+                              "name": "Dot",
+                              "fill": "$cyan",
+                              "width": 10,
+                              "height": 10
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "udA49",
+                          "name": "Filename",
+                          "fill": "#999999",
+                          "content": "terminal — bash",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "RIkCQ",
+                      "name": "Code lines",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": [
+                        4,
+                        16,
+                        16,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "T2m4l",
+                          "name": "Line",
+                          "fill": "#777777",
+                          "content": "# État et historique compact",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "vIX3w",
+                          "name": "Line",
+                          "fill": "#4CD3E3",
+                          "content": "git status",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ipdme",
+                          "name": "Line",
+                          "fill": "#4CD3E3",
+                          "content": "git log --oneline --graph --decorate -20",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "gF1fa",
+                          "name": "Line",
+                          "fill": "#777777",
+                          "content": " ",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "sOiHa",
+                          "name": "Line",
+                          "fill": "#777777",
+                          "content": "# Nouvelle branche de travail",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "arQ5x",
+                          "name": "Line",
+                          "fill": "#F8B600",
+                          "content": "git switch -c feature/ma-feature",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "fgyMT",
+                  "name": "Astuce",
+                  "width": "fill_container",
+                  "fill": "#EAFBFD",
+                  "cornerRadius": 12,
+                  "stroke": "$cyan",
+                  "strokeWidth": {
+                    "left": 4
+                  },
+                  "gap": 14,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "BelRk",
+                      "name": "Icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "lightbulb",
+                      "library": "lucide",
+                      "fill": "$cyan"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ZOZTA",
+                      "name": "Text",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "z87MN",
+                          "name": "Title",
+                          "fill": "$ink",
+                          "content": "Astuce",
+                          "fontFamily": "$font-display",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "oi0is",
+                          "name": "Body",
+                          "fill": "$ink-2",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Crée un alias : git config --global alias.lg \"log --oneline --graph --decorate\" pour un historique lisible en une commande.",
+                          "lineHeight": 1.6,
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "CgnHS",
+              "name": "TOC",
+              "width": 208,
+              "height": "fill_container",
+              "stroke": "$hairline",
+              "strokeWidth": {
+                "left": 1
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 28,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Pey1Z",
+                  "name": "TOC title",
+                  "fill": "$ink-2",
+                  "content": "SUR CETTE PAGE",
+                  "fontFamily": "$font-display",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1.5
+                },
+                {
+                  "type": "text",
+                  "id": "ap8hb",
+                  "name": "Item Au quotidien",
+                  "fill": "$accent",
+                  "content": "Au quotidien",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "tHE6Q",
+                  "name": "Item Rattrapage express",
+                  "fill": "$ink-2",
+                  "content": "Rattrapage express",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "H66MVx",
+                  "name": "Item Branches",
+                  "fill": "$ink-2",
+                  "content": "Branches",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "bg": {
+      "type": "color",
+      "value": "#F9F9FF"
+    },
+    "surface": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "ink": {
+      "type": "color",
+      "value": "#222222"
+    },
+    "ink-2": {
+      "type": "color",
+      "value": "#777777"
+    },
+    "accent": {
+      "type": "color",
+      "value": "#E45447"
+    },
+    "accent-soft": {
+      "type": "color",
+      "value": "#FDE8E6"
+    },
+    "cyan": {
+      "type": "color",
+      "value": "#4CD3E3"
+    },
+    "magenta": {
+      "type": "color",
+      "value": "#E5007D"
+    },
+    "yellow": {
+      "type": "color",
+      "value": "#F8B600"
+    },
+    "hairline": {
+      "type": "color",
+      "value": "#EEEEEE"
+    },
+    "code-bg": {
+      "type": "color",
+      "value": "#191A2E"
+    },
+    "font-display": {
+      "type": "string",
+      "value": "Poppins"
+    },
+    "font-body": {
+      "type": "string",
+      "value": "Roboto"
+    },
+    "font-mono": {
+      "type": "string",
+      "value": "IBM Plex Mono"
+    }
+  },
+  "fileToken": "4bb3a15a-18a4-4e69-b259-28324fdfb4d7"
+}

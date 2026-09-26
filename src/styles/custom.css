@@ -1,0 +1,142 @@
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/poppins/700.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/ibm-plex-mono';
+
+/* ============================================================
+   Demiton — style "Steve" : clair, joyeux, plat et coloré
+   corail #E45447 · cyan #4CD3E3 · jaune #F8B600
+   ============================================================ */
+
+:root {
+	/* Fonds & textes */
+	--sl-color-white: #222222;
+	--sl-color-gray-1: #3a3a3a;
+	--sl-color-gray-2: #555555;
+	--sl-color-gray-3: #777777;
+	--sl-color-gray-4: #aaaaaa;
+	--sl-color-gray-5: #eeeeee;
+	--sl-color-gray-6: #f4f4fa;
+	--sl-color-gray-7: #f9f9ff;
+	--sl-color-black: #ffffff;
+	--sl-color-bg: #f9f9ff;
+
+	/* Accent : corail */
+	--sl-color-accent-low: #fde8e6;
+	--sl-color-accent: #e45447;
+	--sl-color-accent-high: #b23a30;
+	--sl-color-text-accent: #d14437;
+
+	/* Palette joyeuse */
+	--coral: #e45447;
+	--cyan: #4cd3e3;
+	--yellow: #f8b600;
+	--sl-color-blue: var(--cyan);
+	--sl-color-green: #3cb878;
+	--sl-color-orange: #f5980a;
+	--sl-color-red: var(--coral);
+	--sl-color-purple: #9b59b6;
+
+	/* Typographie Steve : Poppins / Roboto / IBM Plex Mono */
+	--sl-font: 'Roboto', ui-sans-serif, system-ui, sans-serif;
+	--sl-font-display: 'Poppins', 'Roboto', ui-sans-serif, system-ui, sans-serif;
+	--sl-font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', monospace;
+}
+
+html[data-theme='dark'] {
+	--sl-color-white: #f4f4f8;
+	--sl-color-gray-1: #e2e2ea;
+	--sl-color-gray-2: #c4c4d2;
+	--sl-color-gray-3: #9d9dae;
+	--sl-color-gray-4: #6f6f80;
+	--sl-color-gray-5: #3a3a44;
+	--sl-color-gray-6: #2b2b33;
+	--sl-color-gray-7: #232329;
+	--sl-color-black: #1b1b21;
+	--sl-color-bg: #1b1b21;
+
+	--sl-color-accent-low: #57201d;
+	--sl-color-accent: #f27066;
+	--sl-color-accent-high: #ffc4bf;
+	--sl-color-text-accent: #f5837a;
+
+	--coral: #f27066;
+	--cyan: #6fdce9;
+	--yellow: #ffc933;
+	--sl-color-blue: var(--cyan);
+	--sl-color-red: var(--coral);
+}
+
+/* Titres en Poppins */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.site-title {
+	font-family: var(--sl-font-display);
+	font-weight: 600;
+}
+
+/* Sélection cyan */
+::selection {
+	background: var(--cyan);
+	color: #222222;
+}
+
+/* --- Hero : grand titre sombre façon Steve --- */
+.hero h1 {
+	font-weight: 700;
+	letter-spacing: -0.01em;
+}
+
+/* Boutons pilule à contour corail */
+.hero .actions .action.primary {
+	border-radius: 999px;
+	border: 2px solid var(--coral);
+	background: transparent;
+	color: var(--sl-color-text);
+	font-weight: 500;
+	padding-inline: 2rem;
+	transition: background 0.2s ease, color 0.2s ease;
+}
+
+.hero .actions .action.primary:hover {
+	background: var(--coral);
+	color: #ffffff;
+}
+
+.hero .actions .action.minimal {
+	border-radius: 999px;
+	font-weight: 500;
+}
+
+/* Champ de recherche en pilule */
+site-search button {
+	border-radius: 999px;
+}
+
+/* --- Cartes : pastille d'accent au survol --- */
+.card-grid .card {
+	border-radius: 8px;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-grid .card:hover {
+	border-color: var(--coral);
+}
+
+/* Code inline : corail discret */
+:not(pre) > code {
+	color: var(--sl-color-text-accent);
+}
+
+/* --- Blocs de code : sombre #222, signature du template --- */
+.expressive-code {
+	--ec-codeBg: #222222;
+	--ec-codeBrd: #3a3a3a;
+	--ec-frm-edBg: #222222;
+	--ec-frm-edBrdCol: #3a3a3a;
+}

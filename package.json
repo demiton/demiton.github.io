@@ -1,41 +1,27 @@
 {
-  "name": "demiton.github.io",
-  "private": true,
-  "description": "",
-  "version": "1.0.0",
-  "author": "demiton",
+  "name": "demiton-github-io",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
   "dependencies": {
-    "decap-cms-app": "^3.3.3",
-    "gatsby": "^5.13.7",
-    "gatsby-plugin-decap-cms": "^4.0.4",
-    "gatsby-plugin-image": "^3.13.1",
-    "gatsby-plugin-manifest": "^5.13.1",
-    "gatsby-plugin-sharp": "^5.13.1",
-    "gatsby-source-filesystem": "^5.13.1",
-    "gatsby-transformer-sharp": "^5.13.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@astrojs/starlight": "^0.42.4",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/poppins": "^5.3.0",
+    "@fontsource/roboto": "^5.3.0",
+    "astro": "^7.2.10",
+    "sharp": "^0.35.3"
+  },
+  "allowScripts": {
+    "esbuild": true
   },
   "devDependencies": {
-    "gh-pages": "^6.1.1",
-    "prettier": "^2.8.8"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "0BSD",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
-    "start": "gatsby develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "deploy": "gatsby build && gh-pages -d public -b main"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/demiton/demiton.github.io"
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
   }
 }
