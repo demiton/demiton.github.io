@@ -8,7 +8,7 @@ Ce dépôt (`demiton.github.io`, un site utilisateur GitHub Pages) est en cours 
 
 Le site est configuré : titre `Demiton`, interface en français, sidebar `Guides`/`Notes` (autogenerate), `site: https://demiton.github.io`. Le thème visuel (style inspiré du template « Steve » : fond clair `#F9F9FF`, corail `#E45447`, cyan `#4CD3E3`, jaune `#F8B600`, typographies Poppins/Roboto/IBM Plex Mono via `@fontsource`) vit dans `src/styles/custom.css` et surcharge les variables CSS de Starlight. Les blocs de code utilisent le thème Expressive Code `dracula` avec fond `#222`. La maquette de référence est dessinée dans `design/pencil-demiton.pen` (outil pen.dev, extension VS Code Pencil — ne pas éditer le fichier à la main, il est chiffré ; passer par son serveur MCP).
 
-**Le déploiement est cassé tant qu'il n'est pas mis à jour :** `.github/workflows/deploy.yml` utilise toujours `enriikke/gatsby-gh-pages-action`, qui build avec Gatsby. Il faut le remplacer par un workflow GitHub Pages pour Astro (par ex. `withastro/action`) avant de pousser sur `main`. Comme c'est un dépôt `<user>.github.io`, `site` vaut `https://demiton.github.io` et aucun `base` n'est nécessaire.
+**Le déploiement est fonctionnel :** `.github/workflows/deploy.yml` utilise `withastro/action@v3` (build Astro, Node 22) puis `actions/deploy-pages@v4`, déclenché sur push vers `main`. Comme c'est un dépôt `<user>.github.io`, `site` vaut `https://demiton.github.io` et aucun `base` n'est nécessaire.
 
 ## Commandes
 
