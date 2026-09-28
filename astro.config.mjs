@@ -22,6 +22,11 @@ export default defineConfig({
 			expressiveCode: {
 				themes: ['dracula', 'dracula'],
 			},
+			components: {
+				Header: './src/components/SiteHeader.astro',
+				Footer: './src/overrides/Footer.astro',
+				ThemeSelect: './src/overrides/ThemeSelect.astro',
+			},
 			sidebar: [
 				{
 					label: 'Guides',

@@ -1,0 +1,97 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="footer-top">
+		<div class="footer-brand">
+			<p class="brand">Demiton</p>
+			<p class="tagline">Docs &amp; notes de développement</p>
+		</div>
+		<nav class="footer-nav" aria-label="Liens du site">
+			<a href="/guides/bien-demarrer/">Docs</a>
+			<a href="https://github.com/demiton">GitHub</a>
+			<a href="/contact/">Contact</a>
+		</nav>
+	</div>
+	<hr />
+	<p class="copyright">© {year} Demiton — propulsé par Astro + Starlight</p>
+</footer>
+
+<style>
+	.site-footer {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		/* Toujours pleine largeur, même rendu dans une colonne de contenu
+		   plus étroite (ex. footer des pages de doc Starlight). */
+		width: 100vw;
+		position: relative;
+		left: 50%;
+		right: 50%;
+		margin-inline: -50vw;
+		background: var(--color-code-bg);
+		padding: 3rem 3rem 1.75rem;
+		box-sizing: border-box;
+	}
+
+	.footer-top {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.footer-brand {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.brand {
+		margin: 0;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: 1.375rem;
+		color: var(--color-ink);
+	}
+
+	.tagline {
+		margin: 0;
+		font-family: var(--font-body);
+		font-size: 0.8rem;
+		color: var(--color-ink-2);
+	}
+
+	.footer-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.75rem;
+	}
+
+	.footer-nav a {
+		font-family: var(--font-body);
+		font-size: 0.8rem;
+		color: var(--color-ink-2);
+		text-decoration: none;
+	}
+
+	.footer-nav a:hover {
+		color: var(--color-ink);
+	}
+
+	hr {
+		width: 100%;
+		border: none;
+		border-top: 1px solid var(--color-hairline);
+		margin: 0;
+	}
+
+	.copyright {
+		margin: 0;
+		font-family: var(--font-body);
+		font-size: 0.75rem;
+		color: var(--color-ink-2);
+	}
+</style>

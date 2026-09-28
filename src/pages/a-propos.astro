@@ -1,0 +1,49 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+---
+
+<SiteLayout title="À propos" description="Ce qu'est Demiton et pourquoi ce site existe.">
+	<section class="page">
+		<h1>À propos</h1>
+		<p>
+			Demiton est un site personnel de documentation technique : des guides pas à pas et des
+			notes courtes, pensés pour être relus par leur propre auteur autant que partagés.
+		</p>
+		<p>
+			Le site est construit avec <a href="https://astro.build">Astro</a> et
+			<a href="https://starlight.astro.build">Starlight</a>, après une migration depuis Gatsby —
+			l'histoire complète est racontée dans
+			<a href="/blog/migrer-de-gatsby-vers-astro/">le premier article du blog</a>.
+		</p>
+		<p>
+			Le contenu est versionné publiquement sur
+			<a href="https://github.com/demiton">GitHub</a> : corrections et suggestions bienvenues via
+			une issue ou une pull request.
+		</p>
+	</section>
+</SiteLayout>
+
+<style>
+	.page {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		max-width: 42rem;
+		margin: 0 auto;
+		padding: 4rem 1.5rem 6rem;
+		line-height: 1.8;
+		color: var(--color-ink-2);
+	}
+
+	.page h1 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: 2.5rem;
+		color: var(--color-ink);
+	}
+
+	.page a {
+		color: var(--color-accent);
+	}
+</style>

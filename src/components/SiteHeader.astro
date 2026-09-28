@@ -1,0 +1,142 @@
+---
+// Header du site : utilisé à la fois comme override du `Header` Starlight
+// (pages de doc) et directement dans `SiteLayout` (accueil, blog, article),
+// pour une nav identique partout.
+import { Icon } from '@astrojs/starlight/components';
+import Search from 'virtual:starlight/components/Search';
+import config from 'virtual:starlight/user-config';
+
+const shouldRenderSearch = config.pagefind;
+
+const navItems = [
+	{ label: 'Docs', href: '/guides/bien-demarrer/' },
+	{ label: 'Blog', href: '/blog/', accent: true },
+	{ label: 'À propos', href: '/a-propos/' },
+	{ label: 'Contact', href: '/contact/' },
+];
+---
+
+<div class="site-header">
+	<a class="brand" href="/">Demiton</a>
+
+	<nav class="nav" aria-label="Navigation principale">
+		{
+			navItems.map((item) => (
+				<a href={item.href} class:list={['nav-link', { accent: item.accent }]}>
+					{item.label}
+				</a>
+			))
+		}
+		{shouldRenderSearch && <Search />}
+	</nav>
+
+	<button class="menu-toggle" popovertarget="site-mobile-nav" aria-label="Ouvrir le menu">
+		<Icon name="bars" size="1.25rem" />
+	</button>
+
+	<nav id="site-mobile-nav" popover class="mobile-nav" aria-label="Navigation principale (mobile)">
+		{
+			navItems.map((item) => (
+				<a href={item.href} class:list={['nav-link', { accent: item.accent }]}>
+					{item.label}
+				</a>
+			))
+		}
+	</nav>
+</div>
+
+<style>
+	.site-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 2rem;
+		width: 100%;
+		height: 100%;
+	}
+
+	.brand {
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: 1.25rem;
+		color: var(--color-ink);
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.nav {
+		display: none;
+		align-items: center;
+		gap: 1.75rem;
+	}
+
+	.nav-link {
+		font-family: var(--font-body);
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--color-ink-2);
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.nav-link:hover {
+		color: var(--color-ink);
+	}
+
+	.nav-link.accent {
+		color: var(--color-accent);
+	}
+
+	.menu-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 8px;
+		border: 1px solid var(--color-hairline);
+		background: var(--color-bg);
+		color: var(--color-ink);
+		cursor: pointer;
+	}
+
+	/* [popover] est masqué par défaut par la feuille de style du
+	   navigateur (display: none) ; on ne force l'affichage flex que
+	   lorsqu'il est effectivement ouvert, sinon le panneau reste
+	   visible en permanence. */
+	.mobile-nav {
+		flex-direction: column;
+		gap: 0.25rem;
+		position: fixed;
+		inset-inline: 1rem;
+		top: 4.5rem;
+		margin: 0;
+		padding: 0.75rem;
+		border-radius: 12px;
+		border: 1px solid var(--color-hairline);
+		background: var(--color-surface);
+	}
+
+	.mobile-nav:popover-open {
+		display: flex;
+	}
+
+	.mobile-nav .nav-link {
+		padding: 0.6rem 0.75rem;
+		border-radius: 8px;
+	}
+
+	.mobile-nav .nav-link:hover {
+		background: var(--color-bg);
+	}
+
+	@media (min-width: 50rem) {
+		.nav {
+			display: flex;
+		}
+
+		.menu-toggle {
+			display: none;
+		}
+	}
+</style>

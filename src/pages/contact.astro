@@ -1,0 +1,57 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+import SiteLayout from '../layouts/SiteLayout.astro';
+---
+
+<SiteLayout title="Contact" description="Comment signaler une erreur ou proposer une amélioration.">
+	<section class="page">
+		<h1>Contact</h1>
+		<p>
+			Ce site n'a pas de formulaire de contact : le plus simple et le plus traçable reste
+			GitHub.
+		</p>
+		<a class="github-link" href="https://github.com/demiton">
+			<Icon name="github" size="1.25rem" />
+			github.com/demiton
+		</a>
+		<p>
+			Une erreur dans un guide, une commande obsolète dans une note, une idée d'article ? Ouvrez
+			une issue sur le dépôt, ou proposez directement une pull request.
+		</p>
+	</section>
+</SiteLayout>
+
+<style>
+	.page {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1.25rem;
+		max-width: 42rem;
+		margin: 0 auto;
+		padding: 4rem 1.5rem 6rem;
+		line-height: 1.8;
+		color: var(--color-ink-2);
+	}
+
+	.page h1 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: 2.5rem;
+		color: var(--color-ink);
+	}
+
+	.github-link {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 0.75rem 1.5rem;
+		border-radius: 999px;
+		border: 2px solid var(--color-accent);
+		color: var(--color-ink);
+		font-family: var(--font-mono);
+		font-size: 0.9rem;
+		text-decoration: none;
+	}
+</style>

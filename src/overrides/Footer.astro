@@ -1,0 +1,18 @@
+---
+// Override du Footer Starlight : garde la pagination précédent/suivant
+// calculée automatiquement depuis la sidebar, puis ajoute le footer
+// global du site (identique aux pages accueil/blog/article).
+import Pagination from 'virtual:starlight/components/Pagination';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+
+<div class="doc-footer">
+	<Pagination />
+</div>
+<SiteFooter />
+
+<style>
+	.doc-footer {
+		margin-top: 3rem;
+	}
+</style>

@@ -1,0 +1,103 @@
+---
+import '@fontsource/anton';
+import '@fontsource/barlow/400.css';
+import '@fontsource/barlow/500.css';
+import '@fontsource/barlow/600.css';
+import '@fontsource/barlow/700.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '../styles/custom.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	/** Header transparent, posé sur un hero plein cadre (page d'accueil) :
+	 * il ne prend un fond noir qu'une fois qu'on a défilé la page. */
+	transparentHeader?: boolean;
+}
+
+const { title, description, transparentHeader = false } = Astro.props;
+---
+
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title} — Demiton</title>
+		<meta name="description" content={description} />
+		<link rel="icon" href="/favicon.svg" />
+	</head>
+	<body>
+		<header class="page-header" data-transparent={transparentHeader ? '' : undefined}>
+			<SiteHeader />
+		</header>
+		<main>
+			<slot />
+		</main>
+		<SiteFooter />
+	</body>
+</html>
+
+{
+	transparentHeader && (
+		<script>
+			const header = document.querySelector<HTMLElement>('.page-header[data-transparent]');
+			if (header) {
+				const onScroll = () => header.classList.toggle('is-solid', window.scrollY > 40);
+				onScroll();
+				addEventListener('scroll', onScroll, { passive: true });
+			}
+		</script>
+	)
+}
+
+<style is:global>
+	:root {
+		color-scheme: dark;
+	}
+
+	body {
+		margin: 0;
+		background: var(--color-bg);
+		color: var(--color-ink);
+		font-family: var(--font-body);
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+	}
+</style>
+
+<style>
+	.page-header {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		background: var(--color-surface);
+		border-bottom: 1px solid var(--color-hairline);
+		padding: 1rem 3rem;
+	}
+
+	/* Accueil : le header flotte, transparent, sur le hero plein cadre —
+	   il ne devient une barre noire qu'au défilement. */
+	.page-header[data-transparent] {
+		position: fixed;
+		inset-inline: 0;
+		background: transparent;
+		border-bottom-color: transparent;
+		transition: background-color 0.2s ease, border-color 0.2s ease;
+	}
+
+	.page-header[data-transparent].is-solid {
+		background: var(--color-surface);
+		border-bottom-color: var(--color-hairline);
+	}
+
+	@media (max-width: 50rem) {
+		.page-header {
+			padding: 0.85rem 1.25rem;
+		}
+	}
+</style>

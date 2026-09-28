@@ -1,0 +1,106 @@
+---
+interface Props {
+	href: string;
+	title: string;
+	excerpt: string;
+	cover: string;
+	category: string;
+	date: Date;
+}
+
+const { href, title, excerpt, cover, category, date } = Astro.props;
+
+const formattedDate = date
+	.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })
+	.toUpperCase()
+	.replace('.', '');
+---
+
+<a class="article-card" href={href}>
+	<div class="cover" style={`background-image: url(${cover})`}></div>
+	<div class="body">
+		<div class="meta">
+			<span class="date">{formattedDate}</span>
+			<span class="category">{category}</span>
+		</div>
+		<h3 class="title">{title}</h3>
+		<p class="excerpt">{excerpt}</p>
+		<span class="link">Lire la suite →</span>
+	</div>
+</a>
+
+<style>
+	.article-card {
+		display: flex;
+		flex-direction: column;
+		overflow: clip;
+		border-radius: 8px;
+		border: 1px solid var(--color-hairline);
+		background: var(--color-surface);
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.article-card:hover {
+		border-color: var(--color-accent);
+	}
+
+	.cover {
+		height: 190px;
+		background-size: cover;
+		background-position: center;
+	}
+
+	.body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		padding: 1.25rem;
+	}
+
+	.meta {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.date {
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		color: var(--color-accent);
+	}
+
+	.category {
+		font-family: var(--font-mono);
+		font-size: 0.65rem;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		color: var(--color-accent);
+		background: var(--color-accent-soft);
+		border-radius: 999px;
+		padding: 0.25rem 0.6rem;
+	}
+
+	.title {
+		margin: 0;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: 1.0625rem;
+		color: var(--color-ink);
+	}
+
+	.excerpt {
+		margin: 0;
+		font-family: var(--font-body);
+		font-size: 0.8125rem;
+		line-height: 1.6;
+		color: var(--color-ink-2);
+	}
+
+	.link {
+		font-family: var(--font-body);
+		font-size: 0.8125rem;
+		font-weight: 500;
+		color: var(--color-accent);
+	}
+</style>

@@ -1,0 +1,341 @@
+---
+import { getCollection } from 'astro:content';
+import { Icon } from '@astrojs/starlight/components';
+import type { StarlightIcon } from '@astrojs/starlight/types';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const latestPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 5);
+
+const features: { icon: StarlightIcon; title: string; color: string; desc: string }[] = [
+	{ icon: 'open-book', title: 'Guides', color: 'accent', desc: "Des tutoriels pas à pas, du setup initial au déploiement en production." },
+	{ icon: 'pencil', title: 'Notes', color: 'cyan', desc: 'Des mémos et cheatsheets concis, prêts à copier-coller au quotidien.' },
+	{ icon: 'magnifier', title: 'Recherche', color: 'violet', desc: 'Ctrl K et tout le contenu devient accessible en quelques frappes.' },
+];
+---
+
+<SiteLayout
+	title="Demiton — Docs &amp; Notes"
+	description="Documentation technique, guides et notes de développement."
+	transparentHeader
+>
+	<section class="hero" style="background-image: url(/background_demiton.webp)">
+		<div class="overlay"></div>
+		<div class="hero-content">
+			<h1><span>DEMITON</span> <span class="accent">DOCS</span></h1>
+			<p class="subtitle">GUIDES &amp; NOTES DE DÉVELOPPEMENT</p>
+			<a class="cta" href="/guides/bien-demarrer/">Explorer les guides</a>
+		</div>
+	</section>
+
+	<section class="features">
+		<h2>TOUT POUR BIEN DOCUMENTER</h2>
+		<p class="lead">Une base de connaissances simple, claire et agréable à parcourir.</p>
+		<div class="feature-grid">
+			{
+				features.map((f, i) => (
+					<div class="feature-card" data-color={f.color}>
+						<span class="index">{String(i + 1).padStart(2, '0')}</span>
+						<div class="icon-badge">
+							<Icon name={f.icon} size="1.75rem" />
+						</div>
+						<h3>{f.title}</h3>
+						<p>{f.desc}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="panels">
+		<a class="panel" data-color="accent" href="/guides/bien-demarrer/">
+			<div class="icon-chip"><Icon name="open-book" size="1.375rem" /></div>
+			<h3>Guides</h3>
+			<p>Apprends un sujet de bout en bout : installation, configuration, bonnes pratiques et pièges à éviter.</p>
+			<span class="link">Voir les guides →</span>
+		</a>
+		<a class="panel" data-color="cyan" href="/notes/memo-git/">
+			<div class="icon-chip"><Icon name="pencil" size="1.375rem" /></div>
+			<h3>Notes</h3>
+			<p>Retrouve en quelques secondes la commande ou le snippet exact dont tu as besoin.</p>
+			<span class="link cyan">Voir les notes →</span>
+		</a>
+	</section>
+
+	{
+		latestPosts.length > 0 && (
+			<section class="latest">
+				<div class="section-header">
+					<h2>Derniers articles</h2>
+					<a href="/blog/">Voir plus →</a>
+				</div>
+				<div class="article-grid">
+					{latestPosts.map((post) => (
+						<ArticleCard
+							href={`/blog/${post.id}/`}
+							title={post.data.title}
+							excerpt={post.data.description}
+							cover={post.data.cover}
+							category={post.data.category}
+							date={post.data.date}
+						/>
+					))}
+				</div>
+			</section>
+		)
+	}
+</SiteLayout>
+
+<style>
+	.hero {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 32rem;
+		overflow: clip;
+		background-size: cover;
+		background-position: center;
+	}
+
+	.overlay {
+		position: absolute;
+		inset: 0;
+		background: rgba(8, 8, 10, 0.85);
+	}
+
+	.hero-content {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		text-align: center;
+		padding: 2rem;
+	}
+
+	.hero-content h1 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: clamp(2.5rem, 6vw, 4.5rem);
+		letter-spacing: 0.02em;
+		color: var(--color-ink);
+	}
+
+	.hero-content h1 .accent {
+		color: var(--color-accent);
+	}
+
+	.subtitle {
+		margin: 0;
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		color: var(--color-cyan);
+	}
+
+	.cta {
+		margin-top: 0.5rem;
+		padding: 0.85rem 2.25rem;
+		border-radius: 999px;
+		border: 2px solid var(--color-accent);
+		color: var(--color-ink);
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		font-weight: 500;
+		text-decoration: none;
+	}
+
+	.features {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		padding: 5rem 3rem 4rem;
+		text-align: center;
+	}
+
+	.features h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: 1.75rem;
+		letter-spacing: 0.02em;
+	}
+
+	.lead {
+		margin: 0;
+		color: var(--color-ink-2);
+	}
+
+	.feature-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5rem;
+		width: 100%;
+		max-width: 70rem;
+		margin-top: 2rem;
+	}
+
+	.feature-card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		padding: 2rem 1.5rem;
+		border-radius: 14px;
+		border-top: 3px solid var(--card-color, var(--color-accent));
+		background: var(--color-surface);
+	}
+
+	.feature-card[data-color='accent'] {
+		--card-color: var(--color-accent);
+	}
+	.feature-card[data-color='cyan'] {
+		--card-color: var(--color-cyan);
+	}
+	.feature-card[data-color='violet'] {
+		--card-color: var(--color-violet);
+	}
+
+	.feature-card .index {
+		position: absolute;
+		top: 0.5rem;
+		left: 1rem;
+		font-family: var(--font-display);
+		font-size: 2.75rem;
+		color: rgb(255 255 255 / 7%);
+	}
+
+	.icon-badge {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 4.5rem;
+		height: 4.5rem;
+		border-radius: 18px;
+		border: 2px solid var(--card-color, var(--color-accent));
+		color: var(--card-color, var(--color-accent));
+		background: var(--color-code-bg);
+	}
+
+	.feature-card h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: 1.25rem;
+	}
+
+	.feature-card p {
+		margin: 0;
+		font-size: 0.875rem;
+		line-height: 1.6;
+		color: var(--color-ink-2);
+	}
+
+	.panels {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.5rem;
+		padding: 0 3rem 5rem;
+	}
+
+	.panel {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1rem;
+		padding: 2.5rem;
+		border-radius: 8px;
+		border: 1px solid var(--color-hairline);
+		border-top: 3px solid var(--card-color, var(--color-accent));
+		background: var(--color-surface);
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.panel[data-color='cyan'] {
+		--card-color: var(--color-cyan);
+	}
+
+	.panel .icon-chip {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 3rem;
+		height: 3rem;
+		border-radius: 14px;
+		border: 2px solid var(--card-color, var(--color-accent));
+		color: var(--card-color, var(--color-accent));
+		background: var(--color-code-bg);
+	}
+
+	.panel h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: 1.5rem;
+	}
+
+	.panel p {
+		margin: 0;
+		font-size: 0.9375rem;
+		line-height: 1.6;
+		color: var(--color-ink-2);
+	}
+
+	.panel .link {
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--color-accent);
+	}
+
+	.panel .link.cyan {
+		color: var(--color-cyan);
+	}
+
+	.latest {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		padding: 0 3rem 5rem;
+	}
+
+	.section-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.section-header h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: 1.5rem;
+	}
+
+	.section-header a {
+		color: var(--color-accent);
+		text-decoration: none;
+		font-size: 0.875rem;
+		font-weight: 500;
+	}
+
+	.article-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5rem;
+	}
+
+	@media (max-width: 60rem) {
+		.feature-grid,
+		.panels,
+		.article-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
