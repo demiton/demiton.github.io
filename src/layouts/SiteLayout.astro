@@ -126,7 +126,7 @@ const shareImage = new URL(externe || raster ? ogImage : '/og-default.jpg', site
 		z-index: 10;
 		background: var(--color-surface);
 		border-bottom: 1px solid var(--color-hairline);
-		padding: 1rem 3rem;
+		padding: 1.25rem 3rem; /* 20px 48px, maquette « Header » */
 	}
 
 	/* Accueil : le header flotte, transparent, sur le hero plein cadre —
@@ -146,7 +146,7 @@ const shareImage = new URL(externe || raster ? ogImage : '/og-default.jpg', site
 
 	@media (max-width: 50rem) {
 		.page-header {
-			padding: 0.85rem 1.25rem;
+			padding: 1rem 1.25rem; /* 16px 20px, maquette « Mobile Header » */
 		}
 
 		/* Maquette mobile : le header est le premier élément en flux, en bloc

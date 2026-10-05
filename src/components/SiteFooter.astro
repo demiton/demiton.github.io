@@ -15,14 +15,22 @@ const year = new Date().getFullYear();
 		</nav>
 	</div>
 	<hr />
-	<p class="copyright">© {year} Demiton — propulsé par Astro + Starlight</p>
+	<p class="copyright">© {year} Demiton — Propulsé par Astro + Starlight</p>
 </footer>
 
 <style>
 	.site-footer {
+		/* Nuances de gris propres au footer, telles quelles dans la maquette
+		   « Footer » : elles ne font pas partie de la rampe de tokens
+		   générale, on les garde donc locales au composant. */
+		--footer-link: #cccccc;
+		--footer-muted: #999999;
+		--footer-faint: #777777;
+		--footer-divider: #3a3a3a;
+
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		gap: 2rem; /* 32px, maquette */
 		/* Toujours pleine largeur, même rendu dans une colonne de contenu
 		   plus étroite (ex. footer des pages de doc Starlight). */
 		width: 100vw;
@@ -31,7 +39,7 @@ const year = new Date().getFullYear();
 		right: 50%;
 		margin-inline: -50vw;
 		background: var(--color-code-bg);
-		padding: 3rem 3rem 1.75rem;
+		padding: 4rem 3rem 2rem; /* 64px 48px 32px, maquette */
 		box-sizing: border-box;
 	}
 
@@ -53,45 +61,69 @@ const year = new Date().getFullYear();
 		margin: 0;
 		font-family: var(--font-display);
 		font-weight: 400;
-		font-size: 1.375rem;
-		color: var(--color-ink);
+		font-size: 1.375rem; /* 22px, maquette */
+		color: #ffffff;
 	}
 
 	.tagline {
 		margin: 0;
 		font-family: var(--font-body);
-		font-size: 0.8rem;
-		color: var(--color-ink-2);
+		font-size: 0.8125rem; /* 13px, maquette */
+		color: var(--footer-muted);
 	}
 
 	.footer-nav {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1.75rem;
+		gap: 1.75rem; /* 28px, maquette */
 	}
 
 	.footer-nav a {
 		font-family: var(--font-body);
-		font-size: 0.8rem;
-		color: var(--color-ink-2);
+		font-size: 0.8125rem; /* 13px, maquette */
+		color: var(--footer-link);
 		text-decoration: none;
 	}
 
 	.footer-nav a:hover {
-		color: var(--color-ink);
+		color: #ffffff;
 	}
 
 	hr {
 		width: 100%;
 		border: none;
-		border-top: 1px solid var(--color-hairline);
+		border-top: 1px solid var(--footer-divider);
 		margin: 0;
 	}
 
 	.copyright {
 		margin: 0;
 		font-family: var(--font-body);
-		font-size: 0.75rem;
-		color: var(--color-ink-2);
+		font-size: 0.75rem; /* 12px, maquette */
+		color: var(--footer-faint);
+	}
+
+	/* Maquette mobile : gouttières resserrées et tailles réduites. */
+	@media (max-width: 50rem) {
+		.site-footer {
+			gap: 1.25rem; /* 20px */
+			padding: 2.5rem 1.5rem 1.75rem; /* 40px 24px 28px */
+		}
+
+		.brand {
+			font-size: 1.125rem; /* 18px */
+		}
+
+		.tagline {
+			font-size: 0.75rem; /* 12px */
+		}
+
+		.footer-nav {
+			gap: 0.75rem; /* 12px */
+		}
+
+		.footer-nav a {
+			font-size: 0.75rem; /* 12px */
+		}
 	}
 </style>
