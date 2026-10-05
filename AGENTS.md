@@ -67,7 +67,8 @@ d'Astro — ne pas s'y fier.
 
 Conséquence à garder en tête : les titres d'onglet ne sont pas composés au même
 endroit. `SiteLayout` ajoute le suffixe `— Demiton` (désactivable via la prop
-`appendSiteName`), tandis que Starlight utilise son propre gabarit avec `| Demiton`.
+`appendSiteName`) ; Starlight utilise son propre gabarit, réglé sur le même
+séparateur `—` par `titleDelimiter` dans `astro.config.mjs`.
 
 ### Contenu
 
@@ -111,6 +112,32 @@ cyan `#35D6D6`, violet `#6B4CE6`, jaune `#F5B400`, filet `#26262D`.
 
 - `src/assets/` — images traitées par le pipeline Astro (`sharp`).
 - `public/` — fichiers servis tels quels (favicon, fond du hero, couvertures).
+- `public/og-default.jpg` — carte de partage par défaut (1200×630), **générée** :
+  ne pas l'éditer à la main, relancer `node scripts/generate-og.mjs` (nécessite
+  `npx playwright install chromium`, volontairement absent des dépendances du
+  projet puisque l'image est versionnée).
+
+## Métadonnées et partage social
+
+Les balises sont produites par **deux chemins**, comme le rendu :
+
+- pages sur mesure → `src/layouts/SiteLayout.astro`, qui émet `canonical`,
+  Open Graph et Twitter Card. Les props `ogImage` et `ogType` permettent à un
+  article de fournir sa couverture et de se déclarer `article` ;
+- pages de documentation → `src/overrides/Head.astro`, qui reprend les balises
+  de Starlight en y ajoutant `og:image`, et **retire** `canonical` et `og:url`
+  de la page 404 en y posant `noindex`.
+
+Les URL émises sont toujours absolues : les robots d'indexation comme les
+plateformes de partage refusent un chemin relatif.
+
+Les couvertures d'articles étant majoritairement des **SVG**, qu'aucune
+plateforme ne rend, `SiteLayout` retombe sur `og-default.jpg` dès que l'image
+n'est pas d'un format matriciel — sans quoi l'aperçu de partage serait vide.
+
+Le séparateur de titre est unifié sur `—` via `titleDelimiter` dans
+`astro.config.mjs`, pour que les pages de doc et les pages sur mesure affichent
+le même gabarit.
 
 ## Maquette
 

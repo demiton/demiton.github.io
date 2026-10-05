@@ -1,0 +1,32 @@
+---
+// Surcharge du `Head` de Starlight.
+//
+// Starlight produit déjà `canonical`, Open Graph et Twitter pour les pages de
+// documentation, mais jamais d'`og:image` — donc aucun aperçu riche au partage.
+// Sa page 404, elle, déclare une URL canonique vers elle-même, ce qui revient à
+// demander son indexation.
+//
+// Le rendu reprend tel quel le balisage de Starlight (voir son `Head.astro`) :
+// seule la liste des balises est filtrée en amont.
+const { head, id } = Astro.locals.starlightRoute;
+
+const site = Astro.site ?? new URL('https://demiton.github.io');
+const ogImage = new URL('/og-default.jpg', site).href;
+
+// Starlight sert sa page 404 avec l'identifiant « 404 ».
+const isNotFound = id === '404';
+
+// Une page d'erreur ne doit ni être indexée ni revendiquer une URL canonique.
+const RETIRE_SUR_404 = new Set(['canonical', 'og:url']);
+
+const tags = head.filter(({ tag, attrs }) => {
+	if (!isNotFound) return true;
+	const cle = tag === 'link' ? attrs?.rel : attrs?.property;
+	return !RETIRE_SUR_404.has(String(cle));
+});
+---
+
+{tags.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
+{!isNotFound && <meta property="og:image" content={ogImage} />}
+<meta name="twitter:image" content={ogImage} />
+{isNotFound && <meta name="robots" content="noindex" />}

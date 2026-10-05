@@ -24,7 +24,13 @@ const wordCount = post.body?.split(/\s+/).length ?? 0;
 const readingTime = Math.max(1, Math.round(wordCount / 200));
 ---
 
-<SiteLayout title={post.data.title} description={post.data.description} transparentHeader>
+<SiteLayout
+	title={post.data.title}
+	description={post.data.description}
+	ogImage={post.data.cover}
+	ogType="article"
+	transparentHeader
+>
 	<article>
 		<header class="hero" style={`--hero-cover: url(${post.data.cover})`}>
 			<div class="overlay"></div>
