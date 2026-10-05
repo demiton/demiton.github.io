@@ -92,7 +92,7 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		min-height: 26rem;
+		min-height: 37.5rem; /* 600px : maquette « Article de blog » (26rem auparavant) */
 		overflow: clip;
 		background-size: cover;
 		background-position: center;
@@ -101,7 +101,7 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
 	.overlay {
 		position: absolute;
 		inset: 0;
-		background: rgba(8, 8, 10, 0.82);
+		background: #08080adb; /* voile à 86 %, valeur de la maquette */
 	}
 
 	.hero-content {
