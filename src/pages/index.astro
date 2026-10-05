@@ -103,11 +103,30 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 	.overlay {
 		position: absolute;
 		inset: 0;
-		background: #08080acc; /* voile à 80 %, valeur de la maquette */
+		/* Voile uniforme fortement réduit (la maquette prescrivait 80 %) :
+		   l'image doit rester visible, c'est elle qui porte le hero. */
+		background: #08080a4d; /* 30 % */
+		z-index: 0;
+	}
+
+	/* L'image reste lumineuse ; seules deux zones sont assombries là où du
+	   texte vient se superposer — la bande du header, qui flotte au-dessus du
+	   hero, et le centre qui porte le titre, le sous-titre et le bouton.
+	   Sans cela, le sous-titre cyan et la navigation se perdent dans l'image. */
+	.hero::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		pointer-events: none;
+		background:
+			linear-gradient(to bottom, rgb(8 8 10 / 75%) 0%, rgb(8 8 10 / 0%) 22%),
+			radial-gradient(ellipse 58% 62% at 50% 52%, rgb(8 8 10 / 55%) 0%, rgb(8 8 10 / 0%) 74%);
 	}
 
 	.hero-content {
 		position: relative;
+		z-index: 1;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -124,6 +143,16 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 
 		.hero-content {
 			gap: 1rem; /* 16px */
+		}
+
+		/* Le header n'est plus posé sur le hero : seule la vignette centrale
+		   reste utile, et elle est élargie pour un hero plus étroit. */
+		.hero::after {
+			background: radial-gradient(
+				ellipse 76% 62% at 50% 50%,
+				rgb(8 8 10 / 55%) 0%,
+				rgb(8 8 10 / 0%) 78%
+			);
 		}
 	}
 
@@ -147,6 +176,9 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 		font-weight: 600;
 		letter-spacing: 2px;
 		color: var(--color-cyan);
+		/* L'image reste claire : c'est l'ombre qui garantit la lisibilité du
+		   sous-titre, plutôt qu'un voile plus dense. */
+		text-shadow: 0 1px 4px rgb(8 8 10 / 90%);
 	}
 
 	.cta {
@@ -159,6 +191,7 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 		font-size: 0.9375rem; /* 15px */
 		font-weight: 500;
 		text-decoration: none;
+		text-shadow: 0 1px 4px rgb(8 8 10 / 90%);
 	}
 
 	.features {

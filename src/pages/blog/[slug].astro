@@ -129,11 +129,28 @@ const formattedDate = post.data.date
 	.overlay {
 		position: absolute;
 		inset: 0;
-		background: #08080adb; /* voile à 86 %, valeur de la maquette */
+		/* Voile uniforme fortement réduit (la maquette prescrivait 86 %). */
+		background: #08080a4d; /* 30 % */
+		z-index: 0;
+	}
+
+	/* Comme sur l'accueil, l'image reste lumineuse et seules les zones portant
+	   du texte sont assombries : la bande du header et le bloc central, où le
+	   fil d'Ariane et la ligne méta sont en petits caractères. */
+	.hero::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		pointer-events: none;
+		background:
+			linear-gradient(to bottom, rgb(8 8 10 / 80%) 0%, rgb(8 8 10 / 0%) 24%),
+			radial-gradient(ellipse 60% 66% at 50% 56%, rgb(8 8 10 / 62%) 0%, rgb(8 8 10 / 0%) 76%);
 	}
 
 	.hero-content {
 		position: relative;
+		z-index: 1;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -147,6 +164,9 @@ const formattedDate = post.data.date
 		margin: 0;
 		font-size: 0.75rem;
 		color: var(--color-ink-2);
+		/* Petits caractères posés sur la couverture : l'ombre les rend lisibles
+		   sans qu'il faille densifier le voile sur toute l'image. */
+		text-shadow: 0 1px 4px rgb(8 8 10 / 90%);
 	}
 
 	.breadcrumb a {
@@ -157,6 +177,7 @@ const formattedDate = post.data.date
 		display: flex;
 		align-items: center;
 		gap: 0.875rem; /* 14px, maquette */
+		text-shadow: 0 1px 4px rgb(8 8 10 / 90%);
 	}
 
 	.category {
@@ -207,7 +228,9 @@ const formattedDate = post.data.date
 			border-bottom: 1px solid var(--color-hairline);
 		}
 
-		.overlay {
+		/* Plus de couverture plein cadre : ni voile ni vignette. */
+		.overlay,
+		.hero::after {
 			display: none;
 		}
 
