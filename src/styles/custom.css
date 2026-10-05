@@ -117,3 +117,66 @@ site-search button {
 	--ec-frm-edBg: var(--color-code-bg);
 	--ec-frm-edBrdCol: var(--color-hairline);
 }
+
+/* ============================================================
+   Bouton de menu des pages de documentation (mobile)
+   La maquette ne prévoit qu'UN bouton de menu. Starlight fournit le sien
+   — il ouvre l'arbre des guides et des notes, indispensable pour circuler
+   dans la doc — donc c'est lui qu'on garde, restylé aux tokens du site, et
+   c'est celui du SiteHeader qui est masqué (voir SiteHeader.astro).
+   Sans ce masquage, deux boutons de menu cohabitent sous 50rem.
+   ============================================================ */
+.sl-menu-button {
+	/* 36×36, fond --color-bg, icône --color-ink, rayon 8px : valeurs de
+	   l'écran « Mobile Header » de la maquette. */
+	--sl-menu-button-size: 2.25rem;
+	border-radius: 8px;
+	background-color: var(--color-bg);
+	color: var(--color-ink);
+	box-shadow: none;
+}
+
+.sl-menu-button svg {
+	width: 1.125rem; /* 18px, maquette */
+	height: 1.125rem;
+}
+
+/* Liens du site placés en tête de la navigation de documentation. Ils sont
+   injectés par le script de SiteHeader.astro : sans eux, Blog / À propos /
+   Contact deviendraient inatteignables en page de doc sur mobile. */
+.doc-menu-site-nav {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	/* Le pane Starlight est en `padding: unset` : on reprend sa gouttière
+	   horizontale pour aligner les liens sur le reste de la sidebar. */
+	padding: 0.75rem var(--sl-sidebar-pad-x, 1rem);
+	border-bottom: 1px solid var(--color-hairline);
+}
+
+@media (min-width: 50rem) {
+	/* Sur desktop, ces liens font doublon avec la navigation du header :
+	   le menu de documentation ne sert qu'en dessous de 50rem. */
+	.doc-menu-site-nav {
+		display: none;
+	}
+}
+
+.doc-menu-site-nav a {
+	padding: 0.6rem 0.75rem;
+	border-radius: 8px;
+	font-family: var(--font-body);
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--color-ink-2);
+	text-decoration: none;
+}
+
+.doc-menu-site-nav a:hover {
+	background: var(--color-surface);
+	color: var(--color-ink);
+}
+
+.doc-menu-site-nav a.accent {
+	color: var(--color-accent);
+}
