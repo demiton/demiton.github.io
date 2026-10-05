@@ -151,6 +151,25 @@ Header, Article de blog, et leurs variantes mobiles (390 px). Les `variables` du
 fichier correspondent exactement aux tokens de `custom.css` : toute évolution du
 design doit se répercuter des deux côtés, sinon la maquette devient un document mort.
 
+### Écart assumé : le voile des heros
+
+La maquette posait un voile uniforme très dense sur les heros (80 % sur l'accueil,
+86 % sur l'article), qui masquait l'illustration. Le code est passé à **30 %**, plus
+deux assombrissements **localisés** qui n'existent pas dans la maquette :
+
+- une bande en haut du hero, sous le header flottant ;
+- une vignette radiale au centre, derrière le titre et la ligne méta.
+
+Le format Pencil n'utilisant aucun dégradé dans ce fichier, ces fondus ne peuvent pas
+y être représentés : seuls les 30 % de base ont été reportés dans le `.pen`. C'est le
+seul endroit où la maquette et le rendu divergent volontairement — à garder en tête
+avant de « réaligner » le voile sur la maquette.
+
+Les petits textes posés sur une image (navigation du header, sous-titre du hero, fil
+d'Ariane, ligne méta) portent en plus une `text-shadow`, et la navigation du header
+passe en encre pleine tant qu'il flotte : c'est cela qui garantit la lisibilité, pas
+le voile.
+
 ## Déploiement
 
 `.github/workflows/deploy.yml` construit le site avec `withastro/action@v3`

@@ -144,6 +144,20 @@ const shareImage = new URL(externe || raster ? ogImage : '/og-default.jpg', site
 		border-bottom-color: var(--color-hairline);
 	}
 
+	/* Tant que le header flotte, son fond est celui du hero — parfois un ciel
+	   clair ou une capture d'écran. Deux ajustements le rendent lisible sans
+	   qu'il faille assombrir l'image : une ombre portée, et l'encre pleine à la
+	   place du gris secondaire, qui n'offre pas assez de contraste.
+	   « Blog » garde sa couleur d'accent, d'où le `:not(.accent)`. */
+	.page-header[data-transparent] :global(.brand),
+	.page-header[data-transparent] :global(.nav-link) {
+		text-shadow: 0 1px 4px rgb(8 8 10 / 90%);
+	}
+
+	.page-header[data-transparent] :global(.nav-link:not(.accent)) {
+		color: var(--color-ink);
+	}
+
 	@media (max-width: 50rem) {
 		.page-header {
 			padding: 1rem 1.25rem; /* 16px 20px, maquette « Mobile Header » */
