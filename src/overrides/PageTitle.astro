@@ -1,0 +1,80 @@
+---
+// Surcharge du `PageTitle` de Starlight : ajoute le fil d'Ariane décrit par la
+// maquette (« Notes / Mémo Git ») au-dessus du titre de la page. Starlight n'en
+// fournit pas nativement.
+//
+// Le libellé de section est repris du groupe de sidebar qui contient la page
+// courante (`Guides`, `Notes`) plutôt que déduit du slug : cela évite de
+// réintroduire une correspondance entre le chemin et un libellé affiché.
+import type { StarlightRouteData } from '@astrojs/starlight/route-data';
+
+const { entry, sidebar } = Astro.locals.starlightRoute;
+
+// `SidebarEntry` n'est pas exporté par la surface publique de Starlight : on le
+// dérive du type de la route.
+type SidebarEntry = StarlightRouteData['sidebar'][number];
+
+/** Remonte le libellé du groupe de sidebar contenant la page courante. */
+function findSection(entries: SidebarEntry[], label?: string): string | undefined {
+	for (const item of entries) {
+		if (item.type === 'group') {
+			const found = findSection(item.entries, item.label);
+			if (found) return found;
+		} else if (item.isCurrent) {
+			return label;
+		}
+	}
+	return undefined;
+}
+
+// Une page absente de la sidebar (404, page hors navigation) n'affiche pas de
+// fil d'Ariane : mieux vaut rien qu'une section inventée.
+const section = findSection(sidebar);
+---
+
+{
+	section && (
+		<nav class="doc-breadcrumb" aria-label="Fil d’Ariane">
+			<span>{section}</span>
+			<span class="separator" aria-hidden="true">
+				/
+			</span>
+			<span>{entry.data.title}</span>
+		</nav>
+	)
+}
+
+<!-- `id="_top"` est la cible du lien d'évitement de Starlight (PAGE_TITLE_ID) :
+     il doit être conservé, le paquet n'exportant pas cette constante. -->
+<h1 id="_top">{entry.data.title}</h1>
+
+<style>
+	.doc-breadcrumb {
+		font-family: var(--font-body);
+		font-size: 0.75rem; /* 12px, maquette desktop */
+		color: var(--color-ink-2);
+	}
+
+	.doc-breadcrumb .separator {
+		margin-inline: 0.4rem;
+	}
+
+	/* Starlight espace les enfants de `.sl-container` de 1.5rem ; la maquette
+	   demande 20px entre le fil d'Ariane et le titre. */
+	.doc-breadcrumb + h1 {
+		margin-top: 1.25rem;
+	}
+
+	h1 {
+		font-size: var(--sl-text-h1);
+		line-height: var(--sl-line-height-headings);
+		font-weight: 600;
+		color: var(--sl-color-white);
+	}
+
+	@media (max-width: 50rem) {
+		.doc-breadcrumb {
+			font-size: 0.6875rem; /* 11px, maquette mobile */
+		}
+	}
+</style>
