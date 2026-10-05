@@ -19,14 +19,40 @@ interface Props {
 	 * `title` contient déjà le nom du site (page d'accueil), pour éviter
 	 * un libellé redondant. */
 	appendSiteName?: boolean;
+	/** Image de partage. Par défaut la carte générique du site. */
+	ogImage?: string;
+	/** `article` pour les pages de contenu, `website` pour les autres. */
+	ogType?: 'website' | 'article';
 }
 
-const { title, description, transparentHeader = false, appendSiteName = true } = Astro.props;
+const {
+	title,
+	description,
+	transparentHeader = false,
+	appendSiteName = true,
+	ogImage = '/og-default.jpg',
+	ogType = 'website',
+} = Astro.props;
 
 /* Compose le titre une seule fois ici : le passer déjà concaténé depuis la
    page exposerait les entités HTML du source (« &amp; ») à un double
    échappement par Astro. */
 const pageTitle = appendSiteName ? `${title} — Demiton` : title;
+
+/* Les URL absolues sont exigées : les robots d'indexation comme les
+   plateformes de partage refusent un chemin relatif. `Astro.site` provient de
+   `site` dans astro.config.mjs ; le repli couvre le cas où il serait absent. */
+const site = Astro.site ?? new URL('https://demiton.github.io');
+const canonical = new URL(Astro.url.pathname, site).href;
+
+/* Toutes les couvertures d'articles ne conviennent pas au partage : la plupart
+   sont des SVG, qu'aucune grande plateforme ne rend, ce qui produirait un
+   aperçu vide. On retombe alors sur la carte générique du site. Une URL
+   externe est acceptée telle quelle (les paramètres de requête empêchent d'en
+   déduire l'extension). */
+const externe = /^https?:\/\//i.test(ogImage);
+const raster = /\.(png|jpe?g|webp|gif)$/i.test(ogImage.split('?')[0]);
+const shareImage = new URL(externe || raster ? ogImage : '/og-default.jpg', site).href;
 ---
 
 <html lang="fr">
@@ -35,7 +61,21 @@ const pageTitle = appendSiteName ? `${title} — Demiton` : title;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>{pageTitle}</title>
 		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
 		<link rel="icon" href="/favicon.svg" />
+
+		<meta property="og:type" content={ogType} />
+		<meta property="og:site_name" content="Demiton" />
+		<meta property="og:locale" content="fr" />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={shareImage} />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={shareImage} />
 	</head>
 	<body>
 		<header class="page-header" data-transparent={transparentHeader ? '' : undefined}>

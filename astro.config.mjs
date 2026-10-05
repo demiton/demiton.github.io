@@ -8,6 +8,11 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Demiton',
+			// Séparateur aligné sur celui des pages sur mesure (SiteLayout),
+			// qui utilisaient déjà « — ». Sans cela, les pages de doc
+			// affichaient « Bien démarrer | Demiton » et les autres
+			// « À propos — Demiton ».
+			titleDelimiter: '—',
 			locales: {
 				root: {
 					label: 'Français',
@@ -24,6 +29,7 @@ export default defineConfig({
 			},
 			components: {
 				Header: './src/components/SiteHeader.astro',
+				Head: './src/overrides/Head.astro',
 				Footer: './src/overrides/Footer.astro',
 				ThemeSelect: './src/overrides/ThemeSelect.astro',
 				PageTitle: './src/overrides/PageTitle.astro',
