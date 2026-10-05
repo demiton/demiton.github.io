@@ -107,8 +107,22 @@ site-search button svg {
 }
 
 /* La maquette affiche « Rechercher…  Ctrl K » comme un seul libellé, et non
-   comme deux badges : on neutralise la mise en forme des `<kbd>` de Starlight. */
-site-search kbd,
+   comme deux badges : on neutralise la mise en forme des `<kbd>` de Starlight.
+   Le conteneur reste en `inline-flex` pour espacer « Ctrl » et « K », que
+   Starlight rend en deux éléments accolés. */
+site-search kbd {
+	display: inline-flex;
+	gap: 0.25rem;
+	border: none;
+	background: none;
+	box-shadow: none;
+	padding: 0;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	color: inherit;
+}
+
 site-search kbd kbd {
 	display: inline;
 	border: none;
@@ -117,6 +131,7 @@ site-search kbd kbd {
 	padding: 0;
 	font-family: inherit;
 	font-size: inherit;
+	font-weight: inherit;
 	color: inherit;
 }
 
@@ -206,3 +221,163 @@ site-search kbd kbd {
 .doc-menu-site-nav a.accent {
 	color: var(--color-accent);
 }
+
+/* ============================================================
+   Pages de documentation
+   Valeurs des écrans « Page de documentation » (1440) et « Page de
+   documentation (mobile) » (390) : géométrie des trois colonnes, échelle des
+   titres, colonne de navigation, sommaire, encadrés et cartes prev/next.
+   ============================================================ */
+
+/* --- Géométrie et échelle typographique --- */
+:root {
+	--sl-sidebar-width: 17rem; /* 272px */
+	--sl-content-width: 53rem; /* 848px de contenu utile */
+	--sl-content-pad-x: 3.5rem; /* 56px */
+	--sl-sidebar-pad-x: 1.75rem; /* 28px */
+	--sl-text-h1: 2.5rem; /* 40px, contre 42px par défaut */
+	--sl-text-h2: 1.5rem; /* 24px, contre 35px par défaut */
+}
+
+@media (max-width: 50rem) {
+	:root {
+		--sl-text-h1: 1.875rem; /* 30px */
+		--sl-text-h2: 1.25rem; /* 20px */
+	}
+}
+
+/* Starlight dérive les DEUX colonnes latérales de `--sl-sidebar-width` ; or la
+   maquette donne au sommaire une largeur distincte. */
+.right-sidebar-container {
+	width: 13rem; /* 208px */
+}
+
+.content-panel {
+	padding: 2.5rem 3.5rem; /* 40px 56px */
+}
+
+.right-sidebar-panel {
+	padding: 1.75rem; /* 28px */
+}
+
+@media (max-width: 50rem) {
+	.content-panel {
+		padding: 1.5rem 1.25rem 2.5rem; /* 24px 20px 40px */
+	}
+}
+
+/* --- Colonne de navigation --- */
+.sidebar-content .group-label {
+	font-family: var(--font-display);
+	font-size: 0.75rem; /* 12px */
+	font-weight: 600;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	color: var(--color-ink-2);
+}
+
+.sidebar-content a {
+	border-radius: 999px;
+	padding: 0.5rem 0.75rem; /* 8px 12px */
+	font-family: var(--font-body);
+	font-size: 0.875rem; /* 14px */
+	font-weight: 400;
+	color: var(--color-ink-2);
+}
+
+.sidebar-content a:hover {
+	color: var(--color-ink);
+}
+
+/* Page courante : fond accent très sombre, texte accent et pastille. La
+   maquette ne la remplit pas d'un aplat rouge. */
+.sidebar-content a[aria-current='page'] {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	background: var(--color-accent-soft);
+	color: var(--color-accent);
+	font-weight: 500;
+}
+
+.sidebar-content a[aria-current='page']::before {
+	content: '';
+	flex: none;
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: var(--color-accent);
+}
+
+/* --- Sommaire --- */
+.right-sidebar-panel h2 {
+	font-family: var(--font-display);
+	font-size: 0.75rem; /* 12px */
+	font-weight: 600;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	color: var(--color-ink-2);
+}
+
+/* --- Encadrés (note, astuce, attention) ---
+   Starlight les remplit d'un aplat clair (lavande) qui jure avec le thème
+   sombre ; la maquette pose le texte sur la surface et signale le type par un
+   liseré coloré à gauche. */
+.starlight-aside {
+	background: var(--color-surface);
+	border-radius: 12px;
+	border-inline-start-width: 4px;
+	padding: 1rem; /* 16px */
+	gap: 14px;
+}
+
+.starlight-aside__title {
+	font-family: var(--font-display);
+	font-size: 0.8125rem; /* 13px */
+	font-weight: 600;
+	color: var(--color-ink);
+}
+
+.starlight-aside__icon {
+	width: 1.125rem; /* 18px */
+	height: 1.125rem;
+}
+
+.starlight-aside__content {
+	font-size: 0.875rem;
+	line-height: 1.6;
+}
+
+/* --- Cartes prev/next --- */
+.pagination-links a {
+	background: var(--color-surface);
+	border: 1px solid var(--color-hairline);
+	border-radius: 8px;
+	padding: 1rem; /* 16px */
+	box-shadow: none;
+}
+
+.pagination-links a .link-title {
+	font-family: var(--font-display);
+	font-size: 1rem; /* 16px */
+	font-weight: 600;
+	color: var(--color-ink);
+}
+
+.pagination-links a > span:first-child {
+	font-family: var(--font-mono);
+	font-size: 0.6875rem; /* 11px */
+	font-weight: 600;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+/* --- Blocs de code --- */
+.expressive-code .frame {
+	border-radius: 12px;
+}
+
+.expressive-code .frame pre {
+	font-size: 0.8125rem; /* 13px */
+}
+
