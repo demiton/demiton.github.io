@@ -143,20 +143,20 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 	.subtitle {
 		margin: 0;
 		font-family: var(--font-body);
-		font-size: 0.9rem;
+		font-size: 1rem; /* 16px, maquette */
 		font-weight: 600;
-		letter-spacing: 0.1em;
+		letter-spacing: 2px;
 		color: var(--color-cyan);
 	}
 
 	.cta {
 		margin-top: 0.5rem;
-		padding: 0.85rem 2.25rem;
+		padding: 0.875rem 2.5rem; /* 14px 40px, maquette */
 		border-radius: 999px;
 		border: 2px solid var(--color-accent);
 		color: var(--color-ink);
 		font-family: var(--font-body);
-		font-size: 0.9rem;
+		font-size: 0.9375rem; /* 15px */
 		font-weight: 500;
 		text-decoration: none;
 	}
@@ -166,7 +166,7 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 		flex-direction: column;
 		align-items: center;
 		gap: 1rem;
-		padding: 5rem 3rem 4rem;
+		padding: 6.25rem 3rem 5rem; /* 100px 48px 80px, maquette « Accueil » */
 		text-align: center;
 	}
 
@@ -174,8 +174,8 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 		margin: 0;
 		font-family: var(--font-display);
 		font-weight: 400;
-		font-size: 1.75rem;
-		letter-spacing: 0.02em;
+		font-size: 2.25rem; /* 36px */
+		letter-spacing: 1px;
 	}
 
 	.lead {
@@ -186,10 +186,10 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 	.feature-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: 1.5rem;
+		gap: 1.5rem; /* 24px */
 		width: 100%;
-		max-width: 70rem;
-		margin-top: 2rem;
+		max-width: 84rem; /* 1344px */
+		margin-top: 3rem; /* 48px */
 	}
 
 	.feature-card {
@@ -252,8 +252,8 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 	.panels {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 1.5rem;
-		padding: 0 3rem 5rem;
+		gap: 1.5rem; /* 24px */
+		padding: 2.5rem 3rem 6.25rem; /* 40px 48px 100px */
 	}
 
 	.panel {
@@ -313,8 +313,8 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 	.latest {
 		display: flex;
 		flex-direction: column;
-		gap: 1.5rem;
-		padding: 0 3rem 5rem;
+		gap: 2rem; /* 32px */
+		padding: 2.5rem 3rem 6.25rem; /* 40px 48px 100px */
 	}
 
 	.section-header {
@@ -327,7 +327,7 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 		margin: 0;
 		font-family: var(--font-display);
 		font-weight: 400;
-		font-size: 1.5rem;
+		font-size: 1.75rem; /* 28px */
 	}
 
 	.section-header a {
@@ -340,7 +340,7 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 	.article-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: 1.5rem;
+		gap: 1.5rem; /* 24px */
 	}
 
 	@media (max-width: 60rem) {
