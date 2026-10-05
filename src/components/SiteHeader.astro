@@ -31,7 +31,7 @@ const navItems = [
 	</nav>
 
 	<button class="menu-toggle" popovertarget="site-mobile-nav" aria-label="Ouvrir le menu">
-		<Icon name="bars" size="1.25rem" />
+		<Icon name="bars" size="1.125rem" />
 	</button>
 
 	<nav id="site-mobile-nav" popover class="mobile-nav" aria-label="Navigation principale (mobile)">
@@ -87,7 +87,7 @@ const navItems = [
 	.brand {
 		font-family: var(--font-display);
 		font-weight: 400;
-		font-size: 1.25rem;
+		font-size: 1.375rem; /* 22px, maquette « Header » */
 		color: var(--color-ink);
 		text-decoration: none;
 		white-space: nowrap;
@@ -96,13 +96,13 @@ const navItems = [
 	.nav {
 		display: none;
 		align-items: center;
-		gap: 1.75rem;
+		gap: 1.75rem; /* 28px, maquette */
 	}
 
 	.nav-link {
 		font-family: var(--font-body);
-		font-size: 0.875rem;
-		font-weight: 500;
+		font-size: 0.875rem; /* 14px */
+		font-weight: 400; /* seul « Blog » est en 500 (maquette) */
 		color: var(--color-ink-2);
 		text-decoration: none;
 		white-space: nowrap;
@@ -114,16 +114,17 @@ const navItems = [
 
 	.nav-link.accent {
 		color: var(--color-accent);
+		font-weight: 500;
 	}
 
 	.menu-toggle {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 2.25rem;
+		width: 2.25rem; /* 36×36, maquette « Mobile Header » */
 		height: 2.25rem;
 		border-radius: 8px;
-		border: 1px solid var(--color-hairline);
+		border: none; /* la maquette ne prévoit pas de bordure */
 		background: var(--color-bg);
 		color: var(--color-ink);
 		cursor: pointer;
@@ -157,6 +158,13 @@ const navItems = [
 
 	.mobile-nav .nav-link:hover {
 		background: var(--color-bg);
+	}
+
+	@media (max-width: 50rem) {
+		/* Maquette « Mobile Header » : marque en 18px. */
+		.brand {
+			font-size: 1.125rem;
+		}
 	}
 
 	@media (min-width: 50rem) {
