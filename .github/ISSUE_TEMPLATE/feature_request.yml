@@ -1,0 +1,26 @@
+name: Proposer une amélioration
+description: Suggérer une évolution du site, de son design ou de son outillage.
+title: '[Idée] '
+body:
+  - type: textarea
+    id: probleme
+    attributes:
+      label: Le besoin
+      description: Quel problème ou quelle limite motive cette proposition ?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution envisagée
+      description: À quoi ressemblerait le résultat souhaité ?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considérées
+    validations:
+      required: false

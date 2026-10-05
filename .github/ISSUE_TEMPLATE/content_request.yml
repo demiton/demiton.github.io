@@ -1,0 +1,47 @@
+name: Proposer du contenu
+description: Suggérer un guide, une note ou un article de blog.
+title: '[Contenu] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Une idée de sujet ? Décris-la ici. Si tu souhaites rédiger toi-même,
+        indique-le : la procédure est décrite dans `CONTRIBUTING.md`.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type de contenu
+      options:
+        - Guide (tutoriel complet)
+        - Note (mémo, cheatsheet)
+        - Article de blog
+    validations:
+      required: true
+
+  - type: input
+    id: sujet
+    attributes:
+      label: Sujet
+      description: Le titre ou le thème envisagé.
+      placeholder: Installer un serveur RustDesk auto-hébergé
+    validations:
+      required: true
+
+  - type: textarea
+    id: contenu
+    attributes:
+      label: Ce que le contenu devrait couvrir
+      description: Les points clés, le public visé, les prérequis.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: redaction
+    attributes:
+      label: Rédaction
+      options:
+        - label: Je souhaite rédiger ce contenu moi-même
+          required: false
+        - label: Je préfère que quelqu'un d'autre s'en charge
+          required: false

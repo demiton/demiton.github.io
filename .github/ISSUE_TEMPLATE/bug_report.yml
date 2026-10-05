@@ -1,0 +1,65 @@
+name: Signaler un bug
+description: Une page cassée, un lien mort, un problème d'affichage ou de comportement.
+title: '[Bug] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de prendre le temps de signaler ce problème. Plus le rapport est
+        précis, plus il est rapide à corriger.
+
+  - type: input
+    id: url
+    attributes:
+      label: Page concernée
+      description: L'URL complète où le problème apparaît.
+      placeholder: https://demiton.github.io/blog/…
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description du problème
+      description: Ce qui se passe, et ce qui devrait se passer à la place.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Étapes de reproduction
+      placeholder: |
+        1. Aller sur …
+        2. Cliquer sur …
+        3. Constater que …
+    validations:
+      required: false
+
+  - type: dropdown
+    id: appareil
+    attributes:
+      label: Type d'appareil
+      options:
+        - Ordinateur (desktop)
+        - Mobile
+        - Tablette
+        - Les deux
+    validations:
+      required: true
+
+  - type: input
+    id: navigateur
+    attributes:
+      label: Navigateur et version
+      placeholder: Firefox 130, Safari 18, Chrome 129…
+    validations:
+      required: false
+
+  - type: textarea
+    id: captures
+    attributes:
+      label: Captures d'écran
+      description: Glisser-déposer les images ici si le problème est visuel.
+    validations:
+      required: false
