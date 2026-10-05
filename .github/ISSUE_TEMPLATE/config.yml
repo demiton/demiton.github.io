@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Guide de contribution
+    url: https://github.com/demiton/demiton.github.io/blob/main/CONTRIBUTING.md
+    about: Installation, workflow Git, conventions et checklist avant Pull Request.
+  - name: Documentation d'architecture
+    url: https://github.com/demiton/demiton.github.io/blob/main/AGENTS.md
+    about: Comment le dépôt est organisé et pourquoi.
