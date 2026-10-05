@@ -1,14 +1,27 @@
 ---
 /* Le site est statique : le composant est rendu au moment du build, donc
    `new Date()` capture bien la date de génération et non celle de la visite.
-   La date n'est donc exacte que si le site a effectivement été reconstruit. */
+   L'horodatage n'est donc exact que si le site a effectivement été reconstruit. */
 const buildDate = new Date();
 const year = buildDate.getFullYear();
 
-const buildLabel = buildDate.toLocaleDateString('fr-FR', {
+/* Le fuseau est fixé explicitement : sans cela, l'heure affichée dépendrait du
+   fuseau de la machine de build — UTC sur GitHub Actions — et changerait donc
+   selon l'environnement. On affiche l'heure de Paris, celle du propriétaire du
+   site, en l'indiquant pour lever toute ambiguïté. */
+const FUSEAU = 'Europe/Paris';
+
+const buildJour = buildDate.toLocaleDateString('fr-FR', {
 	day: 'numeric',
 	month: 'long',
 	year: 'numeric',
+	timeZone: FUSEAU,
+});
+
+const buildHeure = buildDate.toLocaleTimeString('fr-FR', {
+	hour: '2-digit',
+	minute: '2-digit',
+	timeZone: FUSEAU,
 });
 ---
 
@@ -28,7 +41,7 @@ const buildLabel = buildDate.toLocaleDateString('fr-FR', {
 	<div class="footer-meta">
 		<p class="copyright">© {year} Demiton — Propulsé par Astro + Starlight</p>
 		<p class="build-date">
-			Dernier build : <time datetime={buildDate.toISOString()}>{buildLabel}</time>
+			Dernier build : <time datetime={buildDate.toISOString()}>{buildJour} à {buildHeure}</time> (heure de Paris)
 		</p>
 	</div>
 </footer>
