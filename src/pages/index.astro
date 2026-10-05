@@ -93,7 +93,7 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		min-height: 32rem;
+		min-height: 50rem; /* 800px : maquette « Accueil » (32rem auparavant) */
 		overflow: clip;
 		background-size: cover;
 		background-position: center;
@@ -102,7 +102,7 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 	.overlay {
 		position: absolute;
 		inset: 0;
-		background: rgba(8, 8, 10, 0.85);
+		background: #08080acc; /* voile à 80 %, valeur de la maquette */
 	}
 
 	.hero-content {
@@ -110,9 +110,20 @@ const features: { icon: StarlightIcon; title: string; color: string; desc: strin
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 1rem;
+		gap: 1.75rem; /* 28px, maquette */
 		text-align: center;
 		padding: 2rem;
+	}
+
+	/* Maquette « Accueil (mobile) » : hero plus court et contenu resserré. */
+	@media (max-width: 50rem) {
+		.hero {
+			min-height: 26.25rem; /* 420px */
+		}
+
+		.hero-content {
+			gap: 1rem; /* 16px */
+		}
 	}
 
 	.hero-content h1 {

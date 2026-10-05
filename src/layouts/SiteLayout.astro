@@ -99,5 +99,14 @@ const { title, description, transparentHeader = false } = Astro.props;
 		.page-header {
 			padding: 0.85rem 1.25rem;
 		}
+
+		/* Maquette mobile : le header est le premier élément en flux, en bloc
+		   solide — il ne flotte plus au-dessus du hero. On annule donc le mode
+		   transparent, mais on garde le `sticky` pour qu'il reste accessible. */
+		.page-header[data-transparent] {
+			position: sticky;
+			background: var(--color-surface);
+			border-bottom-color: var(--color-hairline);
+		}
 	}
 </style>
