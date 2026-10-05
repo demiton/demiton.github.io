@@ -19,3 +19,8 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# Artefacts générés par scripts/pen-spec.mjs : reproductibles à la demande,
+# et volumineux (environ 1,3 Mo à eux deux).
+docs/pen-spec.json
+docs/pen-spec.txt
