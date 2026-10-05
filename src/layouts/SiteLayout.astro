@@ -15,16 +15,25 @@ interface Props {
 	/** Header transparent, posé sur un hero plein cadre (page d'accueil) :
 	 * il ne prend un fond noir qu'une fois qu'on a défilé la page. */
 	transparentHeader?: boolean;
+	/** Ajoute « — Demiton » au titre de l'onglet. À passer à `false` quand
+	 * `title` contient déjà le nom du site (page d'accueil), pour éviter
+	 * un libellé redondant. */
+	appendSiteName?: boolean;
 }
 
-const { title, description, transparentHeader = false } = Astro.props;
+const { title, description, transparentHeader = false, appendSiteName = true } = Astro.props;
+
+/* Compose le titre une seule fois ici : le passer déjà concaténé depuis la
+   page exposerait les entités HTML du source (« &amp; ») à un double
+   échappement par Astro. */
+const pageTitle = appendSiteName ? `${title} — Demiton` : title;
 ---
 
 <html lang="fr">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>{title} — Demiton</title>
+		<title>{pageTitle}</title>
 		<meta name="description" content={description} />
 		<link rel="icon" href="/favicon.svg" />
 	</head>
