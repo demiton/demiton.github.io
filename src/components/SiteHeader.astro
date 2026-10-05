@@ -45,6 +45,35 @@ const navItems = [
 	</nav>
 </div>
 
+<!-- Source unique des liens du menu : le script ci-dessous clone ce contenu
+     dans la navigation de documentation, pour ne pas dupliquer la liste. -->
+<template id="site-nav-links">
+	{
+		navItems.map((item) => (
+			<a href={item.href} class:list={[{ accent: item.accent }]}>{item.label}</a>
+		))
+	}
+</template>
+
+<script>
+	// En page de documentation, le bouton de menu affiché est celui de Starlight
+	// (il ouvre l'arbre des guides et des notes). On y ajoute les liens du site,
+	// sinon Blog, À propos et Contact deviendraient inatteignables sur mobile
+	// puisque le bouton du SiteHeader y est masqué (voir le style plus bas).
+	const sidebar = document.getElementById('starlight__sidebar');
+	const template = document.getElementById('site-nav-links');
+
+	if (sidebar instanceof HTMLElement && template instanceof HTMLTemplateElement) {
+		if (!sidebar.querySelector('.doc-menu-site-nav')) {
+			const nav = document.createElement('nav');
+			nav.className = 'doc-menu-site-nav';
+			nav.setAttribute('aria-label', 'Navigation du site');
+			nav.append(template.content.cloneNode(true));
+			sidebar.prepend(nav);
+		}
+	}
+</script>
+
 <style>
 	.site-header {
 		display: flex;
@@ -136,6 +165,18 @@ const navItems = [
 		}
 
 		.menu-toggle {
+			display: none;
+		}
+	}
+
+	/* En page de documentation, Starlight affiche déjà son propre bouton de menu
+	   sous 50rem — c'est lui qui ouvre l'arbre des guides et des notes, et il est
+	   restylé aux tokens du site dans custom.css. On masque donc le nôtre pour ne
+	   conserver qu'un seul bouton, comme sur la maquette : sans cela, deux boutons
+	   de menu cohabitent en haut à droite (Starlight place le sien en `fixed`,
+	   juste à droite du nôtre). */
+	@media (max-width: 49.999rem) {
+		:global(body:has(.sl-menu-button)) .menu-toggle {
 			display: none;
 		}
 	}
