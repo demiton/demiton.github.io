@@ -1,14 +1,41 @@
 ---
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import type { GetStaticPathsOptions, Page } from 'astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
+
+type Post = CollectionEntry<'blog'>;
+
+/** Props de la route paginée. Sans cette déclaration, `Astro.props` est inféré
+ * en `never` et tous les accès à `page.*` échouent au typage. */
+interface Props {
+	page: Page<Post>;
+}
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+	// `getStaticPaths` est hissé par Astro dans un module distinct : il ne peut
+	// pas appeler une fonction déclarée dans le frontmatter, d'où la requête
+	// répétée ici plutôt que factorisée.
+	const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+		(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+	);
+
+	// L'article le plus récent est mis en avant de façon permanente (section
+	// distincte, hors pagination) ; la grille qui suit est paginée par 6, soit
+	// 3 rangées de 2 cartes comme sur la maquette « Blog ».
+	const [, ...rest] = posts;
+	return paginate(rest, { pageSize: 6 });
+}
+
+const { page } = Astro.props;
 
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+const [featured] = allPosts;
 
-const [featured, ...rest] = allPosts;
-
+// Les widgets décrivent l'ensemble du blog, pas la page courante.
 const categories = [...new Map(allPosts.map((p) => [p.data.category, p.data.category])).values()].map(
 	(category) => ({
 		category,
@@ -17,6 +44,10 @@ const categories = [...new Map(allPosts.map((p) => [p.data.category, p.data.cate
 );
 
 const tags = [...new Set(allPosts.flatMap((p) => p.data.tags))];
+
+/** URL d'une page numérotée. La première vit à la racine du blog. */
+const pageHref = (n: number) => (n === 1 ? '/blog/' : `/blog/${n}/`);
+const totalPages = page.lastPage;
 ---
 
 <SiteLayout title="Blog" description="Articles, tutoriels et retours d'expérience.">
@@ -26,7 +57,7 @@ const tags = [...new Set(allPosts.flatMap((p) => p.data.tags))];
 	</section>
 
 	{
-		featured && (
+		featured && page.currentPage === 1 && (
 			<section class="featured-wrap">
 				<a class="featured-card" href={`/blog/${featured.id}/`}>
 					<div class="cover" style={`background-image: url(${featured.data.cover})`} />
@@ -47,18 +78,20 @@ const tags = [...new Set(allPosts.flatMap((p) => p.data.tags))];
 	<section class="body-grid">
 		<div class="content-col">
 			<h2 class="section-title">Articles récents</h2>
-			{rest.length === 0 && <p class="empty">D'autres articles arrivent bientôt.</p>}
+			{page.data.length === 0 && <p class="empty">D'autres articles arrivent bientôt.</p>}
 			<div class="article-grid">
-				{rest.map((post) => (
-					<ArticleCard
-						href={`/blog/${post.id}/`}
-						title={post.data.title}
-						excerpt={post.data.description}
-						cover={post.data.cover}
-						category={post.data.category}
-						date={post.data.date}
-					/>
-				))}
+				{
+					page.data.map((post) => (
+						<ArticleCard
+							href={`/blog/${post.id}/`}
+							title={post.data.title}
+							excerpt={post.data.description}
+							cover={post.data.cover}
+							category={post.data.category}
+							date={post.data.date}
+						/>
+					))
+				}
 			</div>
 		</div>
 		<aside class="sidebar">
@@ -83,6 +116,42 @@ const tags = [...new Set(allPosts.flatMap((p) => p.data.tags))];
 			</div>
 		</aside>
 	</section>
+
+	{
+		totalPages > 1 && (
+			<nav class="pagination" aria-label="Pagination du blog">
+				{page.url.prev ? (
+					<a class="page-link" href={page.url.prev} rel="prev">
+						←<span class="label"> Précédent</span>
+					</a>
+				) : (
+					<span class="page-link is-disabled">
+						←<span class="label"> Précédent</span>
+					</span>
+				)}
+
+				{Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+					<a
+						class:list={['page-number', { current: n === page.currentPage }]}
+						href={pageHref(n)}
+						aria-current={n === page.currentPage ? 'page' : undefined}
+					>
+						{n}
+					</a>
+				))}
+
+				{page.url.next ? (
+					<a class="page-link" href={page.url.next} rel="next">
+						<span class="label">Suivant </span>→
+					</a>
+				) : (
+					<span class="page-link is-disabled">
+						<span class="label">Suivant </span>→
+					</span>
+				)}
+			</nav>
+		)
+	}
 </SiteLayout>
 
 <style>
@@ -245,6 +314,58 @@ const tags = [...new Set(allPosts.flatMap((p) => p.data.tags))];
 		padding: 0.35rem 0.85rem;
 	}
 
+	/* Pagination : valeurs de la maquette « Blog » (padding 0 48 80, gap 12px,
+	   pastilles de 36px, page active en accent). */
+	.pagination {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		padding: 0 3rem 5rem;
+	}
+
+	.page-link {
+		font-family: var(--font-body);
+		font-size: 0.875rem;
+		color: var(--color-ink-2);
+		text-decoration: none;
+	}
+
+	.page-link:hover {
+		color: var(--color-ink);
+	}
+
+	.page-link.is-disabled {
+		opacity: 0.4;
+	}
+
+	.page-number {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 999px;
+		border: 1px solid var(--color-hairline);
+		background: var(--color-surface);
+		font-family: var(--font-body);
+		font-size: 0.875rem;
+		color: var(--color-ink-2);
+		text-decoration: none;
+	}
+
+	.page-number:hover {
+		border-color: var(--color-accent);
+		color: var(--color-ink);
+	}
+
+	.page-number.current {
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: #fff;
+		font-weight: 500;
+	}
+
 	@media (max-width: 60rem) {
 		.featured-card .cover {
 			height: 200px;
@@ -254,6 +375,25 @@ const tags = [...new Set(allPosts.flatMap((p) => p.data.tags))];
 		}
 		.article-grid {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Maquette « Blog (mobile) » : pastilles de 32px, gap 10px, padding
+	   0 20px 48px, et libellés réduits aux flèches. */
+	@media (max-width: 50rem) {
+		.pagination {
+			gap: 0.625rem;
+			padding: 0 1.25rem 3rem;
+		}
+
+		.page-number {
+			width: 2rem;
+			height: 2rem;
+			font-size: 0.8125rem;
+		}
+
+		.page-link .label {
+			display: none;
 		}
 	}
 </style>
