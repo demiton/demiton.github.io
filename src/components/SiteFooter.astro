@@ -1,5 +1,15 @@
 ---
-const year = new Date().getFullYear();
+/* Le site est statique : le composant est rendu au moment du build, donc
+   `new Date()` capture bien la date de génération et non celle de la visite.
+   La date n'est donc exacte que si le site a effectivement été reconstruit. */
+const buildDate = new Date();
+const year = buildDate.getFullYear();
+
+const buildLabel = buildDate.toLocaleDateString('fr-FR', {
+	day: 'numeric',
+	month: 'long',
+	year: 'numeric',
+});
 ---
 
 <footer class="site-footer">
@@ -15,7 +25,12 @@ const year = new Date().getFullYear();
 		</nav>
 	</div>
 	<hr />
-	<p class="copyright">© {year} Demiton — Propulsé par Astro + Starlight</p>
+	<div class="footer-meta">
+		<p class="copyright">© {year} Demiton — Propulsé par Astro + Starlight</p>
+		<p class="build-date">
+			Dernier build : <time datetime={buildDate.toISOString()}>{buildLabel}</time>
+		</p>
+	</div>
 </footer>
 
 <style>
@@ -103,6 +118,23 @@ const year = new Date().getFullYear();
 		color: var(--footer-faint);
 	}
 
+	/* La maquette ne prévoit que le copyright ; la date de build vient s'y
+	   ajouter, alignée à droite sur la même ligne. */
+	.footer-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.5rem;
+	}
+
+	.build-date {
+		margin: 0;
+		font-family: var(--font-body);
+		font-size: 0.75rem;
+		color: var(--footer-faint);
+	}
+
 	/* Maquette mobile : gouttières resserrées et tailles réduites. */
 	@media (max-width: 50rem) {
 		.site-footer {
@@ -124,6 +156,13 @@ const year = new Date().getFullYear();
 
 		.footer-nav a {
 			font-size: 0.75rem; /* 12px */
+		}
+
+		/* Sur une ligne étroite, la date passe sous le copyright. */
+		.footer-meta {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.25rem;
 		}
 	}
 </style>
