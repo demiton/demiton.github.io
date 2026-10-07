@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="420" viewBox="0 0 1080 420" role="img" aria-label="Frise des cinq échéances de l'AI Act, du 2 août 2026 au 2 août 2028">
+  <rect width="1080" height="420" fill="#0B0B0E"/>
+  <rect x="0.5" y="0.5" width="1079" height="419" fill="none" stroke="#26262D"/>
+
+  <!-- Bandeau de lecture -->
+  <text x="40" y="52" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Les cinq échéances de l'AI Act après le règlement 2026/1744</text>
+
+  <!-- Zones -->
+  <rect x="60" y="86" width="200" height="132" rx="10" fill="#35D6D6" fill-opacity="0.10" stroke="#35D6D6" stroke-opacity="0.40" stroke-width="1.5"/>
+  <rect x="290" y="86" width="380" height="132" rx="10" fill="#F5B400" fill-opacity="0.07" stroke="#F5B400" stroke-opacity="0.28" stroke-width="1.5"/>
+  <rect x="700" y="86" width="320" height="132" rx="10" fill="#E8352B" fill-opacity="0.10" stroke="#E8352B" stroke-opacity="0.40" stroke-width="1.5"/>
+
+  <!-- Libellés de zone -->
+  <text x="160" y="118" text-anchor="middle" fill="#35D6D6" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="600" letter-spacing="1.2">DÉJÀ APPLICABLE</text>
+  <text x="480" y="118" text-anchor="middle" fill="#F5B400" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="600" letter-spacing="1.2">ÉCHÉANCES ANNONCÉES</text>
+  <text x="860" y="118" text-anchor="middle" fill="#E8352B" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="600" letter-spacing="1.2">REPORTÉ</text>
+
+  <!-- Rappel de zone -->
+  <text x="160" y="146" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">en application</text>
+  <text x="480" y="146" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">dates connues, contenu non détaillé</text>
+  <text x="860" y="146" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">haut risque, décalé de quatorze mois</text>
+
+  <!-- Axe -->
+  <path d="M60 250H1020" stroke="#35353D" stroke-width="2"/>
+
+  <!-- Jalon 1 : 2 août 2026 -->
+  <path d="M160 218V262" stroke="#35D6D6" stroke-width="2"/>
+  <circle cx="160" cy="218" r="8" fill="#35D6D6"/>
+  <text x="160" y="300" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">2 août 2026</text>
+  <text x="160" y="326" text-anchor="middle" fill="#35D6D6" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">article 50</text>
+  <text x="160" y="348" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">transparence</text>
+
+  <!-- Jalon 2 : 2 décembre 2026 -->
+  <path d="M400 218V262" stroke="#F5B400" stroke-width="2"/>
+  <circle cx="400" cy="218" r="8" fill="#F5B400"/>
+  <text x="400" y="300" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">2 décembre 2026</text>
+  <text x="400" y="326" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">prochaine échéance</text>
+
+  <!-- Jalon 3 : 2 août 2027 -->
+  <path d="M630 218V262" stroke="#F5B400" stroke-width="2"/>
+  <circle cx="630" cy="218" r="8" fill="#F5B400"/>
+  <text x="630" y="300" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">2 août 2027</text>
+  <text x="630" y="326" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">échéance suivante</text>
+
+  <!-- Jalon 4 : 2 décembre 2027 -->
+  <path d="M820 218V262" stroke="#E8352B" stroke-width="2"/>
+  <circle cx="820" cy="218" r="8" fill="#E8352B"/>
+  <text x="820" y="300" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">2 décembre 2027</text>
+  <text x="820" y="326" text-anchor="middle" fill="#E8352B" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">haut risque</text>
+  <text x="820" y="348" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">annexe III</text>
+
+  <!-- Jalon 5 : 2 août 2028 -->
+  <path d="M960 218V262" stroke="#E8352B" stroke-width="2"/>
+  <circle cx="960" cy="218" r="8" fill="#E8352B"/>
+  <text x="960" y="334" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">2 août 2028</text>
+  <text x="960" y="360" text-anchor="middle" fill="#E8352B" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">haut risque · annexe I</text>
+
+  <!-- Note de bas de frise -->
+  <text x="40" y="392" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">Le 2 août 2026, l'article 50 sur la transparence et les sanctions visant les modèles à usage général sont entrés en application.</text>
+</svg>

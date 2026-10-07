@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="420" viewBox="0 0 1080 420" role="img" aria-label="De la plaquette DRAM au GPU : les quatre étapes de la chaîne mémoire">
+  <rect width="1080" height="420" fill="#0B0B0E"/>
+  <rect x="0.5" y="0.5" width="1079" height="419" fill="none" stroke="#26262D"/>
+
+  <!-- Étape 1 -->
+  <rect x="40" y="120" width="200" height="140" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
+  <circle cx="140" cy="175" r="38" fill="none" stroke="#35D6D6" stroke-width="2"/>
+  <circle cx="140" cy="175" r="8" fill="#35D6D6"/>
+  <text x="140" y="240" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">Plaquette DRAM</text>
+
+  <!-- Étape 2 -->
+  <rect x="300" y="120" width="200" height="140" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
+  <g fill="#35D6D6" fill-opacity="0.8">
+    <rect x="352" y="146" width="96" height="14" rx="3"/>
+    <rect x="352" y="166" width="96" height="14" rx="3"/>
+    <rect x="352" y="186" width="96" height="14" rx="3"/>
+    <rect x="352" y="206" width="96" height="14" rx="3"/>
+  </g>
+  <text x="400" y="240" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">Empilement HBM</text>
+
+  <!-- Étape 3 -->
+  <rect x="560" y="120" width="200" height="140" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
+  <rect x="596" y="152" width="128" height="72" rx="6" fill="none" stroke="#F5B400" stroke-width="2"/>
+  <path d="M596 188H724M660 152V224" stroke="#F5B400" stroke-opacity="0.6" stroke-width="1.5"/>
+  <text x="660" y="240" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">Packaging CoWoS</text>
+
+  <!-- Étape 4 -->
+  <rect x="820" y="120" width="220" height="140" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
+  <rect x="866" y="150" width="128" height="76" rx="6" fill="#E8352B" fill-opacity="0.85"/>
+  <text x="930" y="196" text-anchor="middle" fill="#0B0B0E" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">GPU</text>
+  <text x="930" y="240" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">Accélérateur d'IA</text>
+
+  <!-- Flèches -->
+  <g stroke="#35D6D6" stroke-width="2.5" fill="none">
+    <path d="M242 190H294M296 184L306 190L296 196"/>
+    <path d="M502 190H554M556 184L566 190L556 196"/>
+    <path d="M762 190H814M816 184L826 190L816 196"/>
+  </g>
+
+  <!-- Bandeau de lecture -->
+  <text x="40" y="70" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Le chemin obligé de la mémoire dans un système d'IA</text>
+  <text x="40" y="330" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Chaque étape est un goulot : une seule puce défectueuse dans l'empilement fait perdre les 8 à 12 couches qui la composent.</text>
+  <text x="40" y="360" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Les trois quarts de la production 2027 de Micron sont déjà vendus — c'est ce qui fixe les prix avant même la fabrication.</text>
+</svg>

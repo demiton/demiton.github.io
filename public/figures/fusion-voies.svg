@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="460" viewBox="0 0 1080 460" role="img" aria-label="Comparaison de trois filières : deutérium-tritium, hydrogène-bore et réacteur de Kairos">
+  <rect width="1080" height="460" fill="#0B0B0E"/>
+  <rect x="0.5" y="0.5" width="1079" height="459" fill="none" stroke="#26262D"/>
+
+  <text x="40" y="50" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Trois voies, trois cadences — ce qui est annoncé, et ce qui reste à faire</text>
+
+  <!-- ===== Voie 1 : deutérium-tritium ===== -->
+  <rect x="40" y="86" width="320" height="282" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
+  <g fill="none" stroke="#35D6D6" stroke-width="2">
+    <ellipse cx="320" cy="122" rx="20" ry="9"/>
+    <ellipse cx="320" cy="122" rx="9" ry="4"/>
+  </g>
+  <text x="64" y="120" fill="#35D6D6" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="600">Deutérium-tritium</text>
+  <text x="64" y="143" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">ITER · BEST</text>
+  <path d="M64 157H336" stroke="#26262D" stroke-width="1.5"/>
+
+  <text x="64" y="182" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.2">COMBUSTIBLE</text>
+  <text x="64" y="204" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">deutérium + tritium</text>
+
+  <text x="64" y="234" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.2">DIFFICULTÉ</text>
+  <text x="64" y="256" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">coût et cadence</text>
+  <text x="64" y="276" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">de construction</text>
+
+  <text x="64" y="306" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.2">HORIZON</text>
+  <text x="64" y="328" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">BEST achevé en 2027</text>
+  <text x="64" y="348" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">électricité vers 2030</text>
+
+  <!-- ===== Voie 2 : hydrogène-bore ===== -->
+  <rect x="380" y="86" width="320" height="282" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
+  <g>
+    <circle cx="656" cy="122" r="9" fill="#F5B400"/>
+    <path d="M656 104V96M672 112L678 106M640 112L634 106" stroke="#F5B400" stroke-opacity="0.7" stroke-width="2"/>
+  </g>
+  <text x="404" y="120" fill="#F5B400" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="600">Hydrogène-bore</text>
+  <text x="404" y="143" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">ENN · Xuanlong-50U</text>
+  <path d="M404 157H676" stroke="#26262D" stroke-width="1.5"/>
+
+  <text x="404" y="182" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.2">COMBUSTIBLE</text>
+  <text x="404" y="204" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">hydrogène + bore</text>
+
+  <text x="404" y="234" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.2">DIFFICULTÉ</text>
+  <text x="404" y="256" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">réaction sans neutrons,</text>
+  <text x="404" y="276" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">plus difficile à obtenir</text>
+
+  <text x="404" y="306" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.2">HORIZON</text>
+  <text x="404" y="328" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Helong-2 fin 2027</text>
+  <text x="404" y="348" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">électricité vers 2030</text>
+
+  <!-- ===== Voie 3 : réacteur de Kairos ===== -->
+  <rect x="720" y="86" width="320" height="282" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
+  <g fill="none" stroke="#6B4CE6" stroke-width="2">
+    <rect x="976" y="106" width="44" height="30" rx="4"/>
+    <rect x="984" y="98" width="28" height="8" rx="2"/>
+  </g>
+  <text x="744" y="120" fill="#6B4CE6" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="600">Réacteur de Kairos</text>
+  <text x="744" y="143" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">50 MW · client Google</text>
+  <path d="M744 157H1016" stroke="#26262D" stroke-width="1.5"/>
+
+  <text x="744" y="182" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.2">COMBUSTIBLE</text>
+  <text x="744" y="204" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">non précisé par les</text>
+  <text x="744" y="224" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">sources consultées</text>
+
+  <text x="744" y="254" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.2">DIFFICULTÉ</text>
+  <text x="744" y="276" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">financement industriel</text>
+  <text x="744" y="296" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">et autorisation</text>
+
+  <text x="744" y="326" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.2">HORIZON</text>
+  <text x="744" y="348" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">mise en service visée 2030</text>
+
+  <!-- ===== Bandeau de lecture ===== -->
+  <text x="40" y="404" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Les trois programmes affichent la même échéance — 2030 — mais ne partent pas du même point de départ.</text>
+  <text x="40" y="430" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Le réacteur de Kairos n'est pas un réacteur à fusion : il vise les mêmes clients, les centres de données.</text>
+</svg>

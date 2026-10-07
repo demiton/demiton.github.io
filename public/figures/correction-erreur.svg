@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="440" viewBox="0 0 1080 440" role="img" aria-label="Schéma : des qubits physiques fragiles aux qubits logiques protégés par la correction d'erreur">
+  <rect width="1080" height="440" fill="#0B0B0E"/>
+  <rect x="0.5" y="0.5" width="1079" height="439" fill="none" stroke="#26262D"/>
+
+  <text x="40" y="52" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Du qubit physique au qubit logique : ce que corrige la correction d'erreur</text>
+
+  <!-- Panneau gauche : qubits physiques -->
+  <rect x="40" y="80" width="390" height="250" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
+  <g fill="#35D6D6" fill-opacity="0.5">
+    <circle cx="78" cy="120" r="7"/><circle cx="124" cy="120" r="7"/><circle cx="216" cy="120" r="7"/><circle cx="262" cy="120" r="7"/><circle cx="308" cy="120" r="7"/>
+    <circle cx="78" cy="158" r="7"/><circle cx="124" cy="158" r="7"/><circle cx="216" cy="158" r="7"/><circle cx="308" cy="158" r="7"/>
+    <circle cx="78" cy="196" r="7"/><circle cx="124" cy="196" r="7"/><circle cx="170" cy="196" r="7"/><circle cx="216" cy="196" r="7"/><circle cx="262" cy="196" r="7"/><circle cx="308" cy="196" r="7"/>
+    <circle cx="78" cy="234" r="7"/><circle cx="170" cy="234" r="7"/><circle cx="216" cy="234" r="7"/><circle cx="262" cy="234" r="7"/>
+  </g>
+  <g fill="#E8352B">
+    <circle cx="170" cy="120" r="7"/>
+    <circle cx="170" cy="158" r="7"/>
+    <circle cx="262" cy="158" r="7"/>
+    <circle cx="124" cy="234" r="7"/>
+    <circle cx="308" cy="234" r="7"/>
+  </g>
+  <text x="235" y="282" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">Qubits physiques</text>
+  <text x="235" y="308" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">nombreux, fragiles, chacun se trompe (en rouge)</text>
+
+  <!-- Flèche de correction -->
+  <g stroke="#35D6D6" stroke-width="2.5" fill="none">
+    <path d="M448 195H628"/>
+    <path d="M620 188L634 195L620 202"/>
+  </g>
+  <text x="540" y="164" text-anchor="middle" fill="#35D6D6" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">Correction d'erreur</text>
+  <text x="540" y="228" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">on regroupe, on mesure,</text>
+  <text x="540" y="250" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">on corrige collectivement</text>
+
+  <!-- Panneau droit : qubits logiques -->
+  <rect x="650" y="80" width="390" height="250" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
+  <g stroke="#6B4CE6" stroke-opacity="0.55" stroke-width="1.5" stroke-dasharray="5 5" fill="none">
+    <circle cx="720" cy="180" r="36"/>
+    <circle cx="845" cy="180" r="36"/>
+    <circle cx="970" cy="180" r="36"/>
+  </g>
+  <g fill="#35D6D6" fill-opacity="0.55">
+    <circle cx="746" cy="180" r="5"/><circle cx="733" cy="203" r="5"/><circle cx="707" cy="203" r="5"/><circle cx="694" cy="180" r="5"/><circle cx="707" cy="157" r="5"/><circle cx="733" cy="157" r="5"/>
+    <circle cx="871" cy="180" r="5"/><circle cx="858" cy="203" r="5"/><circle cx="832" cy="203" r="5"/><circle cx="819" cy="180" r="5"/><circle cx="832" cy="157" r="5"/><circle cx="858" cy="157" r="5"/>
+    <circle cx="996" cy="180" r="5"/><circle cx="983" cy="203" r="5"/><circle cx="957" cy="203" r="5"/><circle cx="944" cy="180" r="5"/><circle cx="957" cy="157" r="5"/><circle cx="983" cy="157" r="5"/>
+  </g>
+  <g fill="#6B4CE6">
+    <circle cx="720" cy="180" r="14"/>
+    <circle cx="845" cy="180" r="14"/>
+    <circle cx="970" cy="180" r="14"/>
+  </g>
+  <text x="845" y="282" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">Qubits logiques</text>
+  <text x="845" y="308" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">moins nombreux, protégés par le groupe (violet)</text>
+
+  <!-- Bandeau de lecture -->
+  <text x="40" y="376" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Chez IonQ, le décodeur a été évalué sur des circuits allant jusqu'à 408 qubits logiques, répartis sur 88 blocs mémoire,</text>
+  <text x="40" y="402" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">pour plus de 31,5 millions d'opérations quantiques et 0,02 % de surcoût de décodage.</text>
+  <text x="40" y="428" fill="#F5B400" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">Chiffres issus d'une prépublication de l'entreprise, non évaluée par les pairs.</text>
+</svg>

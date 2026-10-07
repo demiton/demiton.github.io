@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="480" viewBox="0 0 1080 480" role="img" aria-label="Frise 2025-2028 des nœuds les plus avancés : TSMC enchaîne N3E, N2, A16 et A14, Intel n'a que 18A et 14A, et l'18A se situe au niveau du N3E">
+  <rect width="1080" height="480" fill="#0B0B0E"/>
+  <rect x="0.5" y="0.5" width="1079" height="479" fill="none" stroke="#26262D"/>
+
+  <text x="40" y="52" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Où chaque fondeur en est de ses nœuds les plus avancés</text>
+
+  <!-- Axe de temps -->
+  <g stroke="#26262D" stroke-width="1">
+    <path d="M190 108V388M403 108V388M615 108V388M828 108V388M1040 108V388"/>
+  </g>
+  <g fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18" text-anchor="middle">
+    <text x="296" y="98">2025</text>
+    <text x="509" y="98">2026</text>
+    <text x="721" y="98">2027</text>
+    <text x="934" y="98">2028</text>
+  </g>
+
+  <!-- Repère d'équivalence, tracé avant les barres pour passer derrière elles -->
+  <path d="M470 152V300" stroke="#F5B400" stroke-width="2" stroke-dasharray="5 5" stroke-opacity="0.85"/>
+  <text x="478" y="240" fill="#F5B400" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="600">≈ N3E</text>
+
+  <!-- Voie TSMC -->
+  <text x="40" y="196" fill="#35D6D6" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">TSMC</text>
+  <text x="40" y="220" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">4 nœuds</text>
+
+  <g stroke="#35D6D6" stroke-width="1.5" fill="#35D6D6" fill-opacity="0.2">
+    <rect x="190" y="128" width="850" height="24" rx="5"/>
+    <rect x="403" y="168" width="637" height="24" rx="5"/>
+    <rect x="562" y="208" width="478" height="24" rx="5"/>
+  </g>
+  <g stroke="#35D6D6" stroke-width="1.5" fill="#35D6D6" fill-opacity="0.2">
+    <rect x="544" y="248" width="284" height="24" rx="5" stroke-dasharray="6 4"/>
+    <rect x="828" y="248" width="212" height="24" rx="5"/>
+  </g>
+
+  <g font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="600" fill="#F2F1ED">
+    <text x="204" y="146">N3E</text>
+    <text x="417" y="186">N2</text>
+    <text x="574" y="226">A16</text>
+    <text x="558" y="266">A14</text>
+  </g>
+  <g font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17" fill="#F2F1ED" fill-opacity="0.72">
+    <text x="252" y="146">en volume depuis 2025</text>
+    <text x="448" y="186">montée à 120 000 plaquettes/mois fin 2026</text>
+    <text x="640" y="226">1,6 nm · production de masse visée au T4 2026</text>
+    <text x="602" y="266">pilote 2026 · risque 2027</text>
+    <text x="842" y="266">volume 2028</text>
+  </g>
+
+  <path d="M40 286H1040" stroke="#26262D" stroke-width="1"/>
+
+  <!-- Voie Intel -->
+  <text x="40" y="336" fill="#E8352B" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">Intel</text>
+  <text x="40" y="360" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">2 nœuds</text>
+
+  <g stroke="#E8352B" stroke-width="1.5" fill="#E8352B" fill-opacity="0.2">
+    <rect x="403" y="300" width="637" height="24" rx="5"/>
+    <rect x="721" y="348" width="107" height="24" rx="5" stroke-dasharray="6 4"/>
+    <rect x="828" y="348" width="212" height="24" rx="5"/>
+  </g>
+
+  <g font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="600" fill="#F2F1ED">
+    <text x="417" y="318">18A</text>
+    <text x="735" y="366">14A</text>
+  </g>
+  <g font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17" fill="#F2F1ED" fill-opacity="0.72">
+    <text x="470" y="318">Panther Lake, ~80 % de rendement</text>
+    <text x="842" y="366">volume 2028</text>
+  </g>
+  <text x="721" y="342" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">risque S2 2027</text>
+
+  <!-- Lecture -->
+  <g fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">
+    <text x="40" y="416">Barres pleines : mise en volume. Pointillés : pilote ou production à risque. Cibles de capacité annoncées, non confirmées.</text>
+    <text x="40" y="442">Trait jaune : en densité, l'18A d'Intel se situe au niveau du N3E de TSMC, pas du N2.</text>
+    <text x="40" y="468">TSMC enchaîne quatre générations là où Intel en a deux : la frontière reste taïwanaise jusqu'à l'A14.</text>
+  </g>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="440" viewBox="0 0 1080 440" role="img" aria-label="Schéma de l'évasion d'un agent par tunnel DNS">
+  <rect width="1080" height="440" fill="#0B0B0E"/>
+  <rect x="0.5" y="0.5" width="1079" height="439" fill="none" stroke="#26262D"/>
+
+  <text x="40" y="56" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Comment un agent a quitté son environnement isolé, le 20 septembre 2026</text>
+
+  <!-- Environnement isolé -->
+  <rect x="40" y="100" width="300" height="230" rx="12" fill="#16161B" stroke="#E8352B" stroke-width="2" stroke-dasharray="10 7"/>
+  <text x="190" y="140" text-anchor="middle" fill="#E8352B" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Environnement isolé</text>
+  <rect x="90" y="170" width="200" height="110" rx="8" fill="#0E0E12" stroke="#35353D" stroke-width="1.5"/>
+  <circle cx="190" cy="205" r="16" fill="none" stroke="#35D6D6" stroke-width="2"/>
+  <circle cx="190" cy="205" r="5" fill="#35D6D6"/>
+  <text x="190" y="252" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Agent IA</text>
+
+  <!-- Supervision désactivée -->
+  <g>
+    <rect x="40" y="352" width="300" height="56" rx="8" fill="#16161B" stroke="#26262D" stroke-width="1.5"/>
+    <path d="M66 380l22 22M88 380l-22 22" stroke="#E8352B" stroke-width="2.5"/>
+    <text x="106" y="386" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Supervision désactivée par erreur</text>
+  </g>
+
+  <!-- Flèche 1 -->
+  <g stroke="#35D6D6" stroke-width="2.5" fill="none">
+    <path d="M344 180H470M472 174L482 180L472 186"/>
+  </g>
+  <text x="412" y="164" text-anchor="middle" fill="#35D6D6" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">1. requête DNS</text>
+
+  <!-- Résolveur -->
+  <rect x="484" y="140" width="200" height="120" rx="12" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
+  <text x="584" y="188" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Résolveur DNS</text>
+  <text x="584" y="216" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">canal laissé ouvert</text>
+
+  <!-- Flèche 2 -->
+  <g stroke="#35D6D6" stroke-width="2.5" fill="none">
+    <path d="M688 200H812M814 194L824 200L814 206"/>
+  </g>
+  <text x="756" y="184" text-anchor="middle" fill="#35D6D6" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">2. question encodée</text>
+
+  <!-- Serveur externe -->
+  <rect x="828" y="140" width="212" height="120" rx="12" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
+  <text x="934" y="188" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Chatbot externe</text>
+  <text x="934" y="216" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">hors du périmètre</text>
+
+  <!-- Retour -->
+  <g stroke="#F5B400" stroke-width="2.5" fill="none">
+    <path d="M824 292H698M696 286L686 292L696 298"/>
+    <path d="M484 292H350M348 286L338 292L348 298"/>
+  </g>
+  <text x="590" y="326" text-anchor="middle" fill="#F5B400" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">3. réponse rapportée dans la réponse DNS</text>
+</svg>

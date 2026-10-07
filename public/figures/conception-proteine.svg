@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="440" viewBox="0 0 1080 440" role="img" aria-label="Deux panneaux comparés : à gauche le criblage traditionnel, une grille dense de molécules testées une par une avec quelques touches ; à droite la conception computationnelle, quelques candidats prédits puis vérifiés en laboratoire">
+  <rect width="1080" height="440" fill="#0B0B0E"/>
+  <rect x="0.5" y="0.5" width="1079" height="439" fill="none" stroke="#26262D"/>
+
+  <defs>
+    <pattern id="crible" width="17" height="17" patternUnits="userSpaceOnUse">
+      <circle cx="8.5" cy="8.5" r="2.3" fill="#5C5C66"/>
+    </pattern>
+  </defs>
+
+  <text x="40" y="46" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Deux façons de trouver une molécule</text>
+
+  <!-- Panneau gauche : criblage -->
+  <rect x="40" y="76" width="460" height="264" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
+  <text x="64" y="112" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="20">Criblage traditionnel</text>
+
+  <rect x="64" y="132" width="412" height="136" fill="url(#crible)"/>
+  <g fill="#E8352B">
+    <circle cx="150" cy="168" r="6"/>
+    <circle cx="300" cy="214" r="6"/>
+    <circle cx="410" cy="180" r="6"/>
+  </g>
+
+  <text x="64" y="298" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Des millions de molécules testées une par une</text>
+  <text x="64" y="322" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Quelques touches, trouvées au hasard</text>
+
+  <text x="540" y="212" text-anchor="middle" fill="#5C5C66" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">ou</text>
+
+  <!-- Panneau droit : conception -->
+  <rect x="580" y="76" width="460" height="264" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
+  <text x="604" y="112" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="20">Conception computationnelle</text>
+
+  <g fill="none" stroke="#35D6D6" stroke-opacity="0.55" stroke-width="2">
+    <circle cx="630" cy="170" r="15"/>
+    <circle cx="700" cy="170" r="15"/>
+    <circle cx="770" cy="170" r="15"/>
+    <circle cx="840" cy="170" r="15"/>
+    <circle cx="910" cy="170" r="15"/>
+    <circle cx="980" cy="170" r="15"/>
+  </g>
+  <text x="805" y="212" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Quelques candidats prédits pour la cible</text>
+
+  <path d="M805 228V252M798 245L805 256L812 245" stroke="#35D6D6" stroke-width="2.5" fill="none"/>
+
+  <g fill="#35D6D6">
+    <circle cx="770" cy="278" r="15"/>
+    <circle cx="850" cy="278" r="15"/>
+  </g>
+  <text x="805" y="322" text-anchor="middle" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Vérifiés en laboratoire</text>
+
+  <!-- Bandeau de lecture -->
+  <text x="40" y="382" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Criblage : on teste l'existant, un composé après l'autre, jusqu'à tomber sur une correspondance.</text>
+  <text x="40" y="410" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Conception : on calcule une forme adaptée à la cible, puis on la fabrique et on la vérifie.</text>
+</svg>

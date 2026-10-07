@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="600" viewBox="0 0 1080 600" role="img" aria-label="Satellite en orbite reliant un téléphone">
+  <defs>
+    <radialGradient id="ciel" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#6B4CE6" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#6B4CE6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1080" height="600" fill="#0B0B0E"/>
+  <rect width="1080" height="600" fill="url(#ciel)"/>
+
+  <!-- Orbite -->
+  <ellipse cx="540" cy="300" rx="470" ry="150" fill="none" stroke="#35D6D6" stroke-opacity="0.35" stroke-width="1.5" transform="rotate(-12 540 300)"/>
+  <ellipse cx="540" cy="300" rx="380" ry="120" fill="none" stroke="#26262D" stroke-width="1.5" transform="rotate(-12 540 300)"/>
+
+  <!-- Satellite -->
+  <g transform="translate(760 150)">
+    <rect x="-34" y="-26" width="68" height="52" rx="6" fill="#16161B" stroke="#F2F1ED" stroke-opacity="0.5" stroke-width="1.5"/>
+    <rect x="-96" y="-16" width="54" height="32" rx="4" fill="#35D6D6" fill-opacity="0.7"/>
+    <rect x="42" y="-16" width="54" height="32" rx="4" fill="#35D6D6" fill-opacity="0.7"/>
+    <path d="M0 26V58" stroke="#35D6D6" stroke-width="2"/>
+    <path d="M-18 58H18" stroke="#35D6D6" stroke-width="2"/>
+  </g>
+
+  <!-- Faisceau -->
+  <g stroke="#F5B400" stroke-opacity="0.55" stroke-width="2" fill="none">
+    <path d="M726 214L420 470M794 214L430 470M760 210L425 470"/>
+  </g>
+
+  <!-- Téléphone -->
+  <g transform="translate(400 470)">
+    <rect x="-30" y="-50" width="60" height="104" rx="9" fill="#16161B" stroke="#F2F1ED" stroke-opacity="0.45" stroke-width="1.5"/>
+    <rect x="-22" y="-42" width="44" height="80" rx="4" fill="#35D6D6" fill-opacity="0.18"/>
+    <circle cx="0" cy="46" r="4" fill="#F2F1ED" fill-opacity="0.5"/>
+  </g>
+
+  <!-- Zone couverte -->
+  <ellipse cx="400" cy="540" rx="230" ry="26" fill="#F5B400" fill-opacity="0.14"/>
+  <ellipse cx="400" cy="540" rx="120" ry="14" fill="#F5B400" fill-opacity="0.22"/>
+</svg>
