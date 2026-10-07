@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="600" viewBox="0 0 1080 600" role="img" aria-label="Réseau de neurones stylisé">
+  <defs>
+    <radialGradient id="halo" cx="46%" cy="46%" r="62%">
+      <stop offset="0%" stop-color="#35D6D6" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#35D6D6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1080" height="600" fill="#0B0B0E"/>
+  <rect width="1080" height="600" fill="url(#halo)"/>
+
+  <!-- Trame de fond -->
+  <g stroke="#26262D" stroke-width="1">
+    <path d="M180 0V600M360 0V600M540 0V600M720 0V600M900 0V600"/>
+    <path d="M0 150H1080M0 300H1080M0 450H1080"/>
+  </g>
+
+  <!-- Connexions -->
+  <g stroke="#35D6D6" stroke-opacity="0.45" stroke-width="1.5" fill="none">
+    <path d="M200 180L430 120M200 180L430 240M200 300L430 240M200 300L430 360M200 420L430 360M200 420L430 480"/>
+    <path d="M430 120L660 180M430 240L660 180M430 240L660 300M430 360L660 300M430 360L660 420M430 480L660 420"/>
+    <path d="M660 180L890 300M660 300L890 300M660 420L890 300"/>
+  </g>
+
+  <!-- Connexions mises en avant -->
+  <g stroke="#E8352B" stroke-opacity="0.85" stroke-width="2" fill="none">
+    <path d="M200 300L430 240M430 240L660 300M660 300L890 300"/>
+  </g>
+
+  <!-- Nœuds -->
+  <g fill="#35D6D6">
+    <circle cx="200" cy="180" r="7"/>
+    <circle cx="200" cy="420" r="7"/>
+    <circle cx="430" cy="120" r="7"/>
+    <circle cx="430" cy="360" r="7"/>
+    <circle cx="430" cy="480" r="7"/>
+    <circle cx="660" cy="180" r="7"/>
+    <circle cx="660" cy="420" r="7"/>
+  </g>
+  <g fill="#F2F1ED">
+    <circle cx="200" cy="300" r="9"/>
+    <circle cx="430" cy="240" r="9"/>
+    <circle cx="660" cy="300" r="9"/>
+  </g>
+  <circle cx="890" cy="300" r="16" fill="#E8352B"/>
+  <circle cx="890" cy="300" r="30" fill="none" stroke="#E8352B" stroke-opacity="0.45" stroke-width="1.5"/>
+  <circle cx="890" cy="300" r="48" fill="none" stroke="#E8352B" stroke-opacity="0.18" stroke-width="1.5"/>
+</svg>
