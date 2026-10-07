@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="600" viewBox="0 0 1080 600" role="img" aria-label="Empilement de mémoires HBM">
+  <defs>
+    <radialGradient id="lueur" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#35D6D6" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#35D6D6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="couche" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1B1B22"/>
+      <stop offset="100%" stop-color="#101015"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="600" fill="#0B0B0E"/>
+  <rect width="1080" height="600" fill="url(#lueur)"/>
+
+  <g stroke="#26262D" stroke-width="1">
+    <path d="M0 150H1080M0 300H1080M0 450H1080"/>
+    <path d="M180 0V600M540 0V600M900 0V600"/>
+  </g>
+
+  <!-- Empilement de puces DRAM -->
+  <g>
+    <rect x="330" y="120" width="420" height="40" rx="4" fill="url(#couche)" stroke="#35353D" stroke-width="1.5"/>
+    <rect x="330" y="166" width="420" height="40" rx="4" fill="url(#couche)" stroke="#35353D" stroke-width="1.5"/>
+    <rect x="330" y="212" width="420" height="40" rx="4" fill="url(#couche)" stroke="#35353D" stroke-width="1.5"/>
+    <rect x="330" y="258" width="420" height="40" rx="4" fill="url(#couche)" stroke="#35353D" stroke-width="1.5"/>
+    <rect x="330" y="304" width="420" height="40" rx="4" fill="url(#couche)" stroke="#35353D" stroke-width="1.5"/>
+    <rect x="330" y="350" width="420" height="40" rx="4" fill="url(#couche)" stroke="#35353D" stroke-width="1.5"/>
+  </g>
+
+  <!-- Via traversants (TSV) -->
+  <g stroke="#35D6D6" stroke-opacity="0.65" stroke-width="2">
+    <path d="M400 130V380M460 130V380M520 130V380M580 130V380M640 130V380M700 130V380"/>
+  </g>
+
+  <!-- Base die et substrat -->
+  <rect x="290" y="400" width="500" height="52" rx="6" fill="#16161B" stroke="#F5B400" stroke-opacity="0.7" stroke-width="1.5"/>
+  <rect x="250" y="466" width="580" height="34" rx="6" fill="#0E0E12" stroke="#35353D" stroke-width="1.5"/>
+
+  <!-- Points de contact -->
+  <g fill="#F5B400" fill-opacity="0.85">
+    <circle cx="420" cy="483" r="6"/>
+    <circle cx="500" cy="483" r="6"/>
+    <circle cx="580" cy="483" r="6"/>
+    <circle cx="660" cy="483" r="6"/>
+  </g>
+
+  <!-- Accent : la donnée qui monte -->
+  <g stroke="#E8352B" stroke-width="2.5" stroke-opacity="0.9">
+    <path d="M520 150V360"/>
+  </g>
+  <circle cx="520" cy="150" r="7" fill="#E8352B"/>
+</svg>

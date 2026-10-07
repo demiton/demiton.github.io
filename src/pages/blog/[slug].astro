@@ -18,7 +18,11 @@ export async function getStaticPaths() {
 }
 
 const { post, prev, next } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+
+/* Sommaire : les articles de fond ont au moins trois sections de niveau 2.
+   En dessous, un sommaire encombrerait plus qu'il n'aide. */
+const sommaire = headings.filter((heading) => heading.depth === 2);
 
 const wordCount = post.body?.split(/\s+/).length ?? 0;
 const readingTime = Math.max(1, Math.round(wordCount / 200));
@@ -61,6 +65,20 @@ const formattedDate = post.data.date
 		</div>
 
 		<div class="body-wrap">
+			{
+				sommaire.length >= 3 && (
+					<nav class="sommaire" aria-label="Sommaire de l'article">
+						<p class="sommaire-title">Au sommaire</p>
+						<ol>
+							{sommaire.map((heading) => (
+								<li>
+									<a href={`#${heading.slug}`}>{heading.text}</a>
+								</li>
+							))}
+						</ol>
+					</nav>
+				)
+			}
 			<div class="prose">
 				<Content />
 			</div>
@@ -289,6 +307,197 @@ const formattedDate = post.data.date
 		border: 1px solid var(--color-hairline);
 		border-radius: 12px;
 		padding: 1rem;
+	}
+
+	/* ============================================================
+	   Architecture éditoriale des articles de fond
+	   Chapeau, sommaire, schémas, encadrés pédagogiques, tableaux
+	   comparatifs et sources en notes de bas de page.
+	   ============================================================ */
+
+	/* Chapeau : le premier paragraphe porte l'accroche, il est donc mis en
+	   avant — encre pleine et corps légèrement plus grand. */
+	.prose :global(p:first-of-type) {
+		font-size: 1.0625rem;
+		color: var(--color-ink);
+	}
+
+	.prose :global(h3) {
+		margin: 2.25rem 0 0.5rem;
+		font-size: 1.25rem;
+		color: var(--color-ink);
+	}
+
+	.prose :global(h4) {
+		margin: 1.5rem 0 0.4rem;
+		color: var(--color-ink);
+	}
+
+	.prose :global(li) {
+		margin-bottom: 0.45rem;
+	}
+
+	/* Schémas et illustrations : cadre discret, légende en petit corps. */
+	.prose :global(figure) {
+		margin: 2rem 0;
+	}
+
+	.prose :global(figure img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		border: 1px solid var(--color-hairline);
+		border-radius: 12px;
+		background: var(--color-surface);
+	}
+
+	.prose :global(figcaption) {
+		margin-top: 0.6rem;
+		font-size: 0.8125rem;
+		line-height: 1.6;
+		color: var(--color-ink-2);
+	}
+
+	/* Encadrés pédagogiques (« En clair », « À retenir »). Le libellé est le
+	   premier mot en gras du bloc : il est mis en forme comme un sur-titre. */
+	.prose :global(blockquote) {
+		margin: 1.75rem 0;
+		padding: 1rem 1.25rem;
+		border: 1px solid var(--color-hairline);
+		border-left: 3px solid var(--color-cyan);
+		border-radius: 0 8px 8px 0;
+		background: var(--color-surface);
+		color: var(--color-ink);
+	}
+
+	.prose :global(blockquote p:last-child) {
+		margin-bottom: 0;
+	}
+
+	.prose :global(blockquote p:first-child strong:first-child) {
+		display: block;
+		margin-bottom: 0.35rem;
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: var(--color-cyan);
+	}
+
+	/* Tableaux comparatifs */
+	.prose :global(table) {
+		width: 100%;
+		margin: 1.75rem 0;
+		border-collapse: collapse;
+		font-size: 0.875rem;
+	}
+
+	.prose :global(th),
+	.prose :global(td) {
+		padding: 0.6rem 0.75rem;
+		border-bottom: 1px solid var(--color-hairline);
+		text-align: left;
+		vertical-align: top;
+	}
+
+	.prose :global(th) {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+		color: var(--color-ink);
+	}
+
+	.prose :global(hr) {
+		margin: 2.5rem 0;
+		border: none;
+		border-top: 1px solid var(--color-hairline);
+	}
+
+	/* Sources : section produite par les notes de bas de page de remark-gfm. */
+	.prose :global(.footnotes) {
+		margin-top: 3rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--color-hairline);
+		font-size: 0.8125rem;
+		line-height: 1.7;
+	}
+
+	.prose :global(.footnotes h2) {
+		margin: 0 0 0.75rem;
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: var(--color-ink-2);
+	}
+
+	.prose :global(.footnotes ol) {
+		padding-left: 1.25rem;
+	}
+
+	.prose :global(.footnotes li) {
+		margin-bottom: 0.5rem;
+	}
+
+	.prose :global(.footnotes a) {
+		overflow-wrap: anywhere;
+	}
+
+	.prose :global(sup a) {
+		text-decoration: none;
+	}
+
+	/* Sommaire : hors du corps de texte, aligné sur sa largeur de lecture. */
+	.sommaire {
+		width: 100%;
+		max-width: 47.5rem;
+		margin: 0 auto 2.5rem;
+		padding: 1.25rem 1.5rem;
+		border: 1px solid var(--color-hairline);
+		border-radius: 12px;
+		background: var(--color-surface);
+	}
+
+	.sommaire-title {
+		margin: 0 0 0.6rem;
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: var(--color-ink-2);
+	}
+
+	.sommaire ol {
+		margin: 0;
+		padding-left: 1.1rem;
+		columns: 2;
+		column-gap: 2rem;
+		font-size: 0.9375rem;
+	}
+
+	.sommaire li {
+		margin: 0 0 0.35rem;
+	}
+
+	.sommaire a {
+		color: var(--color-ink);
+		text-decoration: none;
+	}
+
+	.sommaire a:hover {
+		color: var(--color-accent);
+	}
+
+	@media (max-width: 50rem) {
+		/* Sur mobile, le sommaire passe sur une colonne : deux colonnes de
+		   titres tronqués se lisent mal à 390 px. */
+		.sommaire ol {
+			columns: 1;
+		}
 	}
 
 	.tags {

@@ -5,6 +5,20 @@ import starlight from '@astrojs/starlight';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://demiton.github.io',
+	/* Notes de bas de page : `remark-gfm` les produit, mais avec un libellé
+	   anglais (« Footnotes »). Les articles de fond citent leurs sources en
+	   note : le titre de section et le lien de retour sont donc traduits ici,
+	   une fois pour tout le site.
+
+	   Ces options s'exécutent sur le processeur `unified` de
+	   `@astrojs/markdown-remark`, qui n'est plus installé par défaut depuis
+	   qu'Astro 7 utilise Sätteri — d'où cette dépendance de développement. */
+	markdown: {
+		remarkRehype: {
+			footnoteLabel: 'Sources',
+			footnoteBackLabel: 'Revenir au texte',
+		},
+	},
 	integrations: [
 		starlight({
 			title: 'Demiton',
