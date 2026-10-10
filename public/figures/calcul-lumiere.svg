@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="470" viewBox="0 0 1080 470" role="img" aria-label="Comparaison entre transmettre des données par la lumière et calculer avec la lumière">
+  <rect width="1080" height="470" fill="#0B0B0E"/>
+  <rect x="0.5" y="0.5" width="1079" height="469" fill="none" stroke="#26262D"/>
+
+  <text x="40" y="52" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Deux usages de la lumière dans une machine</text>
+
+  <!-- ================= Panneau A : transmettre ================= -->
+  <text x="60" y="112" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="20">Transmettre par la lumière</text>
+  <text x="60" y="138" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">Ce qui équipe déjà les centres de données</text>
+
+  <g>
+    <rect x="60" y="160" width="420" height="52" rx="8" fill="#16161B" stroke="#35D6D6" stroke-width="1.5"/>
+    <text x="78" y="192" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Puce A · tout se calcule en électricité</text>
+  </g>
+
+  <g stroke="#E8352B" stroke-width="2" fill="none">
+    <path d="M84 212V244M78 238L84 248L90 238"/>
+  </g>
+  <text x="104" y="234" fill="#E8352B" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">conversion électricité → lumière</text>
+
+  <g>
+    <rect x="60" y="248" width="420" height="52" rx="8" fill="#16161B" stroke="#35D6D6" stroke-width="1.5"/>
+    <text x="78" y="280" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Fibre optique · la lumière transporte</text>
+  </g>
+
+  <g stroke="#E8352B" stroke-width="2" fill="none">
+    <path d="M84 300V332M78 326L84 336L90 326"/>
+  </g>
+  <text x="104" y="322" fill="#E8352B" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">conversion lumière → électricité</text>
+
+  <g>
+    <rect x="60" y="336" width="420" height="52" rx="8" fill="#16161B" stroke="#35D6D6" stroke-width="1.5"/>
+    <text x="78" y="368" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Puce B · tout se calcule en électricité</text>
+  </g>
+
+  <path d="M540 90V420" stroke="#26262D" stroke-width="1.5"/>
+
+  <!-- ================= Panneau B : calculer ================= -->
+  <text x="580" y="112" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="20">Calculer avec la lumière</text>
+  <text x="580" y="138" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">Le principe des processeurs photoniques</text>
+
+  <g>
+    <rect x="580" y="160" width="420" height="52" rx="8" fill="#16161B" stroke="#6B4CE6" stroke-width="1.5"/>
+    <text x="598" y="192" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Laser · la lumière entre dans la puce</text>
+  </g>
+
+  <g stroke="#6B4CE6" stroke-width="2" fill="none">
+    <path d="M604 212V244M598 238L604 248L610 238"/>
+  </g>
+  <text x="624" y="234" fill="#6B4CE6" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">le signal est divisé et recombiné</text>
+
+  <g>
+    <rect x="580" y="248" width="420" height="52" rx="8" fill="#16161B" stroke="#6B4CE6" stroke-width="1.5"/>
+    <text x="598" y="280" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">Interféromètres · le calcul dans la lumière</text>
+  </g>
+
+  <g stroke="#E8352B" stroke-width="2" fill="none">
+    <path d="M604 300V332M598 326L604 336L610 326"/>
+  </g>
+  <text x="624" y="322" fill="#E8352B" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">lecture du résultat</text>
+
+  <g>
+    <rect x="580" y="336" width="420" height="52" rx="8" fill="#16161B" stroke="#E8352B" stroke-width="1.5"/>
+    <text x="598" y="368" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">Photodétecteur · la lecture du résultat</text>
+  </g>
+
+  <text x="40" y="440" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">Dans les deux cas, la donnée finit par redevenir électrique : c'est là que se logent la perte d'énergie et la latence.</text>
+</svg>
