@@ -26,9 +26,19 @@ Un **nœud** désigne une génération de recettes industrielles : largeur des m
 
 La capacité se compte en **plaquettes par mois** : la plaquette est le disque de silicium où l'on grave des centaines de puces. 120 000 par mois, c'est environ quatre par minute, en continu.
 
+## Ce qui a été mesuré, et comment
+
+Trois mesures distinctes se cachent derrière les annonces, et aucune ne dit la même chose.
+
+**Le rendement** se mesure en testant chaque puce sur la plaquette, avant la découpe : on applique un motif de test fonctionnel et on compte la proportion de puces qui tiennent les spécifications de fréquence et de consommation. Un rendement annoncé de 80 % sur une puce de 114 mm² signifie que, selon ce chiffre, une puce sur cinq serait écartée à ce stade.[^4] Le chiffre n'est pas transposable d'une puce à l'autre : plus la surface augmente, plus la probabilité qu'un défaut critique tombe dans la puce augmente — la relation classique utilisée en industrie fait décroître le rendement de façon exponentielle avec la surface, à densité de défauts constante. Un rendement élevé sur une petite puce ne dit donc rien de l'économie d'une grosse.
+
+**Le teardown** est une mesure physique, pas une lecture de fiche produit. On découpe la puce, on observe ses coupes au microscope électronique, on mesure les pas de grille et de routage, puis on reconstitue la densité réellement gravée. C'est ainsi qu'une analyse de Panther Lake a pu conclure que la logique 18A se situe près du N3E de TSMC, sans dépasser les nœuds suivants.[^5]
+
+**La densité** s'exprime en millions de transistors par millimètre carré. C'est la seule grandeur vraiment comparable entre fondeurs, parce qu'elle ne dépend pas de la convention de nommage : deux nœuds appelés « 2 nm » peuvent avoir des densités différentes. Les nanomètres du nom sont commerciaux ; la densité, la consommation à fréquence égale et le rendement mesurent la génération.
+
 ## TSMC : quatre générations en parallèle
 
-TSMC n'arrête pas un nœud quand le suivant arrive, il les empile : au deuxième trimestre 2026, le N2 ne représentait que 3 % de son chiffre d'affaires, contre 30 % pour le N3 et 33 % pour le N5. La montée en cadence du 2 nm est néanmoins rapide — de 20 000 plaquettes par mois fin juillet à 120 000 visées fin 2026 — et le nombre de **tape-outs** serait quatre fois supérieur à celui du N3 au même stade.[^1]
+TSMC n'arrête pas un nœud quand le suivant arrive : il maintient plusieurs générations en production en parallèle, et la montée en cadence du 2 nm s'ajoute à celles du N3 et du N5 plutôt que de les remplacer. Cette montée est rapide — de 20 000 plaquettes par mois fin juillet à 120 000 visées fin 2026 — et le nombre de **tape-outs** serait quatre fois supérieur à celui du N3 au même stade.[^1]
 
 > **En clair**
 > Un **tape-out** est le moment où un client fige le dessin d'une puce et le confie à la fonderie, qui grave un premier jeu de plaquettes pour vérifier que le procédé tient.
@@ -43,14 +53,13 @@ L'**A16**, premier nœud TSMC à **alimentation par l'arrière** destiné à la 
 	<figcaption>Les barres indiquent l'entrée en production et sa poursuite ; les pointillés, un pilote ou une production à risque. Le trait jaune matérialise l'écart qui compte : en densité, l'18A d'Intel est mesuré au niveau du N3E de TSMC, pas du N2.</figcaption>
 </figure>
 
+La coexistence des nœuds a un coût économique, qui ne dit rien de l'avance technique : au deuxième trimestre 2026, le N3 et le N5 pesaient encore 30 % et 33 % du chiffre d'affaires du fondeur, contre 3 % pour le N2.[^1]
+
 ## Intel : le rendement progresse, la densité non
 
-Le 18A a franchi une étape industrielle : le rendement de la puce de calcul de Panther Lake, premier produit commercial à combiner transistors RibbonFET à grille enveloppante et alimentation par l'arrière (PowerVia), atteindrait environ 80 % sur une surface de 114 mm².[^4] Ces chiffres viennent d'un analyste et n'ont pas été confirmés par Intel.
+Le 18A a franchi une étape industrielle : le rendement de la puce de calcul de Panther Lake, premier produit commercial à combiner transistors RibbonFET à grille enveloppante et alimentation par l'arrière (PowerVia), atteindrait environ 80 % sur une surface de 114 mm².[^4] Ces chiffres viennent d'un analyste et n'ont pas été confirmés par Intel — et un rendement, même élevé, ne dit rien de la densité.
 
-> **En clair**
-> Le **rendement** est la part de puces fonctionnelles sur une plaquette. 80 % sur une petite puce ne dit rien de l'économie d'une grosse : plus la surface croît, plus les défauts par puce se multiplient.
-
-Car c'est là que le bât blesse. Un **teardown** — démontage et mesure d'une puce réelle — conclut que la logique 18A est proche en densité du N3E de TSMC, sans dépasser le N3P, le N2 ni le SF2 de Samsung.[^5] Intel a donc rattrapé une génération, pas comblé l'écart.
+La mesure physique, elle, est moins flatteuse : le teardown de Panther Lake conclut que la logique 18A est proche en densité du N3E de TSMC, sans dépasser le N3P, le N2 ni le SF2 de Samsung.[^5] Intel a donc rattrapé une génération, pas comblé l'écart.
 
 Le fondeur vise la suivante : Naga Chandrasekaran, patron d'Intel Foundry, attend son 14A « à moins de 5 % » de l'A14 de TSMC, avec une production à risque au second semestre 2027 et un volume en 2028.[^6] Le périmètre de ces « 5 % » n'est pas précisé, et il s'agit d'un objectif, pas d'un résultat.
 

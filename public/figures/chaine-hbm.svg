@@ -1,44 +1,64 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="420" viewBox="0 0 1080 420" role="img" aria-label="De la plaquette DRAM au GPU : les quatre étapes de la chaîne mémoire">
-  <rect width="1080" height="420" fill="#0B0B0E"/>
-  <rect x="0.5" y="0.5" width="1079" height="419" fill="none" stroke="#26262D"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="470" viewBox="0 0 1080 470" role="img" aria-label="Coupe d'une pile HBM reliée à un GPU, et formule de calcul du débit mémoire">
+  <rect width="1080" height="470" fill="#0B0B0E"/>
+  <rect x="0.5" y="0.5" width="1079" height="469" fill="none" stroke="#26262D"/>
 
-  <!-- Étape 1 -->
-  <rect x="40" y="120" width="200" height="140" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
-  <circle cx="140" cy="175" r="38" fill="none" stroke="#35D6D6" stroke-width="2"/>
-  <circle cx="140" cy="175" r="8" fill="#35D6D6"/>
-  <text x="140" y="240" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">Plaquette DRAM</text>
+  <text x="40" y="48" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Un empilement HBM, et le calcul de son débit</text>
 
-  <!-- Étape 2 -->
-  <rect x="300" y="120" width="200" height="140" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
-  <g fill="#35D6D6" fill-opacity="0.8">
-    <rect x="352" y="146" width="96" height="14" rx="3"/>
-    <rect x="352" y="166" width="96" height="14" rx="3"/>
-    <rect x="352" y="186" width="96" height="14" rx="3"/>
-    <rect x="352" y="206" width="96" height="14" rx="3"/>
-  </g>
-  <text x="400" y="240" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">Empilement HBM</text>
+  <!-- ================= Coupe de la pile ================= -->
+  <rect x="60" y="80" width="470" height="300" rx="10" fill="none" stroke="#26262D" stroke-width="1.5"/>
 
-  <!-- Étape 3 -->
-  <rect x="560" y="120" width="200" height="140" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
-  <rect x="596" y="152" width="128" height="72" rx="6" fill="none" stroke="#F5B400" stroke-width="2"/>
-  <path d="M596 188H724M660 152V224" stroke="#F5B400" stroke-opacity="0.6" stroke-width="1.5"/>
-  <text x="660" y="240" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">Packaging CoWoS</text>
-
-  <!-- Étape 4 -->
-  <rect x="820" y="120" width="220" height="140" rx="10" fill="#16161B" stroke="#35353D" stroke-width="1.5"/>
-  <rect x="866" y="150" width="128" height="76" rx="6" fill="#E8352B" fill-opacity="0.85"/>
-  <text x="930" y="196" text-anchor="middle" fill="#0B0B0E" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">GPU</text>
-  <text x="930" y="240" text-anchor="middle" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="19">Accélérateur d'IA</text>
-
-  <!-- Flèches -->
-  <g stroke="#35D6D6" stroke-width="2.5" fill="none">
-    <path d="M242 190H294M296 184L306 190L296 196"/>
-    <path d="M502 190H554M556 184L566 190L556 196"/>
-    <path d="M762 190H814M816 184L826 190L816 196"/>
+  <!-- Couches DRAM -->
+  <g fill="#16161B" stroke="#35D6D6" stroke-width="1.5">
+    <rect x="110" y="110" width="250" height="16" rx="3"/>
+    <rect x="110" y="134" width="250" height="16" rx="3"/>
+    <rect x="110" y="158" width="250" height="16" rx="3"/>
+    <rect x="110" y="182" width="250" height="16" rx="3"/>
+    <rect x="110" y="206" width="250" height="16" rx="3"/>
+    <rect x="110" y="230" width="250" height="16" rx="3"/>
+    <rect x="110" y="254" width="250" height="16" rx="3"/>
+    <rect x="110" y="278" width="250" height="16" rx="3"/>
   </g>
 
-  <!-- Bandeau de lecture -->
-  <text x="40" y="70" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">Le chemin obligé de la mémoire dans un système d'IA</text>
-  <text x="40" y="330" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Chaque étape est un goulot : une seule puce défectueuse dans l'empilement fait perdre les 8 à 12 couches qui la composent.</text>
-  <text x="40" y="360" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="17">Les trois quarts de la production 2027 de Micron sont déjà vendus — c'est ce qui fixe les prix avant même la fabrication.</text>
+  <!-- TSV -->
+  <g stroke="#F5B400" stroke-width="2">
+    <path d="M135 108V326M170 108V326M205 108V326M240 108V326M275 108V326M310 108V326M345 108V326"/>
+  </g>
+
+  <!-- Puce de base -->
+  <rect x="100" y="300" width="270" height="34" rx="5" fill="#0E0E12" stroke="#F5B400" stroke-width="1.5"/>
+
+  <!-- GPU -->
+  <rect x="420" y="180" width="90" height="138" rx="8" fill="#E8352B" fill-opacity="0.85"/>
+  <text x="465" y="254" text-anchor="middle" fill="#0B0B0E" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="600">GPU</text>
+
+  <!-- Bus -->
+  <g stroke="#35D6D6" stroke-width="3">
+    <path d="M370 310H418M370 318H418"/>
+  </g>
+  <text x="394" y="352" text-anchor="middle" fill="#35D6D6" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="14">2 048 bits</text>
+
+  <!-- Légendes de la coupe -->
+  <text x="110" y="100" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="13">couches DRAM empilées (schéma : 8 ; jusqu'à 12 puis 16)</text>
+  <text x="388" y="118" fill="#F5B400" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="14">TSV</text>
+  <text x="388" y="136" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="12">connexions</text>
+  <text x="388" y="151" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="12">verticales</text>
+  <text x="110" y="356" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="13">puce de base (logique)</text>
+
+  <!-- ================= Formule ================= -->
+  <rect x="580" y="80" width="460" height="300" rx="10" fill="#16161B" stroke="#26262D" stroke-width="1.5"/>
+  <text x="604" y="118" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">Débit d'une pile =</text>
+  <text x="604" y="152" fill="#F2F1ED" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="18">largeur du bus</text>
+  <text x="604" y="176" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">× débit par broche</text>
+  <text x="604" y="200" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">÷ 8 bits par octet</text>
+
+  <path d="M604 220H1016" stroke="#26262D" stroke-width="1.5"/>
+
+  <text x="604" y="254" fill="#35D6D6" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">2 048 × 8 Gb/s ÷ 8 = 2 TB/s</text>
+  <text x="604" y="276" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="14">norme JEDEC HBM4</text>
+
+  <text x="604" y="312" fill="#F5B400" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="16">2 048 × 11 Gb/s ÷ 8 ≈ 2,8 TB/s</text>
+  <text x="604" y="334" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="14">revendication Micron, HBM4 12 couches</text>
+
+  <text x="40" y="420" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">La largeur du bus est le levier : à fréquence de broche égale, passer de 1 024 à 2 048 bits double le débit sans accélérer l'horloge.</text>
+  <text x="40" y="444" fill="#93939C" font-family="Barlow, ui-sans-serif, system-ui, sans-serif" font-size="15">Les TSV raccourcissent le trajet du signal ; ils ne changent ni la largeur du bus ni la quantité de données à déplacer.</text>
 </svg>
