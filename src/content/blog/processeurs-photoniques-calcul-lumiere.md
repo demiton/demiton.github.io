@@ -11,7 +11,7 @@ Le calcul par la lumière n'est plus une curiosité de laboratoire. En 2026, une
 
 ## L'essentiel
 
-- **Lightelligence** (曦智科技) entre au HKEX le 28 avril 2026 et ouvre à **+380 %** ; mais environ **80 % de son chiffre d'affaires 2025** vient de l'interconnexion optique, pas du calcul.[^1]
+- **Lightelligence** entre au HKEX le 28 avril 2026 et ouvre à **+380 %** ; mais environ **80 % de son chiffre d'affaires 2025** vient de l'interconnexion optique, pas du calcul.[^1]
 - La revue *Nature* publie les mesures complètes de **PACE**, un accélérateur optoélectronique dont la carte est fabriquée en production.[^2]
 - Au MIT, un processeur tensoriel optique réalise une multiplication matrice-matrice **en un seul passage**, à environ **20 attojoules par opération**, avec une précision supérieure à 8 bits — énergie optique seule, hors électronique de pilotage.[^3]
 - La **mémoire optique** reste le maillon faible : la meilleure démonstration publiée conserve **3,2 Mbit pendant 20 millisecondes**.[^4]
@@ -85,7 +85,7 @@ Le reste du marché suit la même pente. Marvell a finalisé le rachat de Celest
 - **Le silence de Lightmatter sur son produit de calcul n'est pas une preuve d'arrêt** : toutes ses communications de 2026 portent sur l'interconnexion, mais l'absence d'annonce ne dit rien de l'état du programme.
 - **Les chiffres d'énergie ne sont pas comparables entre eux** : ils portent tantôt sur un port complet, tantôt sur une liaison, tantôt sur une seule opération, et sont majoritairement déclarés par les intéressés.
 
-[^1]: 证券时报 (Securities Times) — https://stcn.com/article/detail/3869253.html — et 新华财经 (Xinhua Finance) — https://m.cnfin.com/gs-lb//zixun/20260428/4405786_1.html
+[^1]: Securities Times (presse financière chinoise) — https://stcn.com/article/detail/3869253.html — et Xinhua Finance — https://m.cnfin.com/gs-lb//zixun/20260428/4405786_1.html
 
 [^2]: Lightelligence, publications (article *Nature* référencé : https://www.nature.com/articles/s41586-025-08786-6, page non accessible) — https://lightelligence.ai/community/papers/9
 
