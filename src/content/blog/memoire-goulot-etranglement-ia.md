@@ -1,79 +1,96 @@
 ---
 title: "La mémoire est devenue le goulot d'étranglement de l'IA"
-description: "Les GPU ne servent à rien sans mémoire rapide. Or les trois fabricants mondiaux vendent déjà leur production 2027, et Micron annonce une tension jusqu'en 2028."
+description: "Un accélérateur ne calcule presque pas : il attend des données. Débit par pile, largeur de bus, coût énergétique d'un accès : ce que mesurent les chiffres, avant la tension d'approvisionnement."
 date: 2026-10-07
 category: Semi-conducteurs
 tags: [mémoire, hbm, dram, ia, semi-conducteurs]
 cover: /covers/memoire-hbm.svg
 ---
 
-Pendant deux ans, la question de l'infrastructure d'IA a été celle des processeurs : qui aurait assez de GPU. Ce trimestre, le centre de gravité s'est déplacé d'un cran dans la chaîne. Ce n'est plus le calcul qui manque, c'est la **mémoire** qui l'alimente — et les trois entreprises capables d'en produire pour l'IA vendent déjà leur production de 2027.
+Un accélérateur d'IA passe l'essentiel de son temps à attendre. Générer un jeton impose de relire les poids actifs du modèle, et c'est le débit de la mémoire qui fixe alors la cadence — pas le nombre de cœurs de calcul. La contrainte se mesure en bits par seconde et en picojoules par bit ; la tension d'approvisionnement qui fait les gros titres n'en est que la conséquence économique.
 
 ## L'essentiel
 
-- **Micron annonce une offre « nettement plus tendue » en 2027 et 2028 qu'en 2026**, sans visibilité sur un retour à l'équilibre.
-- **Plus de 75 % de sa production 2027 est déjà engagée** : les prix de l'an prochain sont fixés avant que les usines aient produit.
-- Le chiffre d'affaires trimestriel de Micron atteint un record de **54,2 milliards de dollars**, avec des prix DRAM en hausse de près de 20 % et NAND d'environ 30 % sur le trimestre.
-- **TrendForce confirme la tendance** : les négociations de prix contractuels du quatrième trimestre 2026 repartent à la hausse, sur une offre « extrêmement tendue ».
-- Le premier fournisseur chinois de mémoire, YMTC, estime la pénurie à **« au moins trois ans de plus »** — et préfère monter ses prix plutôt que casser le marché.
+- La norme **JEDEC HBM4** (JESD270-4) fixe un bus de **2 048 bits par pile** — le double de HBM3E — et jusqu'à **8 Gb/s par broche**, soit **2 TB/s par pile**.[^1]
+- **Micron** revendique **2,8 TB/s par pile** à **11 Gb/s par broche** sur ses HBM4 12 couches, avec **+20 %** d'efficacité énergétique face à HBM3E.[^2]
+- Une pile HBM empile aujourd'hui **12 puces DRAM** (16 annoncées), reliées verticalement par des **TSV**, posées sur une **puce de base** logique.[^1]
+- Déplacer des données coûte **deux à trois ordres de grandeur de plus** que les calculer : un accès DRAM hors puce revient à **20 à 40 pJ par bit**, contre **10 à 100 pJ** pour un accès à une SRAM.[^3]
+- En inférence, le débit mémoire **divise la taille du modèle** : 70 Go de poids sur 3,35 TB/s plafonnent à environ **48 jetons par seconde**, quel que soit le nombre de cœurs.[^1]
 
-## Pourquoi la mémoire commande la cadence
+## Ce qui a été mesuré, et comment
 
-Un accélérateur d'IA est un processeur qui passe son temps à attendre des données. Sa puissance se mesure autant en calcul qu'en **bande passante mémoire** : la vitesse à laquelle il peut lire les milliards de paramètres d'un modèle. Un GPU sans mémoire assez rapide est une usine avec un quai de déchargement trop étroit — les machines tournent, mais elles tournent à vide.
-
-C'est le rôle du **HBM**, pour *High Bandwidth Memory* : au lieu de poser les puces mémoire à côté du processeur, on les empile les unes sur les autres et on les colle juste à côté, reliées par des milliers de connexions verticales. Un module HBM moderne, c'est huit à douze puces DRAM empilées sur une puce de base.
+Le débit d'une mémoire ne se mesure pas au banc d'essai comme une fréquence : il se **déduit de l'interface**, puis se vérifie par un test de bande passante. Trois nombres suffisent — largeur du bus, débit par broche, nombre de piles — et une division par huit pour passer des bits aux octets.
 
 <figure>
-	<img src="/figures/chaine-hbm.svg" alt="Quatre étapes illustrées : plaquette DRAM, empilement HBM, packaging CoWoS, accélérateur d'IA" />
-	<figcaption>La mémoire d'un système d'IA traverse quatre étapes, toutes capacitives. Une seule couche défectueuse dans un empilement fait perdre l'ensemble du module.</figcaption>
+	<img src="/figures/chaine-hbm.svg" alt="À gauche, coupe d'une pile HBM : huit couches DRAM empilées, traversées de connexions verticales TSV, posées sur une puce de base et reliées à un GPU ; à droite, la formule du débit avec deux exemples chiffrés" />
+	<figcaption>La largeur du bus est le levier : à fréquence de broche égale, passer de 1 024 à 2 048 bits double le débit. Les TSV raccourcissent le trajet du signal, ils n'augmentent pas la quantité de données transportées.</figcaption>
 </figure>
 
-> **En clair**
-> Le HBM n'est pas une mémoire « plus rapide » au sens habituel : c'est la même mémoire, mais **rapprochée et empilée**. La distance physique est le facteur limitant, pas la technologie de stockage elle-même.
+Les chiffres publiés s'emboîtent exactement. La norme JEDEC, publiée en avril 2025 sous la référence JESD270-4, définit 2 048 bits par pile, jusqu'à 8 Gb/s par broche et 2 TB/s par pile — soit 2 048 × 8 ÷ 8 = 2 048 Go/s.[^1] Micron, qui dépasse la norme, annonce 11 Gb/s et 2,8 TB/s : le calcul redonne 2 048 × 11 ÷ 8 ≈ 2,8 TB/s, ce qui rend la revendication cohérente en interne.[^2] Samsung annonce de son côté 11,7 Gb/s, extensibles à 13, pour 3,3 TB/s par pile.[^1]
 
-Cette architecture a une conséquence industrielle : elle rend la mémoire indissociable du processeur. On ne peut pas compenser un manque de HBM en achetant plus de GPU, ni l'inverse. Les deux pénuries se déclenchent ensemble.
-
-## Trois sources, une même conclusion
-
-Le diagnostic ne vient pas d'un seul acteur. Micron, qui publie ses résultats trimestriels, décrit une demande qui dépasse l'offre jusqu'en 2028.[^1] TrendForce, cabinet d'analyse indépendant, observe le même déséquilibre du côté des **prix contractuels** — ces contrats négociés à l'avance entre fabricants et acheteurs, qui servent de référence au marché.[^2] Enfin YMTC, troisième fournisseur mondial de mémoire NAND, parle d'« au moins trois ans de plus » de pénurie.
-
-Trois positions différentes — un industriel occidental, un cabinet taïwanais, un producteur chinois — et une seule conclusion. C'est ce recoupement qui donne sa solidité à l'information : aucun des trois n'a intérêt à décrire la même tension.
+Ces nombres sont de trois natures différentes, et il faut les distinguer : **JEDEC est une norme**, pas une mesure ; **Micron et Samsung publient des revendications de produit**, non répliquées indépendamment ; **les totaux par carte** (3,35 TB/s pour une H100, 4,8 pour une H200, 8 pour une B300) sont des spécifications constructeur, cohérentes avec huit piles par accélérateur.[^1]
 
 > **En clair**
-> Un **prix contractuel** est un tarif négocié pour plusieurs mois de livraisons, par opposition au prix au comptant, qui varie au jour le jour. C'est le contrat qui dit la tendance de fond ; le comptant dit l'humeur du marché.
+> Un **bit par seconde** et un **octet par seconde** diffèrent d'un facteur huit : 8 Gb/s par broche, sur 2 048 broches, donnent 16 384 Gb/s, soit 2 048 Go/s ou 2 TB/s. C'est la source d'erreur la plus fréquente quand on compare des débits mémoire.
 
-Le quatrième signal est social. Le syndicat de Micron à Taïwan, qui revendique plus de 80 % de salariés syndiqués sur les sites de Taoyuan et Taichung — deux usines DRAM majeures —, réclame un partage des profits à 15 % du résultat opérationnel, et un vote de grève était envisagé début octobre.[^3] Dans un marché sans marge de manœuvre, une grève sur ces sites serait un choc d'offre immédiat.
+## Pourquoi la bande passante limite un accélérateur
 
-## Ce que la tension change, concrètement
+Un calcul consomme des opérations et des données dans des proportions qui dépendent de l'algorithme. Le rapport entre les deux s'appelle l'**intensité arithmétique** : le nombre d'opérations effectuées par octet lu. Quand elle est élevée, la puce calcule ; quand elle est faible, elle attend.
 
-| Indicateur | Ce que disent les chiffres |
-| --- | --- |
-| Production 2027 de Micron | plus de 75 % déjà engagée |
-| Prix DRAM sur le trimestre | en hausse de près de 20 % |
-| Prix NAND sur le trimestre | environ +30 % |
-| Horizon de tension annoncé | 2027 et 2028, sans retour à l'équilibre |
-| Côté chinois (YMTC) | « au moins trois ans de plus » |
+> **En clair**
+> Si un algorithme fait une opération par octet lu, il est **limité par la mémoire** : doubler la puissance de calcul ne change rien, puisque le goulot est l'arrivée des données. S'il fait cent opérations par octet, il est limité par le calcul, et la mémoire compte peu.
 
-Le transfert de valeur est net : il va des assembleurs de serveurs et des fabricants de PC et de smartphones vers trois fournisseurs — Samsung, SK hynix et Micron — auxquels s'ajoute désormais la Chine. Pour un acheteur, la conséquence est simple : le coût d'un serveur d'IA dépendra de moins en moins du choix du GPU et de plus en plus de la disponibilité de la mémoire.
+La génération de texte est dans le premier cas. Pour produire un jeton, le modèle doit parcourir ses poids actifs — des milliards d'octets — pour n'effectuer qu'une poignée d'opérations par valeur. Le plafond se calcule alors sans benchmark : 70 Go de poids, soit 7 × 10¹⁰ octets, divisés par les 3,35 × 10¹² octets par seconde d'une H100,[^1] donnent environ 21 millisecondes par jeton, soit 48 jetons par seconde. Ce chiffre est une **borne**, pas une mesure : le découpage en lots, le cache et la quantification la déplacent, dans un sens ou dans l'autre.
 
-Côté HBM4, la génération qui équipe les systèmes les plus récents, les trois fournisseurs sont qualifiés et se disputent la charge. SK hynix aurait obtenu environ 70 % de la demande allouée par NVIDIA pour 2026, selon des sources citées par l'agence Yonhap[^4] — un chiffre à prendre comme un ordre de grandeur, pas comme un contrat publié.
+Le contexte aggrave le déséquilibre : à chaque jeton, le modèle relit aussi le **cache de contexte**, qui conserve les états de tout ce qui précède. Plus la fenêtre s'allonge, plus le volume à relire par jeton augmente.
 
-## Pourquoi la correction ne viendra pas vite
+## L'empilement : ce que la distance change
 
-Une pénurie de mémoire ne se résout pas comme un manque de main-d'œuvre : elle se résout par des usines, qui coûtent plusieurs milliards et se construisent en trois à quatre ans. Les trois fabricants ont donc intérêt à la tension, ce qui explique qu'aucun n'ait annoncé de capacité nouvelle capable de casser les prix avant 2028. C'est précisément le raisonnement que décrit Micron lorsqu'il refuse de donner une date de retour à l'équilibre.[^1]
+La solution retenue par l'industrie ne consiste pas à accélérer la mémoire, mais à **élargir le chemin**. Une puce DRAM classique communique par un bus étroit, de quelques dizaines de bits ; une pile HBM en utilise 1 024, puis 2 048.[^1] À fréquence égale, le débit double simplement parce que les bits passent en parallèle.
+
+Le reste est une affaire de distance. Les puces DRAM sont empilées et reliées par des **TSV** — *through-silicon vias*, des connexions verticales qui traversent le silicium —, puis posées sur une puce de base logique et placées à côté du processeur sur le même boîtier.[^1][^2] Le signal parcourt des millimètres au lieu de centimètres, ce qui réduit l'énergie par bit et la latence.
+
+L'empilement a un coût industriel direct : une pile de 12 couches contient 12 puces DRAM, et une seule défaillante fait perdre l'ensemble, ce qui pèse sur le rendement. La norme HBM4 prévoit d'ailleurs des piles de 4, 8, 12 ou 16 couches, avec des puces de 24 ou 32 Gb et jusqu'à 64 Go par pile.[^1]
+
+## Ce que coûte un accès mémoire
+
+La hiérarchie énergétique explique pourquoi cette architecture s'impose. Dans la mesure de référence de Mark Horowitz (ISSCC 2014), à 45 nm et 0,9 V, une addition entière coûte entre 0,03 et 0,9 pJ, une multiplication flottante entre 0,4 et 3,7 pJ, un accès à une SRAM de 8 Ko à 1 Mo entre 10 et 100 pJ, et un accès à une DRAM hors puce entre 1,3 et 2,6 nJ pour 64 bits.[^3]
+
+Ramenez au bit : un accès DRAM hors puce revient à **20 à 40 pJ par bit** (1,3 à 2,6 nJ pour 64 bits), alors qu'un accès à une SRAM de 8 Ko à 1 Mo coûte 10 à 100 pJ, et une opération arithmétique entre 0,03 et 3,7 pJ.[^3] Un accès hors puce coûte donc des dizaines à des centaines de fois plus qu'un accès sur puce — et, rapporté à l'opération qu'il alimente, deux à trois ordres de grandeur de plus.
+
+> **En clair**
+> Ces chiffres datent de 2014, en technologie 45 nm, et portent sur de la **DRAM hors puce classique**. Une pile HBM est posée sur le même boîtier, avec un bus beaucoup plus large : son coût par bit est plus faible. Aucune valeur équivalente, mesurée sur HBM, n'a été trouvée pour cet article — les ordres de grandeur ci-dessus disent la hiérarchie, pas la valeur exacte d'un accès HBM.
+
+C'est là que la physique devient une contrainte d'architecture : puisque relire coûte si cher, tout l'effort porte sur la **localité** — garder les données au plus près du calcul, découper les traitements pour réutiliser ce qui est déjà chargé, compresser les poids. Une puce deux fois plus rapide sur des données qu'elle n'arrive pas à lire ne gagne rien.
+
+## Ce que cela change pour l'approvisionnement
+
+La tension de marché se lit alors comme une conséquence, non comme le sujet. Pour augmenter la bande passante d'un accélérateur, il faut ajouter des piles ; chaque pile consomme 12 puces DRAM, une puce de base et une place dans le packaging. La demande en débit se traduit donc directement en demande de **puces mémoire et de capacité d'assemblage**, deux ressources physiquement limitées.
+
+Trois sources décrivent la même tension : Micron annonce une offre « nettement plus tendue » en 2027-2028, avec plus de 75 % de sa production 2027 déjà engagée ;[^4] TrendForce observe les mêmes hausses sur les prix contractuels du quatrième trimestre ;[^5] YMTC évoque « au moins trois ans de plus » de pénurie.[^6] Une usine se construit en trois à quatre ans : la correction ne peut pas être immédiate.
+
+Côté HBM4, les trois fournisseurs sont désormais qualifiés pour les accélérateurs les plus récents, et la charge se répartit très inégalement : SK hynix aurait obtenu environ 70 % de la demande allouée par NVIDIA pour 2026, selon des sources citées par l'agence Yonhap[^7] — un ordre de grandeur, pas un contrat publié.
 
 ## Ce que l'on ne sait pas
 
-- **L'horizon exact de la pénurie est contradictoire.** Micron parle de 2027-2028, TrendForce anticipe un assouplissement du NAND au second semestre 2027, et YMTC évoque un délai bien plus long. Ces prévisions ne portent pas forcément sur les mêmes segments.
-- **La déclaration de YMTC repose sur un seul employé, anonyme**, et non sur une prévision officielle de l'entreprise.
-- **Le conflit social chez Micron n'est pas tranché** : les deux parties se disaient en négociation, avec une réunion prévue le 22 octobre 2026.
-- **Les chiffres de prix sont des variations trimestrielles**, pas des niveaux absolus : ils disent la direction, pas le montant payé par un acheteur donné.
-- **ASML, qui conditionne la capacité future**, n'avait pas encore publié ses résultats du troisième trimestre au moment de la rédaction ; ils sont attendus le 14 octobre 2026.
+- **Aucune mesure publiée du coût énergétique d'un accès HBM** n'a été trouvée. La hiérarchie citée provient de la DRAM hors puce en 45 nm ; l'extrapoler à HBM serait une erreur de périmètre.
+- **Les débits par pile de Micron et Samsung sont des revendications**, non des mesures indépendantes. Seule la norme JEDEC est un document public de référence.
+- **Les deux pages NVIDIA ne donnent pas le même débit pour Vera Rubin** : 19,2 TB/s sur la page produit, 22 TB/s sur la page HGX. L'écart n'est pas expliqué par les sources consultées.
+- **Le débit par pile de HBM3E n'est pas publié par les fabricants** : la valeur d'environ 1 TB/s est un calcul du comparatif cité, à partir des données produit d'AMD, et ne vaut que pour ce produit.
+- **Les latences ne sont pas documentées ici** : aucune valeur sourcée n'a été trouvée, alors que c'est la seconde moitié du problème.
+- **Le plafond de 48 jetons par seconde est une borne arithmétique**, pas un résultat mesuré : elle suppose un modèle dense de 70 Go, une lecture complète des poids à chaque jeton et aucun découpage en lots.
+- **Les horizons de pénurie se contredisent** : Micron parle de 2027-2028, TrendForce anticipe un assouplissement du NAND au second semestre 2027, YMTC évoque un délai plus long — et ces prévisions ne portent pas forcément sur les mêmes segments.
 
-[^1]: TechPowerUp, « Micron CEO says memory supply will be much tighter in 2027 and 2028 than in 2026 » — https://www.techpowerup.com/353296/micron-ceo-says-memory-supply-will-be-much-tighter-in-2027-and-2028-than-in-2026
+[^1]: Aquanode, « HBM3E vs HBM4: Specs, Vendors and GPUs » (synthèse des spécifications JEDEC JESD270-4 et des fiches produit NVIDIA et AMD) — https://www.aquanode.io/blog/hbm3e-vs-hbm4
 
-[^2]: DigitalToday (d'après TrendForce), « RAM/SSD prices: US cloud demand tightens DRAM supply » — https://www.digitaltoday.co.kr/en/view/111830/ram-ssd-prices-us-cloud-demand-tightens-dram-supply
+[^2]: TechPowerUp, « Micron's 12-Hi HBM4 Delivers 2.8 TB/s Bandwidth, 11 Gb/s Per-Pin Transfer Rate » — https://www.techpowerup.com/341279/microns-12-hi-hbm4-delivers-2-8-tb-s-bandwidth-11-gb-s-per-pin-transfer-rate
 
-[^3]: Sourceability (d'après Digitimes et TrendForce), « Labor risks deepen semiconductor shortage strain amid AI investments » — https://sourceability.com/post/labor-risks-deepen-semiconductor-shortage-strain-amid-ai-investments
+[^3]: Mark Horowitz, « Computing's Energy Problem (and what we can do about it) », IEEE ISSCC 2014, DOI 10.1109/ISSCC.2014.6757323 — https://ieeexplore.ieee.org/document/6757323
 
-[^4]: Yonhap, « NVIDIA allocates HBM4 orders » — https://en.yna.co.kr/view/AEN20260128002800320
+[^4]: TechPowerUp, « Micron CEO says memory supply will be much tighter in 2027 and 2028 than in 2026 » — https://www.techpowerup.com/353296/micron-ceo-says-memory-supply-will-be-much-tighter-in-2027-and-2028-than-in-2026
+
+[^5]: DigitalToday (d'après TrendForce), « RAM/SSD prices: US cloud demand tightens DRAM supply » — https://www.digitaltoday.co.kr/en/view/111830/ram-ssd-prices-us-cloud-demand-tightens-dram-supply
+
+[^6]: Sourceability (d'après Digitimes et TrendForce), « Labor risks deepen semiconductor shortage strain amid AI investments » — https://sourceability.com/post/labor-risks-deepen-semiconductor-shortage-strain-amid-ai-investments
+
+[^7]: Yonhap, « NVIDIA allocates HBM4 orders » — https://en.yna.co.kr/view/AEN20260128002800320

@@ -1,94 +1,109 @@
 ---
-title: "Quantique : quand l'État américain devient actionnaire"
-description: "300 millions de dollars attribués le même jour à Quantinuum, D-Wave et Rigetti, avec une participation fédérale au capital : l'informatique quantique change de nature de financement."
+title: "Quantique : pourquoi le nombre de qubits ne dit plus rien"
+description: "Un qubit qui se trompe ne sert à rien : ce qui compte est le taux d'erreur par cycle et le nombre de qubits logiques qu'on sait en tirer. Ce que mesurent Helix et le décodeur d'IonQ, et ce qui reste hors de portée."
 date: 2026-10-07
 category: Technologies disruptives
-tags: [quantique, chips-act, correction-derreur, politique-industrielle]
+tags: [quantique, correction-derreur, qubit-logique, cryogénie, mesure]
 cover: /covers/quantique.svg
 ---
 
-Le 8 septembre 2026, le Département du Commerce américain a finalisé trois attributions de 100 millions de dollars chacune au titre du CHIPS and Science Act, au bénéfice de Quantinuum, D-Wave et Rigetti. Le montant n'est pas l'information principale : pour la première fois, l'État fédéral ne se contente pas de commander des machines, il **entre au capital** des entreprises qui les construisent. La filière quantique change de nature de financement — et, dans le même mouvement, de ligne de front technique : ce qui se joue désormais n'est plus le nombre de qubits, mais la capacité à corriger leurs erreurs.
+Un ordinateur quantique ne devient utile que lorsque ses erreurs sont corrigées : tant que chaque opération se trompe, ajouter des qubits ne fait qu'ajouter des erreurs. La métrique qui compte n'est donc plus le nombre de qubits physiques, mais le **taux d'erreur par cycle** et le nombre de **qubits logiques** qu'on sait en tirer. En 2026, deux mesures donnent des chiffres sur cette question précise : l'architecture Helix de Quantinuum revendique 4,6 × 10⁻⁵ d'erreur par qubit et par cycle sans post-sélection, et IonQ affirme décoder en temps réel des circuits de 408 qubits logiques sur un processeur central ordinaire, pour 0,02 % de surcoût.
 
 ## L'essentiel
 
-- **100 millions de dollars chacun**, attribués le même jour à Quantinuum, D-Wave et Rigetti au titre du CHIPS and Science Act.[^1][^2][^3]
-- En contrepartie, l'État fédéral obtient une **participation minoritaire non contrôlante au capital** des trois sociétés.[^3]
-- **Quantinuum valide l'architecture Helix** : 4,6 × 10⁻⁵ d'erreur par qubit et par cycle, sans post-sélection. Un record **auto-déclaré**.[^4]
-- **IonQ décode les erreurs en temps réel sur un processeur central ordinaire** : jusqu'à 408 qubits logiques sur 88 blocs mémoire, pour 0,02 % de surcoût. **Prépublication non évaluée par les pairs**.[^5]
-- **Xanadu transfère sa photonique sur une ligne de 300 mm** de GlobalFoundries, à Malte (New York).[^6]
-- IonQ relève sa prévision de chiffre d'affaires 2026 à **450-460 millions de dollars**, dont l'essentiel ne vient pas du calcul quantique.[^7]
+- **Helix revendique 4,6 × 10⁻⁵ d'erreur par qubit et par cycle**, sans post-sélection, et 9,3 × 10⁻⁵ d'erreur logique par bloc. Record auto-déclaré, non homologué.[^1]
+- **La post-sélection change tout** : le même dispositif annonce 1,9 × 10⁻⁵ en écartant 0,5 % des exécutions — un facteur cinq sur le chiffre affiché.
+- **IonQ décode en temps réel sur un processeur central de 12 cœurs**, avec 408 qubits logiques répartis sur 88 blocs, plus de 31,5 millions d'opérations quantiques et 0,02 % de surcoût de décodage. Prépublication non évaluée par les pairs.[^2]
+- **Le décodage doit aller plus vite que la machine** : si le décodeur classique prend du retard, l'ordinateur quantique se met en pause. C'est le verrou que IonQ dit avoir levé.
+- **Chez Xanadu, la métrique est la perte photonique** : 24,1 × en 2026, objectif 1,0 × en 2030, et plus de 1 000 qubits logiques en 2031 — une feuille de route d'entreprise, pas une mesure.[^3]
 
-## Un État actionnaire, pas seulement client
+## Ce qui a été mesuré, et comment
 
-Les trois attributions financent des briques industrielles concrètes. Quantinuum, spécialiste des ions piégés, finance des moyens de fabrication : photonique intégrée à faible perte, semi-conducteurs cryogéniques. D-Wave cible les procédés semi-conducteurs pour le recuit et le modèle à portes supraconducteur. Rigetti poursuit trois projets : électronique de lecture miniaturisée, nouvelle architecture de **cryostat** — l'enceinte qui maintient la puce près du zéro absolu, sans quoi un circuit supraconducteur ne fonctionne pas — et puces à forte connectivité.[^1][^2][^3]
+### Ce que mesure un taux d'erreur par cycle
 
-Ce qui change n'est pas le montant, mais la position de l'État : une subvention finance un programme, une participation au capital l'installe au bilan. Le communiqué de Rigetti mentionne explicitement cette prise de participation minoritaire non contrôlante ; la presse financière rapporte le même dispositif pour les deux autres.[^3]
-
-> **En clair**
-> Une **participation minoritaire non contrôlante** signifie que l'État détient une part du capital sans diriger l'entreprise : il ne nomme pas la direction.
-
-La conséquence est double : les marchés publics américains intégreront une préférence nationale, comme dans la défense ou le spatial, et le quantique cesse d'être un pari de capital-risque pour devenir une politique industrielle.
-
-## La correction d'erreur est devenue la ligne de front
-
-Un qubit ne se comporte pas comme un bit ordinaire : il ne se copie pas et perd son état à la moindre perturbation. Tant que les qubits physiques se trompent souvent, en empiler davantage ne donne pas un ordinateur utilisable. La réponse tient en un mot — corriger.
+Un qubit perd son état à la moindre perturbation, et ne se copie pas : on ne peut pas stocker son information trois fois comme on duplique un bit. La correction d'erreur quantique consiste donc à répartir l'information sur plusieurs qubits physiques et à mesurer des **syndromes** — des combinaisons qui révèlent qu'une erreur a eu lieu sans dire laquelle.
 
 > **En clair**
-> Un **qubit physique** est un objet fabriqué, ion piégé ou circuit supraconducteur : il est fragile et se trompe régulièrement. Un **qubit logique** n'est pas un qubit de plus, c'est un groupe de qubits physiques dont les erreurs sont corrigées collectivement pour qu'il se comporte comme une unité fiable. La **correction d'erreur** est ce travail permanent de regroupement et de mesure.
+> Un code se note [[n, k, d]] : **n** qubits physiques encodent **k** qubits logiques, avec une **distance d**. Plus d est grand, plus le code tolère d'erreurs simultanées. Un taux d'erreur « par cycle » est la probabilité qu'un qubit se trompe pendant une unité d'opération — une porte ou une mesure.
+
+Deux nombres différents sont souvent confondus : le taux d'erreur **par qubit et par cycle**, qui décrit la brique, et le taux d'erreur **logique**, qui décrit le résultat du calcul encodé. C'est le second qui décide si un algorithme aboutit. Et un troisième facteur fausse les comparaisons : la **post-sélection**, qui consiste à écarter après coup les exécutions dont on sait qu'elles ont échoué.
 
 <figure>
 	<img src="/figures/correction-erreur.svg" alt="À gauche, une vingtaine de qubits physiques dont cinq en rouge ; au centre, une flèche « correction d'erreur » ; à droite, trois qubits logiques en violet, chacun entouré des qubits physiques qui le composent" />
 	<figcaption>La correction d'erreur ne supprime pas les qubits fragiles : elle les regroupe en unités protégées. Le schéma illustre le principe, pas les proportions réelles — un qubit logique peut mobiliser bien davantage de qubits physiques.</figcaption>
 </figure>
 
-Quantinuum a annoncé le 8 septembre avoir validé, sur son matériel Helios, l'architecture Helix, construite en concaténant deux codes correcteurs notés [[10,2,3]] et [[4,2,2]] — un code étant la règle qui permet de détecter et de corriger les erreurs d'un groupe de qubits. La société revendique un taux d'erreur de 4,6 × 10⁻⁵ par qubit et par cycle sans post-sélection, et un taux d'erreur logique par bloc de 9,3 × 10⁻⁵, ramené à 1,9 × 10⁻⁵ avec 0,5 % de post-sélection.[^4]
+### Helix : concaténer deux codes correcteurs
+
+Le dispositif est le matériel Helios de Quantinuum, à ions piégés. L'architecture Helix concatène deux codes correcteurs, notés [[10,2,3]] et [[4,2,2]] : le second protège les qubits du premier, sur le principe des poupées russes.
+
+Ce qui a été mesuré : un taux d'erreur de 4,6 × 10⁻⁵ par qubit et par cycle sans post-sélection, un taux d'erreur logique par bloc de 9,3 × 10⁻⁵, ramené à 1,9 × 10⁻⁵ lorsqu'on écarte 0,5 % des exécutions.
+
+Le statut, en revanche, est celui d'une **auto-évaluation** : Quantinuum précise que la qualification de record mondial repose sur « une étude de la littérature existante », et aucune instance indépendante n'a homologué la comparaison.[^1] Ce qui reste solide n'est pas le record, c'est le déplacement de la métrique : ce qui départage les acteurs est désormais le volume de calcul nécessaire pour obtenir un résultat fiable.
+
+### IonQ : décoder en temps réel sur un processeur ordinaire
+
+Corriger une erreur suppose de lire l'état des qubits, d'en déduire ce qui a mal tourné, puis d'appliquer la correction — en temps réel, sans ralentir le calcul plus qu'on ne le répare. Si le décodeur classique prend du retard, la machine se met en pause ; ce ralentissement porte un nom, le **stretch**.
+
+Le dispositif est une architecture à double décodeur : un décodeur d'erreurs qui suit les corrections accumulées, et un décodeur de résultat qui intervient pendant les mesures logiques.
+
+Ce qui a été mesuré, selon la prépublication : des circuits allant jusqu'à 408 qubits logiques répartis sur 88 blocs — 68 blocs de code et 20 usines à états magiques, ces circuits auxiliaires qui préparent les opérations non triviales — représentant plus de 31,5 millions d'opérations quantiques, 1,31 million de mesures logiques et 555 000 portes T. Le tout exécuté sur un processeur central de 12 cœurs du commerce, avec un surcoût de décodage de 0,02 % et une latence restant sous la durée du cycle d'extraction de syndrome. Les jeux d'essai comprennent des modèles de Heisenberg désordonnés et des transitions de phase induites par la mesure.
+
+Le statut est explicite : **prépublication arXiv, non évaluée par les pairs**.[^2] Et une précision décisive, souvent perdue dans les reprises : ces 408 qubits logiques sont **simulés** — l'objet de la mesure est le décodeur classique, pas un processeur quantique exécutant 408 qubits logiques.
 
 > **En clair**
-> La **post-sélection** consiste à écarter après coup les exécutions dont on sait qu'elles ont mal tourné, pour ne garder que les bonnes. C'est courant en laboratoire, mais cela consomme du temps de calcul réel : un résultat annoncé « sans post-sélection » est donc plus exigeant qu'un résultat annoncé « avec ».
+> Une **usine à états magiques** produit un état auxiliaire coûteux, indispensable à certaines opérations. Elle ne stocke pas de données : elle alimente le calcul.
 
-Cette revendication de record mondial est une **auto-évaluation** : Quantinuum précise lui-même qu'elle repose sur « une étude de la littérature existante », et aucune instance indépendante n'a homologué la comparaison. Ce qui reste solide, c'est le déplacement de la métrique — ce n'est plus le nombre de qubits qui départage les acteurs, mais le volume de calcul nécessaire pour obtenir un résultat fiable.[^4]
+### Xanadu : la perte photonique comme métrique
 
-## IonQ ramène le décodage sur un processeur ordinaire
+Pour l'approche photonique, le facteur limitant n'est pas le bruit thermique mais la **perte** : chaque composant absorbe un peu de lumière, et le signal s'affaiblit au fil du circuit.
 
-Corriger une erreur quantique suppose de lire l'état des qubits, d'en déduire ce qui a mal tourné, puis d'appliquer la correction — en temps réel, sans ralentir le calcul plus qu'on ne le répare. L'objection classique : ce **décodage** finirait par exiger des grappes de calcul classique si lourdes que la montée en puissance deviendrait absurde.
+La feuille de route de Xanadu donne un indicateur de perte à ramener de 24,1 × en 2026 à 1,0 × en 2030, un taux d'erreur logique ciblé à 10⁻¹⁶ en 2030 — contre 10⁻³ à 10⁻⁸ annoncés pour 2028 — et des paliers de 200, 500 puis plus de 1 000 qubits logiques entre 2029 et 2031. L'architecture fonctionne à température ambiante, sur procédés silicium.[^3] Le partenariat avec GlobalFoundries, annoncé le 6 octobre, porte sur ce qui manque : la fabrication en 300 mm des détecteurs à nanofils et d'une plateforme de nitrure de silicium à très faible perte.[^4] C'est une capacité industrielle, pas une mesure.
 
-IonQ affirme avoir démontré le premier décodeur de bout en bout fonctionnant en temps réel sur un processeur central standard du commerce, avec une architecture à double décodeur. Les circuits évalués vont jusqu'à 408 qubits logiques répartis sur 88 blocs mémoire, soit plus de 31,5 millions d'opérations quantiques, pour un surcoût de décodage de 0,02 % du temps d'exécution.[^5]
+## Pourquoi le nombre de qubits ne dit plus rien
 
-Là encore, le qualificatif compte : ces chiffres viennent d'une **prépublication arXiv déposée par l'entreprise**, non d'un article évalué par les pairs. Ils disent une direction, pas un résultat répliqué. Mais si le coût classique n'explose pas avec la taille du système, le coût marginal de la montée en puissance change d'ordre de grandeur.[^5]
+Un processeur « de 408 qubits logiques » n'existe pas : ce qui existe, c'est un décodeur capable de traiter les syndromes d'un circuit de cette taille, simulé. La distinction n'est pas sémantique. Un qubit logique est une **unité protégée**, construite à partir de nombreux qubits physiques, et son taux d'erreur dépend de la distance du code et de la qualité des opérations.
 
-## Xanadu installe la photonique sur une ligne de 300 mm
+La conséquence pratique est qu'un annonceur peut afficher un chiffre spectaculaire sans qu'aucun algorithme ne tourne : il suffit de simuler le contrôle classique. Ce qui compterait, et qui n'est pas encore publié par ces acteurs, c'est un taux d'erreur logique **mesuré sur matériel**, à une distance de code déclarée, avec assez de qubits logiques pour exécuter un calcul utile.
 
-> **En clair**
-> La **photonique** porte l'information avec de la lumière — des photons — plutôt qu'avec des courants électriques. Une **ligne de 300 mm** est le standard de production des puces modernes : des plaquettes de silicium de 30 centimètres de diamètre, gravées par milliers à la fois. Y passer, c'est quitter le prototype de laboratoire pour la production de volume.
+## Les verrous
 
-Le 6 octobre, Xanadu a annoncé un partenariat pluriannuel avec GlobalFoundries pour produire à grande échelle les composants photoniques de ses ordinateurs quantiques. L'accord porte sur le transfert, vers la ligne 300 mm de GlobalFoundries à Malte (New York), des détecteurs supraconducteurs à nanofils et d'une plateforme de nitrure de silicium à très faible perte. L'objectif affiché est de servir de base de fabrication aux démonstrateurs tolérants aux fautes et à de futurs « data centers quantiques ».[^6]
+**La post-sélection.** Écarter 0,5 % des exécutions fait passer le taux d'erreur logique de 9,3 × 10⁻⁵ à 1,9 × 10⁻⁵. La méthode est légitime, mais le chiffre ne décrit pas la même chose que celui obtenu sans filet.
 
-Le raisonnement est celui des attributions CHIPS : ce qui manque à la filière n'est pas une idée, mais une capacité de production — et un accès verrouillé à une fonderie de 300 mm est une barrière à l'entrée difficilement réplicable.[^6]
+**Le décodage.** Le décodeur doit consommer les syndromes plus vite que la machine ne les produit. IonQ mesure 0,02 % de surcoût, mais sur des circuits simulés et avec une architecture logicielle propriétaire.
 
-## Le chiffre d'affaires quantique qui n'en est pas
+**La cryogénie.** Les qubits supraconducteurs fonctionnent près du zéro absolu, dans un **cryostat** — une enceinte réfrigérée dont la complexité croît avec le nombre de qubits à câbler. C'est une contrainte d'ingénierie qui limite la taille des machines autant que la physique.
 
-Reste un signal moins confortable. Le 8 septembre également, IonQ a relevé sa prévision de chiffre d'affaires 2026 à 450-460 millions de dollars, en intégrant SkyWater Technology à compter du 31 juillet 2026, date de son acquisition, nettes des revenus internes.[^7]
+**La perte photonique.** Côté photonique, la lumière s'atténue à chaque composant : c'est pourquoi Xanadu affiche un objectif de perte avant un objectif de qubits.
 
-Or l'essentiel de ce chiffre d'affaires provient de la fonderie et des composants, non du calcul quantique — une décomposition issue de l'analyse de presse, le communiqué ne publiant pas ce découpage. Le fait mérite d'être souligné : la consolidation verticale du secteur se finance par des revenus qui ne sont pas quantiques, ce qui signale à la fois une stratégie industrielle cohérente et la fragilité, à ce stade, de la thèse de revenus purement quantiques.
+## Ce que l'argent achète
+
+C'est la partie la plus commentée de l'année, et la moins déterminante pour comprendre la technologie. Le 8 septembre, le Département du Commerce américain a finalisé trois attributions de 100 millions de dollars au titre du CHIPS and Science Act, au bénéfice de Quantinuum, D-Wave et Rigetti. Ce que cet argent achète est précis : des briques de fabrication — photonique à faible perte et semi-conducteurs cryogéniques, procédés semi-conducteurs, électronique de lecture miniaturisée et architecture de cryostat.[^5][^6][^7]
+
+En contrepartie, l'État fédéral obtient une participation minoritaire non contrôlante au capital — documentée par une source primaire pour Rigetti seulement, rapportée par la presse pour les deux autres.[^7] Un second signal, plus révélateur, vient d'IonQ : sa prévision de chiffre d'affaires 2026, relevée à 450-460 millions de dollars après l'acquisition de SkyWater, provient essentiellement de la fonderie et des composants, non du calcul quantique.[^8]
 
 ## Ce que l'on ne sait pas
 
-- **La participation au capital n'est documentée par une source primaire que pour Rigetti** : son communiqué la mentionne explicitement. Pour D-Wave et Quantinuum, elle repose sur des reprises de presse, sans communiqué équivalent consulté.
-- **Le record de Quantinuum est auto-déclaré** : l'entreprise indique elle-même que la qualification repose sur une étude de la littérature existante du domaine.
-- **Les résultats d'IonQ viennent d'une prépublication arXiv** de l'entreprise : 408 qubits logiques, 31,5 millions d'opérations et 0,02 % de surcoût sont des chiffres non répliqués.
-- **La répartition du chiffre d'affaires d'IonQ** entre fonderie, composants et calcul quantique est une lecture de presse : le communiqué ne publie pas ce découpage.
-- **Le montant exact de la participation fédérale, sa durée et les droits qu'elle confère** ne sont pas publics.
+- **Le record de Quantinuum est auto-déclaré** : l'entreprise indique elle-même que la qualification repose sur une étude de la littérature existante.
+- **Les résultats d'IonQ viennent d'une prépublication** (arXiv:2608.25027) déposée par l'entreprise, et portent sur des circuits **simulés** : ils mesurent le décodeur, pas la machine.
+- **Le nombre de qubits physiques par qubit logique n'est pas publié** dans les sources consultées : impossible de calculer le coût matériel réel de Helix ou du décodeur d'IonQ.
+- **La feuille de route de Xanadu est un document d'entreprise**, assorti de ses propres avertissements sur les risques, et non un résultat évalué.
+- **La participation au capital n'est documentée par une source primaire que pour Rigetti** ; le montant exact, la durée et les droits conférés ne sont pas publics.
+- **La répartition du chiffre d'affaires d'IonQ** entre fonderie, composants et calcul est une lecture de presse : le communiqué ne publie pas ce découpage.
+- **Aucune de ces mesures n'a été répliquée indépendamment** : ni Helix, ni le décodeur d'IonQ, ni les paliers de Xanadu.
 
-[^1]: NIST / Département du Commerce américain, « Department of Commerce announces finalization of CHIPS R&D award to Quantinuum » — https://www.nist.gov/news-events/news/2026/09/department-commerce-announces-finalization-chips-rd-award-quantinuum
+[^1]: Quantinuum, « Helix: a new architecture for enterprise-scale fault-tolerant quantum computing » — https://www.quantinuum.com/blog/helix-a-new-architecture-for-enterprise-scale-fault-tolerant-quantum-computing
 
-[^2]: NIST / Département du Commerce américain, « Department of Commerce announces finalization of CHIPS R&D award to D-Wave » — https://www.nist.gov/news-events/news/2026/09/department-commerce-announces-finalization-chips-rd-award-d-wave
+[^2]: IonQ, « IonQ demonstrates industry's first end-to-end real-time quantum error decoder » — https://www.ionq.com/news/ionq-demonstrates-industrys-first-end-to-end-real-time-quantum-error-decoder — prépublication : arXiv:2608.25027 — https://arxiv.org/abs/2608.25027
 
-[^3]: Rigetti Computing, « Rigetti signs definitive agreement for $100M US government award » — https://investors.rigetti.com/news-releases/news-release-details/rigetti-signs-definitive-agreement-100m-us-government-accelerate
+[^3]: Xanadu, feuille de route « over 1 000 logical qubits by 2031 » — https://investors.xanadu.ai/news-releases/news-release-details/xanadu-charts-path-over-1000-logical-qubits-2031
 
-[^4]: Quantinuum, « Helix: a new architecture for enterprise-scale fault-tolerant quantum computing » — https://www.quantinuum.com/blog/helix-a-new-architecture-for-enterprise-scale-fault-tolerant-quantum-computing
+[^4]: Xanadu, « Xanadu and GlobalFoundries announce strategic partnership » — https://investors.xanadu.ai/news-releases/news-release-details/xanadu-and-globalfoundries-announce-strategic-partnership
 
-[^5]: IonQ, « IonQ demonstrates industry's first end-to-end real-time quantum error decoder » — https://www.ionq.com/news/ionq-demonstrates-industrys-first-end-to-end-real-time-quantum-error-decoder
+[^5]: NIST / Département du Commerce américain, « finalization of CHIPS R&D award to Quantinuum » — https://www.nist.gov/news-events/news/2026/09/department-commerce-announces-finalization-chips-rd-award-quantinuum
 
-[^6]: Xanadu, « Xanadu and GlobalFoundries announce strategic partnership » — https://investors.xanadu.ai/news-releases/news-release-details/xanadu-and-globalfoundries-announce-strategic-partnership
+[^6]: NIST / Département du Commerce américain, « finalization of CHIPS R&D award to D-Wave » — https://www.nist.gov/news-events/news/2026/09/department-commerce-announces-finalization-chips-rd-award-d-wave
 
-[^7]: IonQ, « IonQ announces increased full-year 2026 financial outlook following SkyWater acquisition » — https://www.ionq.com/news/ionq-announces-increased-full-year-2026-financial-outlook-following-skywater-acquisition
+[^7]: Rigetti Computing, « Rigetti signs definitive agreement for $100M US government award » — https://investors.rigetti.com/news-releases/news-release-details/rigetti-signs-definitive-agreement-100m-us-government-accelerate
+
+[^8]: IonQ, « IonQ announces increased full-year 2026 financial outlook following SkyWater acquisition » — https://www.ionq.com/news/ionq-announces-increased-full-year-2026-financial-outlook-following-skywater-acquisition
