@@ -1,19 +1,20 @@
 ---
 title: Se connecter en SSH par clés
-description: VPS, GitHub et GitLab — paquets Debian et Fedora, génération de la paire, dépôt de la clé, durcissement de sshd et dépannage.
+description: VPS, GitHub et GitLab — paquets Debian, Fedora et Termux, génération de la paire, dépôt de la clé, durcissement de sshd et dépannage.
 sidebar:
   label: SSH par clés
 ---
 
 Cette page montre comment authentifier une connexion SSH avec une paire de
-clés — sans mot de passe — depuis un poste Linux vers :
+clés — sans mot de passe — depuis un poste vers :
 
 1. un VPS Linux dont tu es administrateur ;
 2. GitHub et GitLab, pour `git clone` et `git push` en SSH.
 
-Les commandes marchent sur Debian, Ubuntu, Fedora, RHEL, Arch, etc. Les
-différences côté serveur (nom du service, emplacement de la configuration)
-sont signalées au passage.
+Trois environnements sont couverts : **Debian/Ubuntu**, **Fedora/RHEL** et
+**Termux (Android)**. Dès que les commandes diffèrent, chaque plateforme a son
+propre bloc, sous un titre explicite : ne copie que celui qui te concerne.
+Termux n'est utilisé ici que comme poste client.
 
 **Conventions utilisées dans les exemples**
 
@@ -29,12 +30,11 @@ Les adresses `203.0.113.0/24` sont réservées à la documentation (RFC 5737) :
 aucun trafic réel ne peut y aboutir, elles sont sûres à recopier.
 :::
 
-**Version express** — le chemin heureux, détaillé plus bas :
+**Version express** — le chemin heureux, détaillé plus bas. Les paquets
+(section 2) et le démarrage de l'agent (section 3.4) dépendent de la
+plateforme : suis le bloc Debian, Fedora ou Termux.
 
 ```bash
-# Debian/Ubuntu : sudo apt install -y openssh-client git
-# Fedora : sudo dnf install -y openssh-clients git
-
 # poste → VPS
 ssh-keygen -t ed25519 -a 100 -C "alice@portable-2026-11"
 ssh-copy-id alice@203.0.113.10
@@ -103,20 +103,22 @@ l'homme du milieu.
 
 ---
 
-## 2. Installer les paquets (Debian, Fedora)
+## 2. Installer les paquets
 
-Tout vient des dépôts de la distribution, rien à compiler. Sur le **poste**,
-il faut le client SSH et Git ; sur le **VPS**, le serveur SSH, et Git
-seulement si la machine doit cloner des dépôts.
+Tout vient des dépôts de la distribution, rien à compiler. Le **poste** a
+besoin du client SSH et de Git ; le **VPS**, du serveur SSH. Quand les
+commandes diffèrent, chaque plateforme a son bloc : ne copie que le tien.
 
 ### 2.1 Debian et Ubuntu
+
+**Sur le poste** (client SSH, Git, copies) :
 
 ```bash
 sudo apt update
 sudo apt install -y openssh-client git rsync
 ```
 
-Sur le VPS, ajoute le serveur, le pare-feu et un outil de test de port :
+**Sur le VPS** (serveur SSH, pare-feu, diagnostic) :
 
 ```bash
 sudo apt install -y openssh-server ufw netcat-openbsd
@@ -141,13 +143,27 @@ ssh -V
 dpkg -l openssh-client openssh-server | grep '^ii'
 ```
 
+**Démarrer le serveur (VPS uniquement)** :
+
+```bash
+sudo systemctl enable --now ssh
+sudo systemctl status ssh --no-pager
+ss -tlnp | grep ':22 '
+```
+
+Si rien n'écoute : service arrêté, autre port
+(`sudo sshd -T | grep -i '^port'`), ou `sshd` absent. `ss` vient de
+`iproute2`, présent par défaut.
+
 ### 2.2 Fedora (et RHEL, Rocky, AlmaLinux)
+
+**Sur le poste** (client SSH, Git, copies) :
 
 ```bash
 sudo dnf install -y openssh-clients git rsync
 ```
 
-Sur le VPS :
+**Sur le VPS** (serveur SSH, pare-feu, diagnostic) :
 
 ```bash
 sudo dnf install -y openssh-server firewalld nmap-ncat
@@ -168,30 +184,32 @@ Sur RHEL, Rocky ou AlmaLinux, `fail2ban` vient d'EPEL :
 `sudo dnf install -y epel-release` avant l'installation. Depuis Fedora 41,
 `dnf` est en réalité `dnf5` ; la commande ne change pas.
 
-### 2.3 Démarrer le serveur (VPS)
-
-À l'installation, ou au premier démarrage, `openssh-server` génère les clés
-d'hôte dans `/etc/ssh/ssh_host_*` ; il reste à démarrer le service.
+**Démarrer le serveur (VPS uniquement)** :
 
 ```bash
-# Debian, Ubuntu
-sudo systemctl enable --now ssh
-sudo systemctl status ssh --no-pager
-
-# Fedora, RHEL
 sudo systemctl enable --now sshd
 sudo systemctl status sshd --no-pager
-```
-
-Vérifie qu'il écoute :
-
-```bash
 ss -tlnp | grep ':22 '
 ```
 
-Si rien n'apparaît : service arrêté, autre port
-(`sudo sshd -T | grep -i '^port'`), ou `sshd` absent. `ss` vient de
-`iproute2`, présent par défaut sur les deux distributions.
+### 2.3 Termux (Android)
+
+Termux n'est utilisé ici que comme **poste client** : on n'y installe pas de
+serveur. Le client SSH, Git et `rsync` viennent de `pkg` :
+
+```bash
+pkg update
+pkg install -y openssh git rsync
+```
+
+Vérifie :
+
+```bash
+ssh -V
+```
+
+Les clés vivent dans `~/.ssh/`, privé à l'application Termux. Le VPS, lui,
+reste en Debian (section 2.1) ou en Fedora (section 2.2).
 
 ### 2.4 Récapitulatif
 
@@ -205,6 +223,9 @@ Si rien n'apparaît : service arrêté, autre port
 | test de port | `netcat-openbsd` | `nmap-ncat` |
 | anti-bruteforce (facultatif) | `fail2ban` | `fail2ban` |
 | élévation de droits | `sudo` | `sudo` |
+
+Termux : `pkg install openssh git rsync` suffit ; il n'y a ni serveur SSH, ni
+pare-feu système, ni `sudo` à installer.
 
 Les images cloud Debian et Fedora embarquent déjà le client et le serveur : si
 `ssh -V` répond et que le service tourne, passe directement à la suite. Les
@@ -279,11 +300,29 @@ comparer les longues chaînes de caractères.
 
 ### 3.4 Charger la clé dans l'agent (pour ne pas retaper la passphrase)
 
-L'agent SSH garde les clés déverrouillées en mémoire pour la session. Les
-versions récentes d'OpenSSH (10.1 et suivantes) placent son socket dans
-`~/.ssh/agent/` ; selon la distribution — c'est le cas dans Termux — le dossier
-n'est pas créé et `ssh-agent` échoue avec `No such file or directory`. Crée-le
-avant de lancer l'agent :
+L'agent garde les clés déverrouillées en mémoire pour la session. Le démarrage
+dépend de la plateforme : ne copie que le bloc qui te concerne.
+
+#### Debian et Ubuntu
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+ssh-add -l          # liste les clés chargées
+```
+
+#### Fedora et RHEL
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+ssh-add -l          # liste les clés chargées
+```
+
+#### Termux (Android)
+
+Depuis OpenSSH 10.1, le socket de l'agent vit dans `~/.ssh/agent/`. Termux ne
+crée pas ce dossier : crée-le avant de lancer l'agent.
 
 ```bash
 mkdir -p ~/.ssh/agent
@@ -293,24 +332,19 @@ ssh-add ~/.ssh/id_ed25519
 ssh-add -l          # liste les clés chargées
 ```
 
-Si le socket ne peut pas être créé dans le dossier personnel, impose-lui un
-chemin explicite — sur Termux, `$PREFIX/tmp` est toujours accessible :
+Si Termux refuse encore le socket, impose-lui `$PREFIX/tmp` :
 
 ```bash
 eval "$(ssh-agent -s -a "$PREFIX/tmp/ssh-agent.sock")"
 ```
 
-Sans agent, la passphrase est redemandée à chaque connexion, `git push`
-compris. L'agent meurt à la fermeture de la session (ou au redémarrage) ; il
-suffit de relancer les commandes. Pour l'ajouter automatiquement à l'agent à
-chaque utilisation, mets `AddKeysToAgent yes` dans `~/.ssh/config` (section 7).
+L'agent meurt quand Termux est fermé : après une réouverture, relance les
+commandes.
 
-:::note[Termux]
-`pkg install openssh` fournit le client. Sans systemd, l'agent se lance à la
-main à chaque session et meurt avec elle : après un redémarrage, relance
-`ssh-agent` puis `ssh-add`. Les clés restent dans `~/.ssh/`, privé à
-l'application Termux.
-:::
+Sans agent, la passphrase est redemandée à chaque connexion, `git push`
+compris. L'agent meurt à la fermeture de la session ; il suffit de relancer les
+commandes. Pour l'ajouter automatiquement à chaque utilisation, mets
+`AddKeysToAgent yes` dans `~/.ssh/config` (section 7).
 
 ### 3.5 Et si le système est ancien ?
 
@@ -331,14 +365,26 @@ Ed25519).
 
 ### 4.1 Créer un compte non-root (si le VPS n'a que `root`)
 
-Sur le VPS, connecté en root :
+Sur le VPS, connecté en root. Choisis le bloc de la distribution du VPS.
+
+#### Debian et Ubuntu
 
 ```bash
-adduser alice                  # Debian, Ubuntu
-# useradd -m -s /bin/bash alice  # Fedora, RHEL, Arch
-usermod -aG sudo alice      # Debian, Ubuntu
-# usermod -aG wheel alice   # Fedora, RHEL, Arch
+adduser alice
+usermod -aG sudo alice
 ```
+
+`adduser` demande le mot de passe du nouveau compte.
+
+#### Fedora et RHEL
+
+```bash
+useradd -m -s /bin/bash alice
+passwd alice
+usermod -aG wheel alice
+```
+
+`useradd` ne demande pas de mot de passe : `passwd` s'en charge.
 
 Travailler avec un compte non-root qui utilise `sudo` limite les dégâts d'une
 erreur de commande et permet de couper complètement l'accès root (section 6).
@@ -483,14 +529,24 @@ fichier cloud-init, puis vérifie la valeur réellement appliquée (ci-dessous).
 
 ### 6.2 Appliquer sans se verrouiller dehors
 
-Avant toute chose : **garde la session SSH courante ouverte** et sache
-comment ouvrir une console de secours chez le fournisseur. Une session
-existante n'est pas coupée par un rechargement de `sshd`.
+Avant toute chose : **garde la session SSH courante ouverte** et sache comment
+ouvrir une console de secours chez le fournisseur. Une session existante n'est
+pas coupée par un rechargement de `sshd`.
 
 ```bash
 sudo sshd -t                 # teste la syntaxe : aucune sortie = OK
-sudo systemctl reload ssh    # Debian, Ubuntu
-# sudo systemctl reload sshd # Fedora, RHEL, Arch
+```
+
+**Debian / Ubuntu :**
+
+```bash
+sudo systemctl reload ssh
+```
+
+**Fedora / RHEL :**
+
+```bash
+sudo systemctl reload sshd
 ```
 
 Vérifie la configuration **effective**, pas seulement le fichier :
@@ -515,15 +571,20 @@ Puis, depuis une **nouvelle** session, teste une connexion par clé. Si elle
 
 ### 6.3 Pare-feu et groupe de sécurité
 
+**Debian / Ubuntu (ufw) :**
+
 ```bash
-# ufw (Debian, Ubuntu)
 sudo ufw allow OpenSSH
 sudo ufw enable
 sudo ufw status verbose
+```
 
-# firewalld (Fedora, RHEL)
+**Fedora / RHEL (firewalld) :**
+
+```bash
 sudo firewall-cmd --permanent --add-service=ssh
 sudo firewall-cmd --reload
+sudo firewall-cmd --list-services
 ```
 
 Pense aussi au pare-feu **du fournisseur** (groupe de sécurité AWS, pare-feu
@@ -852,10 +913,17 @@ côté serveur (`authorized_keys`, permissions, `sshd_config`).
 
 Côté serveur, les journaux disent pourquoi une clé est refusée :
 
+**Debian / Ubuntu :**
+
 ```bash
-sudo journalctl -u ssh -n 50 --no-pager     # Debian, Ubuntu
-sudo journalctl -u sshd -n 50 --no-pager    # Fedora, RHEL, Arch
-sudo tail -n 50 /var/log/auth.log           # si rsyslog est utilisé
+sudo journalctl -u ssh -n 50 --no-pager
+sudo tail -n 50 /var/log/auth.log     # si rsyslog est utilisé
+```
+
+**Fedora / RHEL :**
+
+```bash
+sudo journalctl -u sshd -n 50 --no-pager
 ```
 
 Et la configuration effective se lit avec `sudo sshd -T`.
