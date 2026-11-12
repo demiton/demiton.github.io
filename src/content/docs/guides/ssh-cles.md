@@ -279,18 +279,38 @@ comparer les longues chaînes de caractères.
 
 ### 3.4 Charger la clé dans l'agent (pour ne pas retaper la passphrase)
 
-L'agent SSH garde les clés déverrouillées en mémoire pour la session :
+L'agent SSH garde les clés déverrouillées en mémoire pour la session. Les
+versions récentes d'OpenSSH (10.1 et suivantes) placent son socket dans
+`~/.ssh/agent/` ; selon la distribution — c'est le cas dans Termux — le dossier
+n'est pas créé et `ssh-agent` échoue avec `No such file or directory`. Crée-le
+avant de lancer l'agent :
 
 ```bash
+mkdir -p ~/.ssh/agent
+chmod 700 ~/.ssh ~/.ssh/agent
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 ssh-add -l          # liste les clés chargées
 ```
 
+Si le socket ne peut pas être créé dans le dossier personnel, impose-lui un
+chemin explicite — sur Termux, `$PREFIX/tmp` est toujours accessible :
+
+```bash
+eval "$(ssh-agent -s -a "$PREFIX/tmp/ssh-agent.sock")"
+```
+
 Sans agent, la passphrase est redemandée à chaque connexion, `git push`
 compris. L'agent meurt à la fermeture de la session (ou au redémarrage) ; il
-suffit de relancer les deux commandes. Pour l'automatiser à chaque nouvelle
-clé utilisée, ajoute `AddKeysToAgent yes` dans `~/.ssh/config` (section 7).
+suffit de relancer les commandes. Pour l'ajouter automatiquement à l'agent à
+chaque utilisation, mets `AddKeysToAgent yes` dans `~/.ssh/config` (section 7).
+
+:::note[Termux]
+`pkg install openssh` fournit le client. Sans systemd, l'agent se lance à la
+main à chaque session et meurt avec elle : après un redémarrage, relance
+`ssh-agent` puis `ssh-add`. Les clés restent dans `~/.ssh/`, privé à
+l'application Termux.
+:::
 
 ### 3.5 Et si le système est ancien ?
 
