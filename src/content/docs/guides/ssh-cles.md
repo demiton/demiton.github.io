@@ -405,6 +405,16 @@ non standard :
 ssh-copy-id -i ~/.ssh/id_ed25519.pub -p 2222 alice@203.0.113.10
 ```
 
+:::note[Termux]
+Sur Termux, `ssh-copy-id -i` peut échouer avec
+`ERROR: Too many arguments. Expecting a target hostname` : le chemin de la clé
+n'est pas toujours consommé comme valeur de `-i`. Deux solutions :
+
+- omettre `-i` — la clé par défaut `~/.ssh/id_ed25519.pub` est utilisée :
+  `ssh-copy-id alice@203.0.113.10` ;
+- copier la clé à la main, méthode de la section 4.3, qui fonctionne partout.
+:::
+
 ### 4.3 Méthode manuelle
 
 Utile quand l'authentification par mot de passe est déjà coupée, ou quand la
